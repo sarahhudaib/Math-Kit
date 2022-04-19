@@ -4,9 +4,19 @@ from tkinter import Tk, Frame, Button, Label
 
 class HomePage:
     """
+    This class is the home page of the application. It contains the following: 
+    - A title label that displays the name of the application   (Label) 
+    - A label that displays the info of the application         (Label)
+    - A label that displays the guide of the application        (Label)          
     """
     
     def __init__(self, master, tools):
+        """
+        This method is the constructor of the class. It creates the following:
+        - The title label that displays the name of the application   (Label)
+        - The label that displays the info of the application         (Label)
+        - The label that displays the guide of the application        (Label)
+        """
         
         width = int(tools.screen_width*0.8)
         height = int(tools.screen_height*0.8)
