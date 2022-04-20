@@ -29,15 +29,30 @@ class HomePage:
         page_title.pack()
         
         info = """
-        write the info here
+        Welcome To the Home Page of our project 'Math-Kit'
+
+        This project is a GUI tool, built using Python and a few of its libraries; specifically:
+        1. tkinter
+        2. NumPy
+        all for the purpose of performing basic and advanced mathematical operations easily and directly.\n
         """
 
         guide = """
-        write the guide here
+        A starting guide on how to navigate 'Math-Kit':
+
+        The navigation bar at the top of this window shows four different buttons, 
+        that you can use to walk through this project simply by clicking on any them.
+        And to further explain the content of each window, here's the following:
+        1. Home Page: this window is for briefing you about our project.
+        2. Workspace: this window is for performing the basic and advanced mathematical operations.
+        3. Team Info: this window is for introducing the developers behind "Math-Kit".
+        4. settings: this window is for changing a few characteristics of the GUI window of the project.
         """
         
-        self.info = Label(self.home_frame, text=info, font=("Berlin Sans FB", 20), bg=tools.pallete["gray"])
+        self.info = Label(self.home_frame, text=info, font=("Berlin Sans FB", 15), bg=tools.pallete["gray"], 
+                          justify="left")
         self.info.pack()
         
-        self.guide = Label(self.home_frame, text=guide, font=("Berlin Sans FB", 20), bg=tools.pallete["gray"])
+        self.guide = Label(self.home_frame, text=guide, font=("Berlin Sans FB", 15), bg=tools.pallete["gray"]
+                           , justify="left")
         self.guide.pack()
