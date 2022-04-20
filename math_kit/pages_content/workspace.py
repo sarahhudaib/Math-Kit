@@ -4,6 +4,10 @@ from tkinter import Tk, Frame, Button, Label
 
 class WorkspacePage:
     """
+    This class is the workspace page of the application. It contains the following:
+    - A title label that displays the name of the application   (Label)
+    - A label that displays the info of the application         (Label)
+    - A label that displays the guide of the application        (Label)
     """
     
     def __init__(self, master, tools):

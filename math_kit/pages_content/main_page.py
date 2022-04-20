@@ -9,6 +9,10 @@ from pages_content.settings import SettingsPage
 
 
 class MainPage:
+    """
+    This class represents the background of the pages.  It is used to change the background color of the page  
+    when the user clicks on a button.   The background color is changed to the color of the button.
+    """
     
     def __init__(self, wind, tools):
 
@@ -27,6 +31,13 @@ class MainPage:
         
         
     def NavigationBar(self):
+        """
+        This method creates the navigation bar of the application.  It contains the following:
+        - A button that displays the home page  (Button) 
+        - A button that displays the workspace page  (Button)
+        - A button that displays the team info page  (Button)
+        - A button that displays the settings page  (Button)
+        """
         tools = self.tools
         wind = self.wind 
 
@@ -72,6 +83,10 @@ class MainPage:
 
 
     def _SwitchPageBackground(self, page_number):
+        """
+        This method is called when the user clicks on a button.  
+        It changes the background color of the page to the color of the button. 
+        """
         tools = self.tools
         
         if page_number == 0:
