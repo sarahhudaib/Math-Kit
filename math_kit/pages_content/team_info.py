@@ -40,6 +40,7 @@ class TeamInfoPage:
         self.sara.grid(row=0, column=0, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.sara.grid_columnconfigure(0, weight=1)
         
+
         self.sara_img = Image.open(r"../math_kit/assets/avatars/sara.png")
         self.sara_img = self.sara_img.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.sara_img = self.tools.mask_circle_transparent(self.sara_img, 1.5)
