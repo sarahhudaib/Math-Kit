@@ -42,7 +42,8 @@ class TeamInfoPage:
         self.sara.grid(row=0, column=0, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.sara.grid_columnconfigure(0, weight=1)
         
-        self.sara_img = Image.open(r"./math_kit/assets/avatars/sara.png")
+
+        self.sara_img = Image.open(r"../math_kit/assets/avatars/sara.png")
         self.sara_img = self.sara_img.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.sara_img = self.tools.mask_circle_transparent(self.sara_img, 1.5)
         self.sara_avatar_img = ImageTk.PhotoImage(self.sara_img)
@@ -72,7 +73,8 @@ class TeamInfoPage:
         self.mustafa.config(highlightbackground = self.bd, highlightcolor= self.bd)
         self.mustafa.grid_columnconfigure(0, weight=1)
         
-        self.mustafa_img = Image.open(r"./math_kit/assets/avatars/mustafa.jpg")
+
+        self.mustafa_img = Image.open(r"../math_kit/assets/avatars/mustafa.jpg")
         self.mustafa_img = self.mustafa_img.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.mustafa_img = self.tools.mask_circle_transparent(self.mustafa_img, 1.5)
         self.mustafa_avatar_img = ImageTk.PhotoImage(self.mustafa_img)
@@ -83,8 +85,8 @@ class TeamInfoPage:
         self.name = Label(self.mustafa, text="Mustafa \nAlhasanat", bg=self.bg, font=("Berlin Sans FB", 20))
         self.name.pack(ipadx=self.ipadx, ipady=self.ipady)
         
-        self.mustafa_github = ""
-        self.mustafa_linkedin = ""
+        self.mustafa_github = "https://github.com/Mustfa1999"
+        self.mustafa_linkedin = "https://www.linkedin.com/in/mustafa-alhasanat/"
         self.mustafa_github_button = Button(self.mustafa, text="Github", bg=self.tools.pallete["blue"], 
                                          fg=self.tools.pallete["white"], font=("Berlin Sans FB", 18),
                                   command=lambda: self.url_button_handler(self.mustafa_github))
@@ -102,13 +104,28 @@ class TeamInfoPage:
         self.batool.config(highlightbackground = self.bd, highlightcolor= self.bd)
         self.batool.grid_columnconfigure(0, weight=1)
         
-        self.batool_img = Image.open(r"./math_kit/assets/avatars/batool.png")
+
+        self.batool_img = Image.open(r"../math_kit/assets/avatars/batool.png")
         self.batool_img = self.batool_img.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.batool_img = self.tools.mask_circle_transparent(self.batool_img, 1.5)
         self.batool_avatar_img = ImageTk.PhotoImage(self.batool_img)
         self.batool_avatar = Label(self.batool, image=self.batool_avatar_img, bg=self.bg)
         self.batool_avatar.image = self.batool_avatar_img
         self.batool_avatar.pack(ipadx=self.ipadx, ipady=self.ipady)
+
+        self.name = Label(self.batool, text="Batool \nRagayah", bg=self.bg, font=("Berlin Sans FB", 20))
+        self.name.pack(ipadx=self.ipadx, ipady=self.ipady)
+        
+        self.batool_github = "https://github.com/BatoolBtoush"
+        self.batool_linkedin = "https://www.linkedin.com/in/batool-ragayah/"
+        self.batool_github_button = Button(self.batool, text="Github", bg=self.tools.pallete["blue"], 
+                                         fg=self.tools.pallete["white"], font=("Berlin Sans FB", 18),
+                                  command=lambda: self.url_button_handler(self.batool_github))
+        self.batool_linkedin_button = Button(self.batool, text="LinkedIn", bg=self.tools.pallete["blue"], 
+                                         fg=self.tools.pallete["white"], font=("Berlin Sans FB", 18),
+                                    command=lambda: self.url_button_handler(self.batool_linkedin))
+        self.batool_github_button.pack(padx=10, fill="x", expand=True)
+        self.batool_linkedin_button.pack(padx=10, fill="x", expand=True)
         
         
     def _SalimCard(self):
@@ -118,13 +135,28 @@ class TeamInfoPage:
         self.salim.config(highlightbackground = self.bd, highlightcolor= self.bd)
         self.salim.grid_columnconfigure(0, weight=1)
         
-        self.salim_img = Image.open(r"./math_kit/assets/avatars/salim.png")
+
+        self.salim_img = Image.open(r"../math_kit/assets/avatars/salim.png")
         self.salim_img = self.salim_img.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.salim_img = self.tools.mask_circle_transparent(self.salim_img, 1.5)
         self.salim_avatar_img = ImageTk.PhotoImage(self.salim_img)
         self.salim_avatar = Label(self.salim, image=self.salim_avatar_img, bg=self.bg)
         self.salim_avatar.image = self.salim_avatar_img
         self.salim_avatar.pack(ipadx=self.ipadx, ipady=self.ipady)
+
+        self.name = Label(self.salim, text="Salim \nHassouneh", bg=self.bg, font=("Berlin Sans FB", 20))
+        self.name.pack(ipadx=self.ipadx, ipady=self.ipady)
+        
+        self.salim_github = "https://github.com/SalimHass"
+        self.salim_linkedin = "https://www.linkedin.com/in/salim-hassouneh/"
+        self.salim_github_button = Button(self.salim, text="Github", bg=self.tools.pallete["blue"], 
+                                         fg=self.tools.pallete["white"], font=("Berlin Sans FB", 18),
+                                  command=lambda: self.url_button_handler(self.salim_github))
+        self.salim_linkedin_button = Button(self.salim, text="LinkedIn", bg=self.tools.pallete["blue"], 
+                                         fg=self.tools.pallete["white"], font=("Berlin Sans FB", 18),
+                                    command=lambda: self.url_button_handler(self.salim_linkedin))
+        self.salim_github_button.pack(padx=10, fill="x", expand=True)
+        self.salim_linkedin_button.pack(padx=10, fill="x", expand=True)
         
         
     def url_button_handler(self, url):
