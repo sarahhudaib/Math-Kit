@@ -1,5 +1,7 @@
 from tkinter import Tk, Frame, Button, Label, messagebox
-from PIL import Image, ImageDraw, ImageFilter, ImageTk
+from PIL import Image, ImageTk
+
+
 import webbrowser
 import threading
 
@@ -71,6 +73,7 @@ class TeamInfoPage:
         self.mustafa.config(highlightbackground = self.bd, highlightcolor= self.bd)
         self.mustafa.grid_columnconfigure(0, weight=1)
         
+
         self.mustafa_img = Image.open(r"../math_kit/assets/avatars/mustafa.jpg")
         self.mustafa_img = self.mustafa_img.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.mustafa_img = self.tools.mask_circle_transparent(self.mustafa_img, 1.5)
@@ -101,6 +104,7 @@ class TeamInfoPage:
         self.batool.config(highlightbackground = self.bd, highlightcolor= self.bd)
         self.batool.grid_columnconfigure(0, weight=1)
         
+
         self.batool_img = Image.open(r"../math_kit/assets/avatars/batool.png")
         self.batool_img = self.batool_img.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.batool_img = self.tools.mask_circle_transparent(self.batool_img, 1.5)
@@ -131,6 +135,7 @@ class TeamInfoPage:
         self.salim.config(highlightbackground = self.bd, highlightcolor= self.bd)
         self.salim.grid_columnconfigure(0, weight=1)
         
+
         self.salim_img = Image.open(r"../math_kit/assets/avatars/salim.png")
         self.salim_img = self.salim_img.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.salim_img = self.tools.mask_circle_transparent(self.salim_img, 1.5)
