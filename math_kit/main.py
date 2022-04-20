@@ -1,5 +1,6 @@
 from tkinter import Tk, Frame, Button, Label
 from tkinter.ttk import Notebook, Style
+from PIL import Image, ImageDraw, ImageFilter
 
 from pages_content.main_page import MainPage
 
@@ -43,6 +44,30 @@ class Tools:
             wind.title("Math Kit - Team Info")
         elif page == 3:
             wind.title("Math Kit - Settings")
+            
+    
+    def mask_circle_transparent(self, pil_img, blur_radius, offset=0):
+        """
+        this method cut a PIL image as a circle and make the background transparent
+
+        Args:
+            pil_img (PIL image): the image that will be cut as a circle
+            blur_radius (_type_): the radius of the blur that will be applied to the image
+            offset (int, optional): the offset of the circle from the center of the image, defaults to 0
+
+        Returns:
+            PIL image: the image that has been cut as a circle and made transparent
+        """
+        
+        offset = blur_radius * 2 + offset
+        mask = Image.new("L", pil_img.size, 0)
+        draw = ImageDraw.Draw(mask)
+        draw.ellipse((offset, offset, pil_img.size[0] - offset, pil_img.size[1] - offset), fill=255)
+        mask = mask.filter(ImageFilter.GaussianBlur(blur_radius))
+        result = pil_img.copy()
+        result.putalpha(mask)
+        
+        return result
         
 
 if __name__ == "__main__":
