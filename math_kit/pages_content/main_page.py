@@ -6,6 +6,9 @@ from pages_content.workspace import WorkspacePage
 from pages_content.team_info import TeamInfoPage
 from pages_content.settings import SettingsPage
 
+from pages_content.scientific_calculator import ScientificCalculatorPage
+
+from pages_content.random_generator import RandomGeneratorPage
 
 
 class MainPage:
@@ -76,9 +79,12 @@ class MainPage:
         self.settings_button.config(command=lambda: self._SwitchPageBackground(3))
 
         HomePage(self.pages_display_notebook, self.tools)
-        WorkspacePage(self.pages_display_notebook, self.tools)
+        WorkspacePage(self.pages_display_notebook, self.tools, self.wind)
         TeamInfoPage(self.pages_display_notebook, self.tools)
         SettingsPage(self.pages_display_notebook, self.tools)
+        
+        ScientificCalculatorPage(self.pages_display_notebook, self.tools)
+        RandomGeneratorPage(self.pages_display_notebook, self.tools)
 
 
 

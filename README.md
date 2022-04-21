@@ -96,8 +96,9 @@ The provided features by the GUI tool are the following:
 - **Poetry**
 - **NumPy**
 - **Replit** 
--
--
+- **webbrowser** 
+- **threading**
+- **black**
 
 <br>
 
@@ -115,6 +116,11 @@ Navigate to the repo's directory and install required  dependencies:
 `$ poetry install`
 `$ pip install --upgrade pip`
 `$ pip install Pillow`
+`$ pip install numpy`
+`$ pip install matplotlib`
+`$ -m pip install -U black` 
+
+
 
 ---------------------------------------------------------------
 
