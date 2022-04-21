@@ -1,68 +1,99 @@
-from tkinter import Label, Tk, StringVar, Entry, Button, Frame, OptionMenu, Checkbutton, Listbox, Scrollbar, IntVar, ttk, DoubleVar, W
-from unit_convertor_dict import conversion_dict as UCdict
+from tkinter import Label, Tk, StringVar, Entry, Button, Frame, ttk, DoubleVar
+from pages_content.unit_convertor_dict import conversion_dict as UCdict
 
 
-window = Tk()
-Label(window, text="Quantity").grid(row=0, column=0, columnspan=4, sticky=W)
+class UnitConverterPage:
+    """
+    This class  is the settings page of the application. It contains the following:
+    - A title label that displays the name of the application   (Label)
+    - A label that displays the info of the application         (Label)
+    - A label that displays the guide of the application        (Label)
+    """
+    
+    def __init__(self, master, tools):
+        
+        width = int(tools.screen_width*0.8)
+        height = int(tools.screen_height*0.8)
+        
+        self.unit_converter_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        master.add(self.unit_converter_frame)
+        
+        self.container = Frame(self.unit_converter_frame, width=width, height=height, bg=tools.pallete["gray"])
+        self.container.pack()
+        
+
+        self.quantity = Label(self.container, text="Select a quantity set", font= ("Helvetica", 25),
+                               bg=tools.pallete["gray"])
+        self.quantity.grid(row=0, column=0, columnspan=4, sticky="w")
+        
+        self.quantity_variable = StringVar()
+        
+        self.quantity_box = ttk.Combobox(self.container, textvariable=self.quantity_variable, font= ("Helvetica", 15),
+                                         state="readonly", values=tuple([x.capitalize() for x in UCdict.keys()]))
+        self.quantity_box.bind("<<ComboboxSelected>>", self._AvailableUnits)
+        self.quantity_box.grid(row=0, column=4)
+
+        self.convert = Label(self.container, text="Convert", font= ("Helvetica", 25),
+                               bg=tools.pallete["gray"])
+        self.convert.grid(row=1, column=0)
+
+        self.user_input = DoubleVar()
+        self.user_input_entry = Entry(self.container, textvariable=self.user_input, width=20,
+                                      font= ("Helvetica", 15))
+        self.user_input_entry.grid(row=1, column=1)
+
+        self.from_variable = StringVar()
+        self.unit_from_box = ttk.Combobox(self.container, textvariable=self.from_variable, state="readonly",
+                                           font= ("Helvetica", 15))
+        self.unit_from_box.grid(row=1, column=2)
+
+        self.to = Label(self.container, text="to", font= ("Helvetica", 25),
+                               bg=tools.pallete["gray"])
+        self.to.grid(row=1, column=3)
+
+        self.to_variable = StringVar()
+        self.unit_to_box = ttk.Combobox(self.container, textvariable=self.to_variable, state="readonly",
+                                         font= ("Helvetica", 15))
+        self.unit_to_box.grid(row=1, column=4)
+
+        self.convert_button = Button(self.container, text="Apply", command=self._Convert,
+                                     font= ("Helvetica", 25), bg=tools.pallete["blue"])
+        self.convert_button.grid(row=2, columnspan=5)
+
+        self.result_variable = StringVar()
+        self.result_entry = Entry(self.container, textvariable=self.result_variable, width=40,
+                                   font= ("Helvetica", 15))
+        self.result_entry.grid(row=3, column=0, columnspan=5, sticky="w")
+
+        for child in self.container.winfo_children():
+            child.grid_configure(padx=5, pady=5)
+
+        self.container.mainloop()
 
 
-def Converter(*args):
-    """Calculate the conversion."""
-    try:  # Try to convert the quantity to the to unit.  If it fails, return the error message.
-        # Convert the quantity to the to unit.  If it fails, return the error message.
-        result = UCdict[fromVariable.get()][toVariable.get()](
-            float(quantVariable.get()))
-        resultVar.set(result)
-    except KeyError:
-        resultVar.set("")
-        pass
-    result = "{0:.4f}".format(UCdict[quantVariable.get().lower(
-    )][fromVariable.get()][toVariable.get()](val.get()))
-    result_string = val.get(), fromVariable.get(), "=", result, toVariable.get()
-    resultVar.set(result_string)
+
+    def _Convert(self, *args):
+        """Calculate the conversion."""
+        try: 
+            result = UCdict[self.from_variable.get()][self.to_variable.get()](float(self.quantity_variable.get()))
+            self.result_variable.set(result)
+        except KeyError:
+            self.result_variable.set("")
+            pass
+        
+        result = "{0:.4f}".format(UCdict[self.quantity_variable.get().lower()][self.from_variable.get()][self.to_variable.get()](self.user_input.get()))
+        result_string = self.user_input.get(), self.from_variable.get(), "=", result, self.to_variable.get()
+        self.result_variable.set(result_string)
 
 
-def MakeUnit(*args):
-    """ Function to set the unit comboboxes to the selected unit. """
-    fromVariable.set(quantVariable.get().lower()
-                     )  # Set the from unit to the selected unit.
-    # Set the to unit to the selected unit.
-    toVariable.set(quantVariable.get().lower())
-    cbUnitFrom['values'] = tuple(UCdict[quantVariable.get().lower()].keys())
-    cbUnitTo['values'] = tuple(UCdict[quantVariable.get().lower()].keys())
-    cbUnitFrom.current(0)
+    def _AvailableUnits(self, *args):
+        """ Function to set the unit comboboxes to the selected unit. """
+        self.from_variable.set(self.quantity_variable.get().lower())
+        self.to_variable.set(self.quantity_variable.get().lower())
+        self.unit_from_box['values'] = tuple(UCdict[self.quantity_variable.get().lower()].keys())
+        self.unit_to_box['values'] = tuple(UCdict[self.quantity_variable.get().lower()].keys())
+        self.unit_from_box.current(0)
 
 
-quantVariable = StringVar()
-cbQuantity = ttk.Combobox(window, textvariable=quantVariable, state="readonly",
-                          values=tuple([x.capitalize() for x in UCdict.keys()]))
-cbQuantity.bind("<<ComboboxSelected>>", MakeUnit)
-cbQuantity.grid(row=0, column=4)
-
-Label(window, text="Convert").grid(row=1, column=0)
-
-val = DoubleVar()
-Entry(window, textvariable=val, width=7).grid(row=1, column=1)
-
-fromVariable = StringVar()
-cbUnitFrom = ttk.Combobox(window, textvariable=fromVariable, state="readonly")
-cbUnitFrom.grid(row=1, column=2)
-
-Label(window, text="to").grid(row=1, column=3)
-
-# This is the variable to store the unit to be converted to.
-toVariable = StringVar()
-cbUnitTo = ttk.Combobox(window, textvariable=toVariable, state="readonly")
-cbUnitTo.grid(row=1, column=4)
-
-Button(window, text="Convert", command=Converter).grid(row=2, columnspan=5)
-
-resultVar = StringVar()  # This is the variable to store the result.
-resultLabel = Label(window, textvariable=resultVar).grid(row=3, column=0, columnspan=5, sticky=W)
-
-for child in window.winfo_children():
-    child.grid_configure(padx=5, pady=5)
-
-window.mainloop()
 
 

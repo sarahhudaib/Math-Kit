@@ -8,6 +8,7 @@ from pages_content.settings import SettingsPage
 
 from pages_content.scientific_calculator import ScientificCalculatorPage
 
+from pages_content.unit_converter import UnitConverterPage
 from pages_content.random_generator import RandomGeneratorPage
 
 
@@ -84,6 +85,7 @@ class MainPage:
         SettingsPage(self.pages_display_notebook, self.tools)
         
         ScientificCalculatorPage(self.pages_display_notebook, self.tools)
+        UnitConverterPage(self.pages_display_notebook, self.tools)
         RandomGeneratorPage(self.pages_display_notebook, self.tools)
 
 
