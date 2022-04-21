@@ -1,193 +1,68 @@
-from tkinter import *
-
-# Conversion factors
-unit_dict = {
-    "cm": 0.01,
-    "m": 1.0,
-    "km": 1000.0,
-    "feet": 0.3048,
-    "miles": 1609.344,
-    "inches": 0.0254,
-    "grams": 1.0,
-    "kg": 1000.0,
-    "quintals": 100000.0,
-    "tonnes": 1000000.0,
-    "pounds": 453.592,
-    "sq. m": 1.0,
-    "sq. km": 1000000.0,
-    "are": 100.0,
-    "hectare": 10000.0,
-    "acre": 4046.856,
-    "sq. mile": 2590000.0,
-    "sq. foot": 0.0929,
-    "cu. cm": 0.001,
-    "Litre": 1.0,
-    "ml": 0.001,
-    "gallon": 3.785,
-}
-
-lengths = [
-    "cm",
-    "m",
-    "km",
-    "feet",
-    "miles",
-    "inches",
-]
-weights = [
-    "kg",
-    "grams",
-    "quintals",
-    "tonnes",
-    "pounds",
-]
-temps = ["Celsius", "Fahrenheit"]
-areas = ["sq. m", "sq. km", "are", "hectare", "acre", "sq. mile", "sq. foot"]
-volumes = ["cu. cm", "Litre", "ml", "gallon"]
-
-# Options for drop-down menu
-OPTIONS = [
-    "select units",
-    "cm",
-    "m",
-    "km",
-    "feet",
-    "miles",
-    "inches",
-    "kg",
-    "grams",
-    "quintals",
-    "tonnes",
-    "pounds",
-    "Celsius",
-    "Fahrenheit",
-    "sq. m",
-    "sq. km",
-    "are",
-    "hectare",
-    "acre",
-    "sq. mile",
-    "sq. foot",
-    "cu. cm",
-    "Litre",
-    "ml",
-    "gallon",
-]
-
-OPTIONS_length: [
-    "select units",
-    "cm",
-    "m",
-    "km",
-    "feet",
-    "miles",
-    "inches",
-]
-
-OPTIONS_weight = [
-    "select units",
-    "kg",
-    "grams",
-    "quintals",
-    "tonnes",
-    "pounds",
-]
+from tkinter import Label, Tk, StringVar, Entry, Button, Frame, OptionMenu, Checkbutton, Listbox, Scrollbar, IntVar, ttk, DoubleVar, W
+from unit_convertor_dict import conversion_dict as UCdict
 
 
-OPTIONS_temps = [
-    "select units",
-    "Celsius",
-    "Fahrenheit",
-]
-
-OPTIONS_areas = [
-    "select units",
-    "sq. m",    
-    "sq. km",
-    "are",
-    "hectare",
-    "acre",
-    "sq. mile",
-    "sq. foot",
-]
-
-OPTIONS_volumes = [
-    "select units",
-    "cu. cm",
-    "Litre",
-    "ml",
-    "gallon",
-]
+window = Tk()
+Label(window, text="Quantity").grid(row=0, column=0, columnspan=4, sticky=W)
 
 
-# Main window
-wind = Tk()
-wind.geometry("400x350")
-wind.title("Unit Converter")
-wind["bg"] = "#3D4856"
+def Converter(*args):
+    """Calculate the conversion."""
+    try:  # Try to convert the quantity to the to unit.  If it fails, return the error message.
+        # Convert the quantity to the to unit.  If it fails, return the error message.
+        result = UCdict[fromVariable.get()][toVariable.get()](
+            float(quantVariable.get()))
+        resultVar.set(result)
+    except KeyError:
+        resultVar.set("")
+        pass
+    result = "{0:.4f}".format(UCdict[quantVariable.get().lower(
+    )][fromVariable.get()][toVariable.get()](val.get()))
+    result_string = val.get(), fromVariable.get(), "=", result, toVariable.get()
+    resultVar.set(result_string)
 
 
-def convert():
-    """ function to Convert units"""
-    user_input = float(input_entry.get())
-    input_unit = input_opt.get()
-    output_unit = output_opt.get()
-
-    cons = [
-        input_unit in lengths and output_unit in lengths,
-        input_unit in weights and output_unit in weights,
-        input_unit in temps and output_unit in temps,
-        input_unit in areas and output_unit in areas,
-        input_unit in volumes and output_unit in volumes,
-    ]
-
-    if any(cons):  # If both the units are of same type, do the conversion
-        if input_unit == "Celsius" and output_unit == "Fahrenheit":
-            output_entry.delete(0, END)
-            output_entry.insert(0, (user_input * 1.8) + 32)
-        elif input_unit == "Fahrenheit" and output_unit == "Celsius":
-            output_entry.delete(0, END)
-            output_entry.insert(0, (user_input - 32) * (5 / 9))
-        else:
-            output_entry.delete(0, END)
-            output_entry.insert(
-                0, round(user_input * unit_dict[input_unit] / unit_dict[output_unit], 5)
-            )
-
-    else:  # Display error if units are of different types
-        output_entry.delete(0, END)
-        output_entry.insert(0, "Invalid conversion")
+def MakeUnit(*args):
+    """ Function to set the unit comboboxes to the selected unit. """
+    fromVariable.set(quantVariable.get().lower()
+                     )  # Set the from unit to the selected unit.
+    # Set the to unit to the selected unit.
+    toVariable.set(quantVariable.get().lower())
+    cbUnitFrom['values'] = tuple(UCdict[quantVariable.get().lower()].keys())
+    cbUnitTo['values'] = tuple(UCdict[quantVariable.get().lower()].keys())
+    cbUnitFrom.current(0)
 
 
-input_opt = StringVar()
-input_opt.set(OPTIONS[0])
+quantVariable = StringVar()
+cbQuantity = ttk.Combobox(window, textvariable=quantVariable, state="readonly",
+                          values=tuple([x.capitalize() for x in UCdict.keys()]))
+cbQuantity.bind("<<ComboboxSelected>>", MakeUnit)
+cbQuantity.grid(row=0, column=4)
 
-output_opt = StringVar()
-output_opt.set(OPTIONS[0])
- 
+Label(window, text="Convert").grid(row=1, column=0)
 
-# Widgets
-input_label = Label(wind, text="Input")
-input_label.grid(row=0, column=0, pady=20)
+val = DoubleVar()
+Entry(window, textvariable=val, width=7).grid(row=1, column=1)
 
-input_entry = Entry(wind, justify="center", font="bold")
-input_entry.grid(row=1, column=0, padx=35, ipady=5)
+fromVariable = StringVar()
+cbUnitFrom = ttk.Combobox(window, textvariable=fromVariable, state="readonly")
+cbUnitFrom.grid(row=1, column=2)
 
-input_menu = OptionMenu(wind, input_opt, *OPTIONS)
-input_menu.grid(row=1, column=1)
-input_menu.config(font="Arial 10")
+Label(window, text="to").grid(row=1, column=3)
 
-output_label = Label(wind, text="Output")
-output_label.grid(row=2, column=0, pady=20)
+# This is the variable to store the unit to be converted to.
+toVariable = StringVar()
+cbUnitTo = ttk.Combobox(window, textvariable=toVariable, state="readonly")
+cbUnitTo.grid(row=1, column=4)
 
-output_entry = Entry(wind, justify="center", font="bold")
-output_entry.grid(row=3, column=0, padx=35, ipady=5)
+Button(window, text="Convert", command=Converter).grid(row=2, columnspan=5)
 
-output_menu = OptionMenu(wind, output_opt, *OPTIONS)
-output_menu.grid(row=3, column=1)
-output_menu.config(font="Arial 10")
+resultVar = StringVar()  # This is the variable to store the result.
+resultLabel = Label(window, textvariable=resultVar).grid(row=3, column=0, columnspan=5, sticky=W)
 
-convert_button = Button(wind, text="Convert", command=convert, padx=80, pady=2)
-convert_button.grid(row=4, column=0, columnspan=2, pady=50)
+for child in window.winfo_children():
+    child.grid_configure(padx=5, pady=5)
 
-wind.mainloop()
+window.mainloop()
+
+

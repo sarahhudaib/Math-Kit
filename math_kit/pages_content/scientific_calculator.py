@@ -1,6 +1,5 @@
-from tkinter import Button, Frame, Label, StringVar, Entry
-from math import *  # we import all the math functions
-
+from tkinter import Tk, Frame, Button, Entry, StringVar
+from math import tan, sin, cos, exp, log, sqrt, atan2, asin, acos, atan, degrees, radians, floor, ceil, trunc, pow, fabs
 
 class ScientificCalculatorPage:
     
