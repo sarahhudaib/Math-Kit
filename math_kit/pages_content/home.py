@@ -27,32 +27,50 @@ class HomePage:
         
         page_title = Label(self.home_frame, text="Home Page", font=("Helvetica", 30), bg=tools.pallete["gray"])
         page_title.pack()
+
+        welcoming_message = "Welcome to Math Kit!\n"
         
         info = """
-        Welcome To the Home Page of our project 'Math-Kit'
+        This project is a GUI tool that uses a few Python libraries, such as: tkinter and NumPy to 
+        help build the GUI and solve various mathematical problems, which will be found in the "workspace" window.
 
-        This project is a GUI tool, built using Python and a few of its libraries; specifically:
-        1. tkinter
-        2. NumPy
-        all for the purpose of performing basic and advanced mathematical operations easily and directly.\n
         """
 
-        guide = """
-        A starting guide on how to navigate 'Math-Kit':
+        guide_starting_message =  "A starting guide on how to navigate 'Math-Kit':"
 
+
+        guide = """
         The navigation bar at the top of this window shows four different buttons, 
         that you can use to walk through this project simply by clicking on any them.
-        And to further explain the content of each window, here's the following:
+        And to further explain the content of each window, here's the following:\n
         1. Home Page: this window is for briefing you about our project.
         2. Workspace: this window is for performing the basic and advanced mathematical operations.
         3. Team Info: this window is for introducing the developers behind "Math-Kit".
         4. settings: this window is for changing a few characteristics of the GUI window of the project.
+
+        
         """
         
+        self.welcoming_message = Label(self.home_frame, text=welcoming_message, font=("Berlin Sans FB", 18), 
+        bg=tools.pallete["gray"], justify="center")
+
+        self.welcoming_message.pack()
+
         self.info = Label(self.home_frame, text=info, font=("Berlin Sans FB", 15), bg=tools.pallete["gray"], 
                           justify="left")
         self.info.pack()
+
+        self.guide_starting_message = Label(self.home_frame, text=guide_starting_message, font=("Berlin Sans FB", 18),
+                                            bg=tools.pallete["gray"], justify="center")  
+
+        self.guide_starting_message.pack()
         
         self.guide = Label(self.home_frame, text=guide, font=("Berlin Sans FB", 15), bg=tools.pallete["gray"]
                            , justify="left")
         self.guide.pack()
+
+        
+
+
+
+

@@ -1,3 +1,7 @@
 {
-  "cSpell.words": ["brack", "mult"]
+  "cSpell.words": [
+    "brack",
+    "mult"
+  ],
+  "python.formatting.provider": "black"
 }
