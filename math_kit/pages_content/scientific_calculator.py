@@ -1,7 +1,7 @@
-# we import everything from tkinter for the graphical user interface
-from tkinter import *
 
-from math import *  # we import all the math functions
+from tkinter import Tk, Frame, Button, Entry, StringVar
+
+from math import tan, sin, cos, exp, log, sqrt, atan2, asin, acos, atan, degrees, radians, floor, ceil, trunc, pow, fabs
 
 expression = " "
 
@@ -18,7 +18,7 @@ frm_container = Frame(window, bg="#0693E3")
 frm_container.pack()
 
 # Entry field where we indicate expressions
-equation = StringVar()
+equation = StringVar() 
 expression_field = Entry(frm_container, textvariable=equation, width=75,
                          justify='right', font=('courier', 15, 'bold', 'italic'), bg='#D3D8DE', bd=5)
 
