@@ -44,7 +44,21 @@ class Tools:
             wind.title("Math Kit - Team Info")
         elif page == 3:
             wind.title("Math Kit - Settings")
-            
+        elif page == 4:
+            wind.title("Math Kit - Workspace - Scientific Calculator")
+        elif page == 5:
+            wind.title("Math Kit - Workspace - Plotter")
+        elif page == 6:
+            wind.title("Math Kit - Workspace - Convertor")
+        elif page == 7:
+            wind.title("Math Kit - Workspace - Randomizer")
+        elif page == 8:
+            wind.title("Math Kit - Workspace - Statistics")
+        elif page == 9:
+            wind.title("Math Kit - Workspace - Calculas")
+        elif page == 10:
+            wind.title("Math Kit - Workspace - Numerical")
+    
     
     def mask_circle_transparent(self, pil_img, blur_radius, offset=0):
         """
