@@ -81,7 +81,7 @@ class WorkspacePage:
         self.convertor_icon_img = ImageTk.PhotoImage(self.convertor_icon)
         self.convertor_img = Button(self.convertor_frame, image=self.convertor_icon_img, bg=self.bg, bd=self.bd, 
                                     cursor="hand2", activebackground=self.active_bg, 
-                                    command=lambda: self._SwitchPageBackground(1))
+                                    command=lambda: self._SwitchPageBackground(5))
         self.convertor_img.image = self.convertor_icon_img
         self.convertor_img.grid(row=0, column=2, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.convertor_img.grid_columnconfigure(0, weight=1)
@@ -101,7 +101,7 @@ class WorkspacePage:
         self.random_icon = self.random_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.random_icon_img = ImageTk.PhotoImage(self.random_icon)
         self.random_img = Button(self.random_frame, image=self.random_icon_img, bg=self.bg, bd=self.bd, cursor="hand2",
-                               activebackground=self.active_bg, command=lambda: self._SwitchPageBackground(5))
+                               activebackground=self.active_bg, command=lambda: self._SwitchPageBackground(6))
         self.random_img.image = self.random_icon_img
         self.random_img.grid(row=0, column=3, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.random_img.grid_columnconfigure(0, weight=1)
