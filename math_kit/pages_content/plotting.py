@@ -8,7 +8,10 @@ from tkinter import Frame, Label
 
 
 class Plotter():
+   
     def __init__(self, master, tools):
+        pass
+        
         self.tools = tools
         
         width = int(tools.screen_width*0.8)
@@ -41,7 +44,7 @@ class Plotter():
         """
         will plot a polynomial function in the form of ax^5+bx^4+cx^3+dx^2+ex+f
         the function can auto generate the x list, in the form of x_start and x_end is the begging of and end of the list , with step between numbers
-        takes a,b,c,d,e,f as integers , plat name as string , x axis lable as string , y axis lable as string,line_lable as string
+        takes a,b,c,d,e,f as integers , plot name as string , x axis lable as string , y axis lable as string,line_lable as string
         """
         x_list= np.arange(x_start,x_end+step,step)
         def _funx(x):
@@ -71,6 +74,11 @@ class Plotter():
         plt.show()
         
     def plot_csv(self, path ,x_axis_attr,y_axis_attr,start=0,end=None, plt_name= None, x_lable= None ,y_lable= None, line_lable=None):
+        """
+        will read a csv file and plot one column in the x-axis vs another column in the y-axis,
+        takes the path of the file , the name of the column to be used in the x-axis, the name of the colmun to be used in the y-axis, 
+        a starting row and end row as numbers , plot name as string , x axis lable as string , y axis lable as string,line_lable as string
+        """
         with open(path,"r") as csv_file:
             csv_reader = csv.DictReader(csv_file)
             row=next(csv_reader)
@@ -87,20 +95,20 @@ class Plotter():
            x_axis.append(row[x_axis_attr])
            y_axis.append(row[y_axis_attr])
         
-
+        step=int((end-start)/15)
+        tick_end=end+1
  
         plt.legend()
-
+        plt.grid(True)
 
         plt.title(plt_name)
         plt.xlabel(x_lable)
         plt.ylabel(y_lable)
         plt.plot(x_axis[start:end:],y_axis[start:end:], label=line_lable)
-        step=int(start-end/15)
-        tick_end=end+1
-        plt.xticks(x_axis[0:tick_end:step],rotation=90)
-        plt.yticks(y_axis[0:tick_end:step],rotation=0)
-        plt.grid(True)
+        
+        plt.xticks(x_axis[0:int(tick_end):step],rotation=90)
+        plt.yticks(y_axis[0:int(tick_end):step],rotation=0)
+        
         plt.show()
         
 
@@ -108,52 +116,22 @@ class Plotter():
         
 
 
-"""   
-def function(x,a,b,c):
-  return a*x**2+b*x+c
 
-
-start_x=-10
-end_x=10
-x_spacing=100
-a=3
-b=1
-c=4
-
-
-#xlist= np.linspace(-10,10,num=1000)
-xlist=[1,2,7,13]
-#print(xlist)
-#ylist= function(xlist,a,b,c)
-ylist=[100,22,317,75]
-
-
-plt.figure(num=0,dpi=120)
-plt.legend()
-
-
-plt.title("example")
-plt.xlabel("x lable")
-plt.ylabel("y lable")
-plt.plot(xlist,ylist, label="testing")
-plt.show()
-"""
 
 if __name__== "__main__": 
-    
+
+    """
     p3=Plotter()
     path=r"math_kit\assets\csv\gold.csv"
     x_axis_attr="Date"
     y_axis_attr="Close"
     p3.plot_csv(path,x_axis_attr,y_axis_attr,0,150,"xy","x","y")
-
-    """
-    p3=Plotter()
-    p3.plot_csv(r"math_kit\assets\csv\data.csv",'LanguagesWorkedWith',';',15)
+    
+    
     """
 
 
-"""
+    """
     path=r"math_kit\assets\csv\gold.csv"
     x_axis_attr="Date"
     y_axis_attr="Close"
