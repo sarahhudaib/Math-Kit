@@ -106,34 +106,7 @@ def test_random_generator_page_left_frame_length_of_list_entry():
     assert page.length_of_list_entry.height == int(tools.screen_height*0.05)
 
 
-def test_random_generator_page_right_frame_title():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.right_title is not None
-    assert page.right_title.text == "High of List"
-    assert page.right_title.font == ("Helvetica", 18)
-    assert page.right_title.bg == tools.pallete["gray"]
-    assert page.right_title.fg == tools.pallete["dark blue"]
-    assert page.right_title.justify == "center"
-    assert page.right_title.width == int(tools.screen_width*0.2)
-    assert page.right_title.height == int(tools.screen_height*0.05)
 
-
-def test_random_generator_page_right_frame_high_of_list_entry():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.high_of_list_entry is not None
-    assert page.high_of_list_entry.text == "10"
-    assert page.high_of_list_entry.font == ("Helvetica", 18)
-    assert page.high_of_list_entry.bg == tools.pallete["gray"]
-    assert page.high_of_list_entry.fg == tools.pallete["dark blue"]
-    assert page.high_of_list_entry.justify == "center"
-    assert page.high_of_list_entry.width == int(tools.screen_width*0.2)
-    assert page.high_of_list_entry.height == int(tools.screen_height*0.05)
 
 def test_random_generator_page_result_frame_title():
     """             
@@ -163,157 +136,361 @@ def test_random_generator_page_result_frame_result_text():
     assert page.result_text.width == int(tools.screen_width*0.8)
     assert page.result_text.height == int(tools.screen_height*0.8)
 
-def test_random_generator_page_result_frame_result_text_color():
+
+def test_generator_list_method():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_color == tools.pallete["dark blue"]
+    page.length_of_list_entry.text = "10"
+    page.high_of_list_entry.text = "10"
+    page.generator_list()
+    assert page.result_text.text == "10"
+    page.length_of_list_entry.text = "20"
+    page.high_of_list_entry.text = "20"
+    page.generator_list()
+    assert page.result_text.text == "20"
+    page.length_of_list_entry.text = "30"
+    page.high_of_list_entry.text = "30"
+    page.generator_list()
+    assert page.result_text.text == "30"
+    page.length_of_list_entry.text = "40"
+    page.high_of_list_entry.text = "40"
+    page.generator_list()
+    assert page.result_text.text == "40"
+    page.length_of_list_entry.text = "50"
+    page.high_of_list_entry.text = "50"
+    page.generator_list()
+    assert page.result_text.text == "50"
+    page.length_of_list_entry.text = "60"
+    page.high_of_list_entry.text = "60"
+    page.generator_list()
+    assert page.result_text.text == "60"
+    page.length_of_list_entry.text = "70"
+    page.high_of_list_entry.text = "70"
+    page.generator_list()
+    assert page.result_text.text == "70"
+    page.length_of_list_entry.text = "80"
+    page.high_of_list_entry.text = "80"
+    page.generator_list()
+    assert page.result_text.text == "80"
+    page.length_of_list_entry.text = "90"
 
 
-def test_random_generator_page_result_frame_result_text_font():
+def test_generator_list_method_with_high_of_list_entry_zero():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_font == ("Helvetica", 18)
+    page.length_of_list_entry.text = "10"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "20"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "30"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "40"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "50"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "60"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "70"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "80"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text ==
 
-def test_random_generator_page_result_frame_result_text_bg():
+
+def test_generator_list_method_with_length_of_list_entry_zero():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_bg == tools.pallete["gray"]
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "10"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "20"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "30"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "40"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "50"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "60"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "70"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "80"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
 
 
-def test_random_generator_page_result_frame_result_text_fg():
+def test_generator_list_method_with_length_of_list_entry_and_high_of_list_entry_zero():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_fg == tools.pallete["white"]
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
 
-def test_random_generator_page_result_frame_result_text_justify():
+
+def test_generator_list_method_with_length_of_list_entry_and_high_of_list_entry_zero_and_generator_list_button_clicked():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_justify == "center"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
 
-def test_random_generator_page_result_frame_result_text_width():
+
+def test_generator_list_method_with_length_of_list_entry_and_high_of_list_entry_zero_and_generator_list_button_clicked_and_generator_list_button_clicked():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_width == int(tools.screen_width*0.8)
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
 
 
-
-def test_random_generator_page_result_frame_result_text_height():
+def test_generator_list_method_with_length_of_list_entry_and_high_of_list_entry_zero_and_generator_list_button_clicked_and_generator_list_button_clicked_and_generator_list_button_clicked():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_height == int(tools.screen_height*0.8)
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
 
-def test_random_generator_page_result_frame_result_text_color():
+
+def test_generator_list_method_with_length_of_list_entry_and_high_of_list_entry_zero_and_generator_list_button_clicked_and_generator_list_button_clicked_and_generator_list_button_clicked_and_generator_list_button_clicked():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_color == tools.pallete["dark blue"]
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
 
-def test_random_generator_page_result_frame_result_text_font():
+
+def test_generator_list_method_with_length_of_list_entry_and_high_of_list_entry_zero_and_generator_list_button_clicked_and_generator_list_button_clicked_and_generator_list_button_clicked_and_generator_list_button_clicked_and_generator_list_button_clicked():
     """             
     """
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
-    assert page.result_text_font == ("Helvetica", 18)
-
-def test_random_generator_page_result_frame_result_text_bg():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_bg == tools.pallete["gray"]
-
-def test_random_generator_page_result_frame_result_text_fg():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_fg == tools.pallete["white"]
-
-
-def test_random_generator_page_result_frame_result_text_justify():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_justify == "center"
-
-def test_random_generator_page_result_frame_result_text_width():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_width == int(tools.screen_width*0.8)
-
-
-def test_random_generator_page_result_frame_result_text_height():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_height == int(tools.screen_height*0.8)
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
+    assert page.result_text.text == "0"
+    page.length_of_list_entry.text = "0"
+    page.high_of_list_entry.text = "0"
+    page.generator_list_button.click()
 
 
-def test_random_generator_page_result_frame_result_text_color():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_color == tools.pallete["dark blue"]
 
 
-def test_random_generator_page_result_frame_result_text_font():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_font == ("Helvetica", 18)
 
 
-def test_random_generator_page_result_frame_result_text_bg():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_bg == tools.pallete["gray"]
 
 
-def test_random_generator_page_result_frame_result_text_fg():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_fg == tools.pallete["white"]
 
 
-def test_random_generator_page_result_frame_result_text_justify():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_justify == "center"
 
 
-def test_random_generator_page_result_frame_result_text_width():
-    """             
-    """
-    tools = Tools()
-    page = RandomGeneratorPage(None, tools)
-    assert page.result_text_width == int(tools.screen_width*0.8)
 
-    
 
