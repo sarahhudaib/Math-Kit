@@ -184,6 +184,7 @@ class WorkspacePage:
         elif page_name == "diff": page_number = 7
         elif page_name == "num": page_number = 6
         
+        
         tools = self.tools
         tools.Navigate(self.wind, self.notebook, page_number)
         
