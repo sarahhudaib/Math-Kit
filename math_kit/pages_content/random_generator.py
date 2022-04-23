@@ -1,4 +1,5 @@
-from tkinter import Frame, Label, Entry, Button, StringVar, LabelFrame, messagebox
+import random
+from tkinter import END, Frame, Label, Entry, Button, StringVar, LabelFrame, Checkbutton, messagebox, BooleanVar, IntVar 
 import numpy as np
 
 
@@ -44,7 +45,7 @@ class RandomGeneratorPage:
         
         
     def _LeftFrame(self):
-        
+        """ Function to initialize the left frame items """
         self.left_frame = LabelFrame(self.container, bg=self.box_background_color,
                                 height=int(self.tools.screen_height*0.5))
         self.left_frame.grid(row=0, column=0, padx=20, pady=10, sticky="nsew")
@@ -102,6 +103,7 @@ class RandomGeneratorPage:
         
         
     def _RightFrame(self):
+        """ Function to initialize the right frame items"""
         self.right_frame = LabelFrame(self.container, bg=self.box_background_color)
         self.right_frame.grid(row=0, column=1, padx=20, pady=10, sticky="nsew")
 
@@ -122,21 +124,28 @@ class RandomGeneratorPage:
         
 
     def _AddItem(self):
-        pass
-    
-    
+        """ Function to add an item to the list """
+        self.list_of_items.append(self.item_entry.get())
+        self.item_entry.delete(0, END) 
+        self.item_entry.insert(0, "")
+        self.list_of_items_label.config(text="List of items: " + str(self.list_of_items))
+
     def _DeleteItem(self):
-        pass
+        """Function to delete an item from the list"""
+        self.list_of_items.pop() 
+        self.list_of_items_label.config(text="List of items: " + str(self.list_of_items))
 
 
     def _ClearItems(self):
-        pass
-
+        """ Function to clear the list of items """
+        self.list_of_items = []
+        self.list_of_items_label.config(text="List of items: " + str(self.list_of_items))
 
     def _PickItem(self):
-        pass
+        """ Function to pick an item from the list """
+        self.picked_item = random.choice(self.list_of_items)
+        self.picked_item_label.config(text="Picked item: " + str(self.picked_item))
     
-
     def _GenerateList(self):
         """
         This method is used to generate a random list of numbers.  It contains:
