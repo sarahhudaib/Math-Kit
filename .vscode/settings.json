@@ -1,7 +1,4 @@
 {
-  "cSpell.words": [
-    "brack",
-    "mult"
-  ],
+  "cSpell.words": ["brack", "customtkinter", "mult"],
   "python.formatting.provider": "black"
 }
