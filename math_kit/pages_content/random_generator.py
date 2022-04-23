@@ -1,12 +1,16 @@
-from tkinter import Frame, Label
-from math import *  # we import all the math functions
-import random
+from tkinter import Frame, Label, Entry, Button, StringVar, LabelFrame, messagebox
 import numpy as np
 
 
 class RandomGeneratorPage:
     """
-    This class is used to generate random list of numbers, using random and numpy modules in python.
+    This method is used to initialize the class.  It contains the following:
+    - A frame that contains the following:
+        - A label that displays the title of the page  (Label)  
+        - A label that displays the length of the list  (Label)
+        - A label that displays the seed value of the list  (Label)
+        - A label that displays the high of the list(Label)
+        - A label that displays the result  (Label)            
     """
 
     def __init__(self, master, tools):
@@ -18,85 +22,139 @@ class RandomGeneratorPage:
         self.randomizer_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
         master.add(self.randomizer_frame)
         
-        Label(self.randomizer_frame, text="Random Generator").pack()
+        headline = """Have you seen a digital random generator before!
+        Generate a random numeric list or insert a list of your own"""
         
-        """
-        This method is used to initialize the class.  It contains the following:
-        - A frame that contains the following:
-            - A label that displays the title of the page  (Label)  
-            - A label that displays the length of the list  (Label)
-            - A label that displays the seed value of the list  (Label)
-            - A label that displays the high of the list(Label)
-            - A label that displays the result  (Label)            
-        """
-        self.master = master
-        #self.tools = tools
-        #width = int(tools.screen_width*0.8)
-        #height = int(tools.screen_height*0.8)
-        #self.randomizer_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
-        #self.master.add(self.randomizer_frame)
-        self.master.title("Random Number Generator")
-        self.master.resizable(True, True)
-        self.randomizer_frame = Frame(self.master,  width=1000, height=1000, bg="#D3D8DE")
-        self.randomizer_frame.grid(row=30, column=30)
-
+        self.title = Label(self.randomizer_frame, text=headline, justify="center",
+                           bg=tools.pallete["gray"], fg=tools.pallete["purple"],
+                           font=("Berlin Sans FB", int(tools.screen_width*0.02)))
+        self.title.pack(pady=int(tools.screen_height*0.02))
         
-
         self.container = Frame(self.randomizer_frame, width=88888, height=88888, bg="#D3D8DE")
         self.container.pack()
+        
+        self.box_background_color = tools.pallete["gray"]
+        self.entries_color = tools.pallete["dark blue"]
+        self.entry_text_color = tools.pallete["white"]
+        self.text_color = "black"
+        
+        self._LeftFrame()
+        self._RightFrame()
+        
+        
+        
+    def _LeftFrame(self):
+        
+        self.left_frame = LabelFrame(self.container, bg=self.box_background_color,
+                                height=int(self.tools.screen_height*0.5))
+        self.left_frame.grid(row=0, column=0, padx=20, pady=10, sticky="nsew")
 
-        self.length_of_list_label = Label(self.container, text="length of list: ", font=("Helvetica", 15), )
-        self.length_of_list_label.grid(row=0, column=0)
+        self.left_title = Label(self.left_frame, text="Generate a random list", bg=self.box_background_color,
+                                font=("Berlin Sans FB", int(self.tools.screen_width*0.02)), 
+                                fg=self.text_color)
+        
+        
+        self.length_of_list_label = Label(self.left_frame, text="Length of list: ", font=("Helvetica", 18),
+                                          bg=self.box_background_color, fg=self.text_color)
+        self.length_of_list_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
+                               fg=self.entry_text_color, width=8)
 
-        self.length_of_list_entry = Entry(self.container)
-        self.length_of_list_entry.grid(row=0, column=1, padx=5, pady=2)
+        self.low_label = Label(self.left_frame, text="Lower value : ", font=("Helvetica", 18),
+                                          bg=self.box_background_color, fg=self.text_color)
+        self.low_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
+                               fg=self.entry_text_color, width=8)
 
-        self.seed_label = Label(self.container, text="seed or low value : ", font=("Helvetica", 15))
-        self.seed_label.grid(row=1, column=0)
+        self.high_label = Label(self.left_frame, text="Upper value: ", font=("Helvetica", 18),
+                                          bg=self.box_background_color, fg=self.text_color)
+        self.high_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
+                                fg=self.entry_text_color, width=8)
 
-        self.seed_entry = Entry(self.container)
-        self.seed_entry.grid(row=1, column=1, padx=5, pady=2)
-
-        self.high_label = Label(self.container, text="high value: ", font=("Helvetica", 15))
-        self.high_label.grid(row=2, column=0)
-
-        self.high_entry = Entry(self.container)
-        self.high_entry.grid(row=2, column=1, padx=5, pady=2)
-
-        self.generate_button = Button(self.container, text="generate",
-                                          command=lambda: self.generate_list())
-        self.generate_button.grid(row=3, column=0)
-
-        self.result_label = Label(self.container, text="result: ", font=("Helvetica", 15))
-        self.result_label.grid(row=3, column=1)
+        self.generate_button = Button(self.left_frame, text="Generate", font=("Helvetica", 20, "bold"), cursor="hand2",
+                                      bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
+                                      activebackground=self.tools.pallete["purple"],
+                                      command=lambda: self._GenerateList())
 
         self.result_variable = StringVar()
-        self.result_entry = Entry(self.container, textvariable=self.result_variable, width=20,
-                                   font= ("Helvetica", 15))
-        self.result_entry.grid(row=5, column=1, columnspan=5, sticky="w")
+        self.result_entry = Entry(self.left_frame, textvariable=self.result_variable,
+                               fg=self.entry_text_color, font=("Helvetica", 18), bg=self.entries_color)
+        
+        
+        self.left_title.grid(row=0, column=0, columnspan=2, sticky="nsew")
+        
+        self.length_of_list_label.grid(row=1, column=0)
+        self.length_of_list_entry.grid(row=1, column=1)
+        
+        self.low_label.grid(row=2, column=0)
+        self.low_entry.grid(row=2, column=1)
+        
+        self.high_label.grid(row=3, column=0)
+        self.high_entry.grid(row=3, column=1)
 
-        self.container.mainloop()
+        self.generate_button.grid(row=4, column=0, columnspan=2, sticky="ns")
 
-    def generate_list(self):
+        self.result_entry.grid(row=5, column=0, columnspan=2, sticky="nsew")
+        
+        
+        for child in self.left_frame.winfo_children():
+            child.grid_configure(padx=10, pady=10)       
+        
+        
+        
+        
+    def _RightFrame(self):
+        self.right_frame = LabelFrame(self.container, bg=self.box_background_color)
+        self.right_frame.grid(row=0, column=1, padx=20, pady=10, sticky="nsew")
+
+        self.right_title = Label(self.right_frame, text="Create your list", bg=self.box_background_color,
+                                font=("Berlin Sans FB", int(self.tools.screen_width*0.02)), fg=self.text_color)
+
+        self.add_button = Button(self.left_frame, text="Add", font=("Helvetica", 15, "bold"), cursor="hand2",
+                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
+                        activebackground=self.tools.pallete["purple"], command=lambda: self._AddItem())
+
+
+
+        self.right_title.grid(row=0, column=0, columnspan=2, sticky="nsew")
+        
+        
+        for child in self.right_frame.winfo_children():
+            child.grid_configure(padx=10, pady=10)   
+        
+
+    def _AddItem(self):
+        pass
+    
+    
+    def _DeleteItem(self):
+        pass
+
+
+    def _ClearItems(self):
+        pass
+
+
+    def _PickItem(self):
+        pass
+    
+
+    def _GenerateList(self):
         """
         This method is used to generate a random list of numbers.  It contains:
         - A try/except block to catch the error if the user enters a non-integer value for the length of the list.
 
         """
+        
+        
         try:
             length_of_list_threshold = int(self.length_of_list_entry.get())
-            seed_threshold = int(self.seed_entry.get())
+            seed_threshold = int(self.low_entry.get())
             high_threshold = int(self.high_entry.get())
             random_list = np.random.randint(low= seed_threshold, high=high_threshold, size=length_of_list_threshold)
             self.result_variable.set(random_list)
-        except Exception as e:
-            print(e)
-
-
-if __name__ == "__main__":
-    root = Tk()
-    root.geometry("500x500")
-    app = RandomGeneratorPage(root, tools=None)
-    root.mainloop()
         
+        except:
+            messagebox.showerror("Invalid Selections !", "You have to fill all fields with valid selections.")
+            
+
+
 
