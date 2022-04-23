@@ -829,3 +829,7 @@ class ScientificCalculatorPage:
         root.grid(row=4, column=9)
         square_Root.grid(row=4, column=10)
         pibtn.grid(row=4, column=11)
+
+
+
+
