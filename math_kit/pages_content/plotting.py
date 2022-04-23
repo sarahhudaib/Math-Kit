@@ -4,12 +4,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv
 from collections import Counter
-
+from tkinter import Frame, Label
 
 
 class Plotter():
-    def __init__(self ):
-        pass
+    def __init__(self, master, tools):
+        self.tools = tools
+        
+        width = int(tools.screen_width*0.8)
+        height = int(tools.screen_height*0.8)
+        
+        self.plotter_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        master.add(self.plotter_frame)
+        
+        Label(self.plotter_frame, text="Plotter").pack()
+        
+        
 
     def line_plotter(self, x_list, y_list, plt_name= None, x_lable= None ,y_lable= None, line_lable=None, save=False):
         """

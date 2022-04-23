@@ -11,7 +11,7 @@ class ScientificCalculatorPage:
         height = int(tools.screen_height*0.8)
         
         self.scy_calc_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
-        self.master.add(self.scy_calc_frame)
+        master.add(self.scy_calc_frame)
         
         self.expression = " "
         self.equation = StringVar()
