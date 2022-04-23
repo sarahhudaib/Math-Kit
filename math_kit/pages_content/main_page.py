@@ -7,9 +7,12 @@ from pages_content.team_info import TeamInfoPage
 from pages_content.settings import SettingsPage
 
 from pages_content.scientific_calculator import ScientificCalculatorPage
-
+from pages_content.plotting import Plotter
 from pages_content.unit_converter import UnitConverterPage
 from pages_content.random_generator import RandomGeneratorPage
+from pages_content.stats import StatsPage
+from pages_content.numerical_operations import NumericalOperationsPage
+from pages_content.derive_and_integrate import DeriveAndIntegratePage
 
 
 class MainPage:
@@ -85,8 +88,12 @@ class MainPage:
         SettingsPage(self.pages_display_notebook, self.tools)
         
         ScientificCalculatorPage(self.pages_display_notebook, self.tools)
-        UnitConverterPage(self.pages_display_notebook, self.tools)
+        Plotter(self.pages_display_notebook, self.tools)
+        NumericalOperationsPage(self.pages_display_notebook, self.tools)
+        DeriveAndIntegratePage(self.pages_display_notebook, self.tools)
+        StatsPage(self.pages_display_notebook, self.tools)
         RandomGeneratorPage(self.pages_display_notebook, self.tools)
+        UnitConverterPage(self.pages_display_notebook, self.tools)
 
 
 

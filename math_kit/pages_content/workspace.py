@@ -17,8 +17,8 @@ class WorkspacePage:
         self.width = int(tools.screen_width*0.8)
         self.height = int(tools.screen_height*0.8)
         
-        self.workspace_frame = Frame(self.notebook, width=self.width, height=self.height, bg=tools.pallete["gray"])
-        self.notebook.add(self.workspace_frame)
+        self.workspace_frame = Frame(master, width=self.width, height=self.height, bg=tools.pallete["gray"])
+        master.add(self.workspace_frame)
         
         self.padx, self.pady, self.ipadx, self.ipady = 20, 20, 10, 10
         self.avatar_side_lemgth, self.bd = int(self.width*0.14), 5
@@ -42,7 +42,7 @@ class WorkspacePage:
         self.calc_icon = self.calc_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.calc_icon_img = ImageTk.PhotoImage(self.calc_icon)
         self.calc_img = Button(self.calc_frame, image=self.calc_icon_img, bg=self.bg, bd=self.bd, cursor="hand2",
-                               activebackground=self.active_bg, command=lambda: self._SwitchPageBackground(4))
+                               activebackground=self.active_bg, command=lambda: self._SwitchPage("calc"))
         self.calc_img.image = self.calc_icon_img
         self.calc_img.pack(pady=5)
         
@@ -60,7 +60,7 @@ class WorkspacePage:
         self.plot_icon = self.plot_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.plot_icon_img = ImageTk.PhotoImage(self.plot_icon)
         self.plot_img = Button(self.plot_frame, image=self.plot_icon_img, bg=self.bg, bd=self.bd, cursor="hand2",
-                               activebackground=self.active_bg, command=lambda: self._SwitchPageBackground(1))
+                               activebackground=self.active_bg, command=lambda: self._SwitchPage("plot"))
         self.plot_img.image = self.plot_icon_img
         self.plot_img.grid(row=0, column=1, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.plot_img.grid_columnconfigure(0, weight=1)
@@ -81,7 +81,7 @@ class WorkspacePage:
         self.convertor_icon_img = ImageTk.PhotoImage(self.convertor_icon)
         self.convertor_img = Button(self.convertor_frame, image=self.convertor_icon_img, bg=self.bg, bd=self.bd, 
                                     cursor="hand2", activebackground=self.active_bg, 
-                                    command=lambda: self._SwitchPageBackground(5))
+                                    command=lambda: self._SwitchPage("conv"))
         self.convertor_img.image = self.convertor_icon_img
         self.convertor_img.grid(row=0, column=2, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.convertor_img.grid_columnconfigure(0, weight=1)
@@ -101,7 +101,7 @@ class WorkspacePage:
         self.random_icon = self.random_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.random_icon_img = ImageTk.PhotoImage(self.random_icon)
         self.random_img = Button(self.random_frame, image=self.random_icon_img, bg=self.bg, bd=self.bd, cursor="hand2",
-                               activebackground=self.active_bg, command=lambda: self._SwitchPageBackground(6))
+                               activebackground=self.active_bg, command=lambda: self._SwitchPage("rand"))
         self.random_img.image = self.random_icon_img
         self.random_img.grid(row=0, column=3, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.random_img.grid_columnconfigure(0, weight=1)
@@ -121,7 +121,7 @@ class WorkspacePage:
         self.stats_icon = self.stats_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.stats_icon_img = ImageTk.PhotoImage(self.stats_icon)
         self.stats_img = Button(self.stats_frame, image=self.stats_icon_img, bg=self.bg, bd=self.bd, cursor="hand2",
-                               activebackground=self.active_bg, command=lambda: self._SwitchPageBackground(1))
+                               activebackground=self.active_bg, command=lambda: self._SwitchPage("stat"))
         self.stats_img.image = self.stats_icon_img
         self.stats_img.pack(pady=5)
         
@@ -140,7 +140,7 @@ class WorkspacePage:
         self.diff_and_int_icon_img = ImageTk.PhotoImage(self.diff_and_int_icon)
         self.diff_and_int_img = Button(self.diff_and_int_frame, image=self.diff_and_int_icon_img, bg=self.bg, 
                                        bd=self.bd, activebackground=self.active_bg, cursor="hand2", 
-                                       command=lambda: self._SwitchPageBackground(1))
+                                       command=lambda: self._SwitchPage("diff"))
         self.diff_and_int_img.image = self.diff_and_int_icon_img
         self.diff_and_int_img.grid(row=1, column=1, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.diff_and_int_img.grid_columnconfigure(0, weight=1)
@@ -160,7 +160,8 @@ class WorkspacePage:
         self.numeric_icon = self.numeric_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
         self.numeric_icon_img = ImageTk.PhotoImage(self.numeric_icon)
         self.numeric_img = Button(self.numeric_frame, image=self.numeric_icon_img, bg=self.bg, bd=self.bd, 
-                                  cursor="hand2", activebackground=self.active_bg, command=lambda: self._SwitchPageBackground(1))
+                                  cursor="hand2", activebackground=self.active_bg,
+                                  command=lambda: self._SwitchPage("num"))
         self.numeric_img.image = self.numeric_icon_img
         self.numeric_img.grid(row=1, column=2, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
         self.numeric_img.grid_columnconfigure(0, weight=1)
@@ -171,9 +172,18 @@ class WorkspacePage:
         self.numeric_label.pack()
 
 
-    def _SwitchPageBackground(self, page_number):
+    def _SwitchPage(self, page_name):
         """
         """
+        
+        if page_name == "calc": page_number = 4
+        elif page_name == "plot": page_number = 5
+        elif page_name == "conv": page_number = 10
+        elif page_name == "rand": page_number = 9
+        elif page_name == "stat": page_number = 8
+        elif page_name == "diff": page_number = 7
+        elif page_name == "num": page_number = 6
+        
         
         tools = self.tools
         tools.Navigate(self.wind, self.notebook, page_number)
