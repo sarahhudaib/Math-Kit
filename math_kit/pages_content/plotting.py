@@ -4,12 +4,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv
 from collections import Counter
-
+from tkinter import Frame, Label
 
 
 class Plotter():
-    def __init__(self ):
-        pass
+    def __init__(self, master, tools):
+        self.tools = tools
+        
+        width = int(tools.screen_width*0.8)
+        height = int(tools.screen_height*0.8)
+        
+        self.plotter_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        master.add(self.plotter_frame)
+        
+        Label(self.plotter_frame, text="Plotter").pack()
+        
+        
 
     def line_plotter(self, x_list, y_list, plt_name= None, x_lable= None ,y_lable= None, line_lable=None, save=False):
         """
@@ -60,33 +70,39 @@ class Plotter():
             plt.savefig("./math_kit/assets/plots/plot.png")
         plt.show()
         
-    def plot_csv(self, path ,attr_name, spliter="," ,length =1):
+    def plot_csv(self, path ,x_axis_attr,y_axis_attr,start=0,end=None, plt_name= None, x_lable= None ,y_lable= None, line_lable=None):
         with open(path,"r") as csv_file:
             csv_reader = csv.DictReader(csv_file)
-        count= Counter()
-
-        row=next(csv_reader)
-        print(row[attr_name].split(spliter))
-
-        for row in csv_reader:
-            count.update(row[attr_name].split(spliter))
-        attr =[]
-        numbers=[]
-        for item in count.most_common(length):
-            attr.append(item[0])
-            numbers.append(item[1])
-
-         
+            row=next(csv_reader)
+            csv_list=list(csv_reader)
         
+
+        print(row)
+        
+        x_axis=[]
+        y_axis=[]
+        
+
+        for row in csv_list:
+           x_axis.append(row[x_axis_attr])
+           y_axis.append(row[y_axis_attr])
+        
+
+ 
         plt.legend()
 
 
-        plt.title("example")
-        plt.xlabel("x lable")
-        plt.ylabel("y lable")
-        plt.bar(attr,numbers, label="testing")
+        plt.title(plt_name)
+        plt.xlabel(x_lable)
+        plt.ylabel(y_lable)
+        plt.plot(x_axis[start:end:],y_axis[start:end:], label=line_lable)
+        step=int(start-end/15)
+        tick_end=end+1
+        plt.xticks(x_axis[0:tick_end:step],rotation=90)
+        plt.yticks(y_axis[0:tick_end:step],rotation=0)
+        plt.grid(True)
         plt.show()
-
+        
 
 
         
@@ -124,19 +140,55 @@ plt.show()
 """
 
 if __name__== "__main__": 
+    
     p3=Plotter()
-    p3.plot_csv(r"math_kit\assets\csv\data.csv",'LanguagesWorkedWith',';',15)
-
-
+    path=r"math_kit\assets\csv\gold.csv"
+    x_axis_attr="Date"
+    y_axis_attr="Close"
+    p3.plot_csv(path,x_axis_attr,y_axis_attr,0,150,"xy","x","y")
 
     """
-    with open(r"math_kit\assets\csv\data.csv","r") as csv_file:
+    p3=Plotter()
+    p3.plot_csv(r"math_kit\assets\csv\data.csv",'LanguagesWorkedWith',';',15)
+    """
+
+
+"""
+    path=r"math_kit\assets\csv\gold.csv"
+    x_axis_attr="Date"
+    y_axis_attr="Close"
+    
+    with open(r"math_kit\assets\csv\gold.csv","r") as csv_file:
         csv_reader = csv.DictReader(csv_file)
-        language_count= Counter()
-
         row=next(csv_reader)
-        print(row['LanguagesWorkedWith'].split(";"))
+        csvlist=list(csv_reader)
+        
 
+        print(row)
+        
+        x_axis=[]
+        y_axis=[]
+        for row in csvlist:
+           x_axis.append(row["Date"])
+           y_axis.append(row["Close"])
+        
+
+ 
+        plt.legend()
+
+
+        plt.title("example")
+        plt.xlabel("x lable")
+        plt.ylabel("y lable")
+        plt.plot(x_axis[0:150:],y_axis[0:150:], label="testing")
+        plt.xticks(x_axis[0:151:10],rotation=90)
+        plt.yticks(y_axis[0:151:10],rotation=0)
+        plt.grid(True)
+        plt.show()
+"""
+            
+
+"""
         for row in csv_reader:
             language_count.update(row['LanguagesWorkedWith'].split(";"))
     languages =[]
@@ -157,8 +209,8 @@ if __name__== "__main__":
     plt.bar(languages,pop, label="testing")
     plt.show()
 
-
 """
+
 
 
 
@@ -182,4 +234,3 @@ if __name__== "__main__":
 """
     
 
-    
