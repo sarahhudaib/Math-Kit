@@ -17,6 +17,7 @@ class StatsPage:
         master.add(self.stats_frame)
         
         Label(self.stats_frame, text="stats").pack()
+
     
     def statistics_csv(self,path,attr):
         """

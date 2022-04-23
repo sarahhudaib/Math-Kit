@@ -176,6 +176,8 @@ class WorkspacePage:
         """
         """
         
+        self.tools.PlayAudio("card_click.wav")
+        
         if page_name == "calc": page_number = 4
         elif page_name == "plot": page_number = 5
         elif page_name == "conv": page_number = 10
