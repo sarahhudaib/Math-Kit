@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Frame, Label
 from math import *  # we import all the math functions
 import random
 import numpy as np
@@ -10,6 +10,16 @@ class RandomGeneratorPage:
     """
 
     def __init__(self, master, tools):
+        self.tools = tools
+        
+        width = int(tools.screen_width*0.8)
+        height = int(tools.screen_height*0.8)
+        
+        self.randomizer_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        master.add(self.randomizer_frame)
+        
+        Label(self.randomizer_frame, text="Random Generator").pack()
+        
         """
         This method is used to initialize the class.  It contains the following:
         - A frame that contains the following:
@@ -29,6 +39,7 @@ class RandomGeneratorPage:
         self.master.resizable(True, True)
         self.randomizer_frame = Frame(self.master,  width=1000, height=1000, bg="#D3D8DE")
         self.randomizer_frame.grid(row=30, column=30)
+
         
 
         self.container = Frame(self.randomizer_frame, width=88888, height=88888, bg="#D3D8DE")

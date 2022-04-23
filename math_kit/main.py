@@ -1,9 +1,7 @@
 from tkinter import Tk, Frame, Button, Label
 from tkinter.ttk import Notebook, Style
 from PIL import Image, ImageDraw, ImageFilter
-
 from pages_content.main_page import MainPage
-
 
 class Tools:
     """
@@ -48,15 +46,15 @@ class Tools:
             wind.title("Math Kit - Workspace - Scientific Calculator")
         elif page == 5:
             wind.title("Math Kit - Workspace - Plotter")
-        elif page == 6:
+        elif page == 10:
             wind.title("Math Kit - Workspace - Convertor")
-        elif page == 7:
+        elif page == 9:
             wind.title("Math Kit - Workspace - Randomizer")
         elif page == 8:
             wind.title("Math Kit - Workspace - Statistics")
-        elif page == 9:
+        elif page == 7:
             wind.title("Math Kit - Workspace - Calculas")
-        elif page == 10:
+        elif page == 6:
             wind.title("Math Kit - Workspace - Numerical")
     
     
