@@ -1,9 +1,7 @@
 from tkinter import Tk, Frame, Button, Label
 from tkinter.ttk import Notebook, Style
 from PIL import Image, ImageDraw, ImageFilter
-
 from pages_content.main_page import MainPage
-
 
 class Tools:
     """
