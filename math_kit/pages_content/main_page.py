@@ -102,7 +102,9 @@ class MainPage:
         This method is called when the user clicks on a button.  
         It changes the background color of the page to the color of the button. 
         """
+        
         tools = self.tools
+        tools.PlayAudio("navigate_click.wav")
         
         if page_number == 0:
             tools.Navigate(self.wind, self.pages_display_notebook, 0)
@@ -131,3 +133,5 @@ class MainPage:
             self.workspace_button.config(bg=tools.pallete["blue"])
             self.team_info_button.config(bg=tools.pallete["blue"])
             self.settings_button.config(bg=tools.pallete["purple"])
+            
+            

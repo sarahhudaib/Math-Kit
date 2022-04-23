@@ -20,7 +20,7 @@ class ScientificCalculatorPage:
         You can also use your keyboard to enter values"""
         
         self.title = Label(self.scy_calc_frame, text=headline, justify="center",
-                           bg=tools.pallete["gray"],
+                           bg=tools.pallete["gray"], fg=tools.pallete["purple"],
                            font=("Berlin Sans FB", int(tools.screen_width*0.02)))
         self.title.pack(pady=int(tools.screen_height*0.02))
         
