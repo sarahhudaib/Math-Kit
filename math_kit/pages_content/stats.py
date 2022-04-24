@@ -3,6 +3,7 @@ import csv
 import statistics  
 
 
+
 class StatsPage:
 
        
@@ -18,12 +19,14 @@ class StatsPage:
         
         Label(self.stats_frame, text="stats").pack()
 
+
+
     
     def statistics_csv(self,path,attr):
         """
         this function takes the path of a csv file and the column name 
         returns standard deviation , mean and median for the data set
-        """
+
 
         
         with open(path,"r") as csv_file:
@@ -53,11 +56,14 @@ class StatsPage:
     def statistics_list(self,list):
         """
         this function takes a list of integers 
+
         returns standard deviation , mean and median """
+
 
         print(statistics.stdev(list))
         print(statistics.mean(list))
         print(statistics.median(list))
+
 
         
 
