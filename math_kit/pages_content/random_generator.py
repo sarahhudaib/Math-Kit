@@ -146,6 +146,13 @@ class RandomGeneratorPage:
         self.picked_item = random.choice(self.list_of_items)
         self.picked_item_label.config(text="Picked item: " + str(self.picked_item))
     
+    def _CopyRandomList(self):
+        """" Function to copy the random list to the clipboard """
+        self.clipboard_clear()
+        self.clipboard_append(str(self.list_of_items))
+        
+        
+        
     def _GenerateList(self):
         """
         This method is used to generate a random list of numbers.  It contains:
