@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-from math_kit.pages_content.stats import StatsPage
-import pytest
-
-def test_standard_deviation(test_list):
-    pass
-
-@pytest.fixture
-=======
 from math_kit.pages_content.stats import StatsPage
 import pytest
 import csv
@@ -97,4 +88,3 @@ def csv_sample():
         col_list.append(float(row["Close"]))
 
     return col_list
->>>>>>> bac1ca7dce477a1a017afd7881653e8f0c2f49d8
