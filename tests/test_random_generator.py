@@ -74,11 +74,23 @@ def test_generator_list_method():
     tools = Tools()
     page = RandomGeneratorPage(None, tools)
     page.length_of_list_entry.text = "10"
-    page.high_entry.text = "10"
     page.low_entry.text = "1"
-    page.generator_list()
-    assert page.result_text.text is not None
+    page.high_entry.text = "10"
+    page._GenerateList()
+    assert page.result_entry.text is not None
 
+
+def test_generator_list_method_with_invalid_input():
+    """     
+    This test is to test the generator_list method of the RandomGeneratorPage.        
+    """
+    tools = Tools()
+    page = RandomGeneratorPage(None, tools)
+    page.length_of_list_entry.text = "10"
+    page.low_entry.text = "1"
+    page.high_entry.text = "1"
+    page._GenerateList()
+    assert page.result_entry.text is not None
 
 
 
