@@ -16,8 +16,7 @@ class ScientificCalculatorPage:
         self.expression = " "
         self.equation = StringVar()
         
-        headline = """Everybody needs a calculator at some point!
-        You can also use your keyboard to enter values"""
+        headline = """Everybody needs a calculator at some point!"""
         
         self.title = Label(self.scy_calc_frame, text=headline, justify="center",
                            bg=tools.pallete["gray"], fg=tools.pallete["purple"],
