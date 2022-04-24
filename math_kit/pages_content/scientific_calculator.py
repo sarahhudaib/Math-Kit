@@ -2,6 +2,10 @@ from tkinter import Tk, Frame, Button, Entry, StringVar, Label
 from math import tan, sin, cos, exp, log, sqrt, atan2, asin, acos, atan, degrees, radians, floor, ceil, trunc, pow, fabs
 
 class ScientificCalculatorPage:
+    """"
+    This class 
+    
+    """
     
     def __init__(self, master, tools):
         self.master = master

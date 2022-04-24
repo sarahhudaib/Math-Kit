@@ -38,50 +38,69 @@ The provided features by the GUI tool are the following:
 
 ## **Project Directory Tree**
 ```
-.
-├── LICENSE
-├── README.md
 ├── math_kit
 │   ├── assets
-|   |  |── avatars
-│   |      ├── batool.png
-│   |      ├── mustafa.png
-│   |      ├── salim.png
-│   |      └──  sara.png
-│   │── pages_content
-|   |  |── __pycache__
-│   │  |    ├── home.cpython-39.pyc
-│   │  |    ├── home.cpython-310.pyc
-│   │  |    ├── main_page.cpython-39.pyc
-│   │  |    ├── main_page.cpython-310.pyc
-│   │  |    ├── settings.cpython-39.pyc
-│   │  |    ├── settings.cpython-310.pyc
-│   │  |    ├── team_info.cpython-39.pyc
-│   │  |    ├── team_info.cpython-310.pyc
-│   │  |    ├── workspace.cpython-39.pyc
-|   |  |    └── workspace.cpython-310.pyc
-│   ├  |── derive_and_integrate.py
-|   |  ├── home.py
-│   |  ├── main_page.py
-│   |  ├── numerical_operations.py
-│   |  ├── plotting.py
-│   |  ├── random_generator.py
-│   |  ├── scienfitic_calculator.py
-│   |  ├── settings.py
-│   |  ├── stats.py
-│   |  ├── team_info.py
-│   |  ├── unit_converter.py
-│   |  └── workspace.py
-|   |── main.py
-|   |── tempCodeRunnerFile.py
+|   |    |── avatars
+│   |    |  ├── batool.png
+│   |    |  ├── mustafa.png
+│   |    |  ├── salim.png
+│   |    |  └── sara.png
+│   |    |── csv
+│   |    |  ├── data.csv
+│   |    |  └── gold.csv
+│   |    |── icons
+│   |    |  ├── calc.png
+│   |    |  ├── clear.png
+│   |    |  ├── convert.png
+│   |    |  ├── diff.png
+│   |    |  ├── flip.png
+│   |    |  ├── numeric.png
+│   |    |  ├── plot.png
+│   |    |  ├── random.png
+│   |    |  └── stats.png
+│   |    |── plots
+│   |    |  └── plot.png
+│   |    |── sounds
+│   |    |  ├── card_click.wav
+│   |    |  └── navigate_click.wav
+│   ├── pages_content
+│   │    ├── derive_and_integrate.py
+│   │    ├── home.py
+│   │    ├── main_page.py
+│   │    ├── numerical_operations.py
+│   │    ├── plotting.py
+│   │    ├── random_generator.py
+│   │    ├── scienfitic_calculator.py
+│   │    ├── settings.py
+│   │    ├── stats.py
+│   │    ├── team_info.py
+│   │    ├── unit_converter.py
+|   |    └── workspace.py
+|   ├── main.py
+|   ├── tempCodeRunnerFile.py
+├── tests
+│   ├── test_GUI
+│   |    ├── test_ask_open_file.py
+│   |    ├── test_grid.py
+│   |    ├── test_horizontal_scale.py
+│   |    ├── test_label_button.py
+│   |    ├── test_question_icon.py
+│   |    └── test_top_level_widget.py
+│   ├── test_image
+│   |    └── blue.png
+|   ├── __init__.py
+|   ├── test_random_generator.py
+|   ├── test_scientific_calc.py
+|   ├── test_statistics.py
+|   ├── 
+|   ├── 
+├── .gitignore 
+├── LICENSE
 ├── poetry.lock
 ├── pyproject.toml
-├── tests
-    ├── __init.py__
-    │   
-    │  
-└── README.md
-
+├── README.md
+├── requirements.md
+└── work_space_cards.md
 ```
 
 <br>
@@ -98,6 +117,7 @@ The provided features by the GUI tool are the following:
 - **Replit** 
 - **webbrowser** 
 - **threading**
+- **playsound**
 - **black**
 
 <br>
@@ -119,6 +139,8 @@ Navigate to the repo's directory and install required  dependencies:
 `$ pip install numpy`
 `$ pip install matplotlib`
 `$ -m pip install -U black` 
+`$ pip install playsound`
+
 
 
 
@@ -138,11 +160,22 @@ Activate the virtual environment:
 
 Important notes:
 
-1. For extra careful measures; when running the program make sure you have the latest updated version of python installed on your local machine (Python 3.10.1).
+1. For extra careful measures; when running the program make sure you have the latest updated version of python installed on your local machine (Python 3.10.1), specifically on Windows, you can use the following command:
 
-2. Navigate inside "Math-Kit\math_kit" directory to run the program, preferably on "Windows Powershell" not "Ubuntu" and that's because WSL doesn't support rendering GUI and that could lead to some issues we want to stay away from.
+`$ python -m pip install --upgrade pip`
 
-3. After cd'ing inside the above directory, and after activating the virtual environment, run this command 
+
+2. Activate the virtual environment by running the following command:
+
+`$ poetry shell`
+
+definatly after install poetry, using this command:
+
+`$ poetry install`
+
+3. Navigate inside "Math-Kit\math_kit" directory to run the program, preferably on "Windows Powershell" not "Ubuntu" and that's because WSL doesn't support rendering GUI, so it's advised to be careful as to not run into some issues you want to stay away from.
+
+4. After cd'ing inside the above directory, and after activating the virtual environment, run this command 
 
 `$ python main.py`
 
