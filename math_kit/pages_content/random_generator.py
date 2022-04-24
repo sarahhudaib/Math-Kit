@@ -1,6 +1,6 @@
-import random
-from tkinter import END, Frame, Label, Entry, Button, StringVar, LabelFrame, Checkbutton, messagebox, BooleanVar, IntVar 
+from tkinter import Frame, Label, Entry, Button, StringVar, LabelFrame, messagebox, Scrollbar, Listbox, IntVar, Checkbutton, END
 import numpy as np
+import random
 
 
 class RandomGeneratorPage:
@@ -41,7 +41,6 @@ class RandomGeneratorPage:
         
         self._LeftFrame()
         self._RightFrame()
-        
         
         
     def _LeftFrame(self):
@@ -100,51 +99,147 @@ class RandomGeneratorPage:
             child.grid_configure(padx=10, pady=10)       
         
         
-        
-        
     def _RightFrame(self):
         """ Function to initialize the right frame items"""
         self.right_frame = LabelFrame(self.container, bg=self.box_background_color)
         self.right_frame.grid(row=0, column=1, padx=20, pady=10, sticky="nsew")
 
-        self.right_title = Label(self.right_frame, text="Create your list", bg=self.box_background_color,
+        self.right_title = Label(self.right_frame, text="Create your own list", bg=self.box_background_color,
                                 font=("Berlin Sans FB", int(self.tools.screen_width*0.02)), fg=self.text_color)
 
-        self.add_button = Button(self.left_frame, text="Add", font=("Helvetica", 15, "bold"), cursor="hand2",
+        self.add_item_button = Button(self.right_frame, text="Add", font=("Helvetica", 15, "bold"), cursor="hand2",
                         bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
                         activebackground=self.tools.pallete["purple"], command=lambda: self._AddItem())
+        
+        self.add_item_variable = StringVar()
+        self.add_item_entry = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
+                               fg=self.entry_text_color, width=8, textvariable=self.add_item_variable)
+        
+        self.x_times_label = Label(self.right_frame, text="x", font=("Helvetica", 18),
+                                          bg=self.box_background_color, fg=self.text_color)
+
+        self.x_times_variable = StringVar()        
+        self.x_times_entry = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
+                               fg=self.entry_text_color, width=4, textvariable=self.x_times_variable)
+        self.x_times_variable.set("1")
+        
+        
+
+        self.delete_item_button = Button(self.right_frame, text="Delete", font=("Helvetica", 15, "bold"), cursor="hand2",
+                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
+                        activebackground=self.tools.pallete["purple"], command=lambda: self._DeleteItem())
+
+        self.clear_item_button = Button(self.right_frame, text="Clear", font=("Helvetica", 15, "bold"), cursor="hand2",
+                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
+                        activebackground=self.tools.pallete["purple"], command=lambda: self._ClearItems())
+        
+        self.number_label = Label(self.right_frame, text="#Samples:", font=("Helvetica", 18),
+                                          bg=self.box_background_color, fg=self.text_color)
+        
+        self.picked_number_variable = StringVar()        
+        self.picked_number = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
+                               fg=self.entry_text_color, width=4, textvariable=self.x_times_variable)
+        self.picked_number_variable.set("1")
+        
+        self.unique_variable = IntVar()
+        self.unique_checkbox = Checkbutton(self.right_frame, text="Unique", variable=self.unique_variable,
+                                           cursor="hand2", bg=self.tools.pallete["gray"], fg=self.text_color, 
+                                           font=("Helvetica", 14))
+        
+        self.csv_button = Button(self.right_frame, text="CSV", font=("Helvetica", 15, "bold"), cursor="hand2",
+                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
+                        activebackground=self.tools.pallete["purple"], command=lambda: self._ExportCSV())
+        
+        self.pick_item_button = Button(self.right_frame, text="Pick", font=("Helvetica", 15, "bold"), cursor="hand2",
+                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
+                        activebackground=self.tools.pallete["purple"], command=lambda: self._PickItem())
+        
+        self.picked_result_variable = StringVar()
+        self.picked_result_entry = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
+                               fg=self.entry_text_color, textvariable=self.picked_result_variable)
+        
+        self.items_box = Scrollbar(self.right_frame, width=int(self.tools.screen_width*0.02))
+        self.items_list = Listbox(self.right_frame, yscrollcommand=self.items_box.set)
+        self.items_box.config(command=self.items_list.yview)
+        
+        
+        
+        
 
 
 
-        self.right_title.grid(row=0, column=0, columnspan=2, sticky="nsew")
+        self.right_title.grid(row=0, column=0, columnspan=5, sticky="nsew")
+        
+        self.add_item_button.grid(row=1, column=0, sticky="ew")
+        self.add_item_entry.grid(row=1, column=1, sticky="ew")
+        self.x_times_label.grid(row=1, column=2, sticky="ew")
+        self.x_times_entry.grid(row=1, column=3, sticky="ew")
+        
+        self.items_box.grid(row=1, column=4, rowspan=5, sticky="nsew")
+        self.items_list.grid(row=1, column=4, rowspan=5, sticky="nsew")
+        
+        self.delete_item_button.grid(row=2, column=0, columnspan=2, sticky="ew")
+        self.clear_item_button.grid(row=2, column=2, columnspan=2, sticky="ew")
+        
+        self.number_label.grid(row=3, column=0)
+        self.picked_number.grid(row=3, column=1)
+        self.unique_checkbox.grid(row=3, column=2, columnspan=2)
+        
+        self.pick_item_button.grid(row=4, column=0, columnspan=3, sticky="ew")
+        self.csv_button.grid(row=4, column=3)
+        self.picked_result_entry.grid(row=5, column=0, columnspan=4, sticky="ew")
+        
+
         
         
         for child in self.right_frame.winfo_children():
             child.grid_configure(padx=10, pady=10)   
         
+        
 
     def _AddItem(self):
-        """ Function to add an item to the list """
-        self.list_of_items.append(self.item_entry.get())
-        self.item_entry.delete(0, END) 
-        self.item_entry.insert(0, "")
-        self.list_of_items_label.config(text="List of items: " + str(self.list_of_items))
-
+        
+        x = self.x_times_entry.get()
+        item = self.add_item_entry.get()
+        
+        if x.isdigit():
+            if item.strip() != "":
+                for i in range(int(x)):
+                    self.items_list.insert("end", item) 
+            else:
+                messagebox.showerror("Invalid Input !", "You have to enter a text in the field after the (add).")        
+        else:
+            messagebox.showerror("Invalid Input !", "You have to enter a number in the field after the (x times).")
+    
+    
     def _DeleteItem(self):
-        """Function to delete an item from the list"""
-        self.list_of_items.pop() 
-        self.list_of_items_label.config(text="List of items: " + str(self.list_of_items))
+        self.items_list.delete("anchor") 
 
 
     def _ClearItems(self):
-        """ Function to clear the list of items """
-        self.list_of_items = []
-        self.list_of_items_label.config(text="List of items: " + str(self.list_of_items))
+        for i in range(self.items_list.size()):
+            self.items_list.delete(0)
+
 
     def _PickItem(self):
-        """ Function to pick an item from the list """
-        self.picked_item = random.choice(self.list_of_items)
-        self.picked_item_label.config(text="Picked item: " + str(self.picked_item))
+        is_unique = self.unique_variable.get()
+        number = self.picked_number.get()
+        items = self.items_list.get(0, END)
+        
+        if number.isdigit():
+            if is_unique:
+                result = random.sample(items, k=number)
+            else:
+                result = random.choices(items, k=number)
+            
+            self.picked_result_entry.set(result)
+        else:
+            messagebox.showerror("Invalid Input !", "You have to enter a number in the field after the (#Samples).")
+            
+            
+    def _ExportCSV(self):
+        pass
+    
     
     def _GenerateList(self):
         """
@@ -152,13 +247,12 @@ class RandomGeneratorPage:
         - A try/except block to catch the error if the user enters a non-integer value for the length of the list.
 
         """
-        
-        
+     
         try:
             length_of_list_threshold = int(self.length_of_list_entry.get())
-            seed_threshold = int(self.low_entry.get())
-            high_threshold = int(self.high_entry.get())
-            random_list = np.random.randint(low= seed_threshold, high=high_threshold, size=length_of_list_threshold)
+            lower_threshold = int(self.low_entry.get())
+            upper_threshold = int(self.high_entry.get())
+            random_list = np.random.randint(low= lower_threshold, high=upper_threshold, size=length_of_list_threshold)
             self.result_variable.set(random_list)
         
         except:
