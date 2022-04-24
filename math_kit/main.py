@@ -2,6 +2,8 @@ from tkinter import Tk, Frame, Button, Label
 from tkinter.ttk import Notebook, Style
 from PIL import Image, ImageDraw, ImageFilter
 from pages_content.main_page import MainPage
+from playsound import playsound
+import threading
 
 class Tools:
     """
@@ -56,6 +58,15 @@ class Tools:
             wind.title("Math Kit - Workspace - Calculas")
         elif page == 6:
             wind.title("Math Kit - Workspace - Numerical")
+            
+            
+    @staticmethod
+    def PlayAudio(name):
+        
+        def thread(name):
+            playsound(r"assets\sounds\{name}".format(name=name))
+
+        threading.Thread(target=thread, args=(name,)).start()
     
     
     def mask_circle_transparent(self, pil_img, blur_radius, offset=0):

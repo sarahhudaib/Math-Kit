@@ -1,6 +1,7 @@
 from tkinter import Frame, Label
 import csv
-import statistics
+import statistics  
+
 
 
 class StatsPage:
@@ -17,6 +18,7 @@ class StatsPage:
         master.add(self.stats_frame)
         
         Label(self.stats_frame, text="stats").pack()
+
 
     
     @staticmethod    
@@ -42,6 +44,7 @@ class StatsPage:
            col_list.append(float(row[attr]))
         
         return statistics.stdev(col_list)
+
 
     
     @staticmethod    
@@ -72,6 +75,7 @@ class StatsPage:
     def median_csv(path,attr):
         """
         this function takes the path of a csv file and the column name 
+
         returns stadard deviation , mean and median for the data set
         """
                 
@@ -80,6 +84,7 @@ class StatsPage:
             row=next(csv_reader)
             csv_list=list(csv_reader)
         
+
 
         print(row)
         
@@ -147,6 +152,7 @@ class StatsPage:
     def standard_deviation_list(input_list):
         """
         this function takes a list of integers 
+
         returns stadard deviation , mean, median , maximum and minimum """
         
         return statistics.stdev(input_list)
@@ -172,6 +178,7 @@ class StatsPage:
     @staticmethod
     def max_list(input_list):
         return max(input_list)
+
 
 
 
