@@ -17,8 +17,10 @@ class StatsPage:
         master.add(self.stats_frame)
         
         Label(self.stats_frame, text="stats").pack()
+
     
-    def statistics_csv(self,path,attr):
+    @staticmethod    
+    def statistics_csv(path,attr):
         """
         this function takes the path of a csv file and the column name 
         returns stadard deviation , mean and median for the data set
@@ -48,17 +50,17 @@ class StatsPage:
         print(statistics.median(col_list))
 
 
-
-    def statistics_list(self,list):
+    @staticmethod
+    def statistics_list(input_list):
         """
         this function takes a list of integers 
         returns stadard deviation , mean, median , maximum and minimum """
 
-        print(statistics.stdev(list))
-        print(statistics.mean(list))
-        print(statistics.median(list))
-        print(min(list))
-        print(max(list))
+        print(statistics.stdev(input_list))
+        print(statistics.mean(input_list))
+        print(statistics.median(input_list))
+        print(min(input_list))
+        print(max(input_list))
 
         
 
