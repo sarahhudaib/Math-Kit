@@ -5,6 +5,7 @@ from pages_content.main_page import MainPage
 from playsound import playsound
 import threading
 
+
 class Tools:
     """
     This class represents the main window of the application.  It contain the following:
