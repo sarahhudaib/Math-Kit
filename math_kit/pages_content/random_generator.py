@@ -241,6 +241,13 @@ class RandomGeneratorPage:
         pass
     
     
+    def _CopyRandomList(self):
+        """" Function to copy the random list to the clipboard """
+        self.clipboard_clear()
+        self.clipboard_append(str(self.list_of_items))
+        
+        
+        
     def _GenerateList(self):
         """
         This method is used to generate a random list of numbers.  It contains:
