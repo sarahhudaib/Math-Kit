@@ -1,4 +1,5 @@
 from tkinter import Frame, Label, Entry, Button, StringVar, LabelFrame, messagebox, Scrollbar, Listbox, IntVar, Checkbutton, END
+from PIL import Image, ImageDraw, ImageFilter, ImageTk
 import numpy as np
 import random
 
@@ -59,12 +60,12 @@ class RandomGeneratorPage:
         self.length_of_list_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
                                fg=self.entry_text_color, width=8)
 
-        self.low_label = Label(self.left_frame, text="Lower value : ", font=("Helvetica", 18),
+        self.low_label = Label(self.left_frame, text="Lower value:", font=("Helvetica", 18),
                                           bg=self.box_background_color, fg=self.text_color)
         self.low_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
                                fg=self.entry_text_color, width=8)
 
-        self.high_label = Label(self.left_frame, text="Upper value: ", font=("Helvetica", 18),
+        self.high_label = Label(self.left_frame, text="Upper value:", font=("Helvetica", 18),
                                           bg=self.box_background_color, fg=self.text_color)
         self.high_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
                                 fg=self.entry_text_color, width=8)
@@ -74,6 +75,17 @@ class RandomGeneratorPage:
                                       activebackground=self.tools.pallete["purple"],
                                       command=lambda: self._GenerateList())
 
+        clear_fieald_image_size = int(self.tools.screen_width*0.02)
+        self.clear_field_icon = Image.open(r"../math_kit/assets/icons/clear.png")
+        self.clear_field_icon = self.clear_field_icon.resize((clear_fieald_image_size, clear_fieald_image_size))
+        self.clear_result_icon_img = ImageTk.PhotoImage(self.clear_field_icon)
+        self.clear_result_img_button = Button(self.container, image=self.clear_result_icon_img, 
+                                              bg=self.tools.pallete["blue"], bd=1,
+                               cursor="hand2", activebackground=self.tools.pallete["purple"], 
+                               command=lambda: self.result_variable.set(""))
+        self.clear_result_img_button.image = self.clear_result_icon_img
+        
+        
         self.result_variable = StringVar()
         self.result_entry = Entry(self.left_frame, textvariable=self.result_variable,
                                fg=self.entry_text_color, font=("Helvetica", 18), bg=self.entries_color)
@@ -138,7 +150,7 @@ class RandomGeneratorPage:
         
         self.picked_number_variable = StringVar()        
         self.picked_number = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=4, textvariable=self.x_times_variable)
+                               fg=self.entry_text_color, width=4, textvariable=self.picked_number_variable)
         self.picked_number_variable.set("1")
         
         self.unique_variable = IntVar()
@@ -222,17 +234,21 @@ class RandomGeneratorPage:
 
 
     def _PickItem(self):
-        is_unique = self.unique_variable.get()
+        is_unique = int(self.unique_variable.get())
         number = self.picked_number.get()
-        items = self.items_list.get(0, END)
+        items = list(self.items_list.get(0, END))
         
         if number.isdigit():
-            if is_unique:
-                result = random.sample(items, k=number)
+            if len(items) != 0:
+                if is_unique:
+                    result = random.sample(items, k=int(number))
+                else:
+                    result = random.choices(items, k=int(number))
+                
+                self.picked_result_variable.set(result)
+                
             else:
-                result = random.choices(items, k=number)
-            
-            self.picked_result_entry.set(result)
+                messagebox.showerror("Invalid Input !", "The list is empty.")            
         else:
             messagebox.showerror("Invalid Input !", "You have to enter a number in the field after the (#Samples).")
             
