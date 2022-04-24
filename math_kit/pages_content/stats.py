@@ -55,7 +55,7 @@ class StatsPage:
 
     def statistics_list(self,list):
         """
-        this function takes a list of integers 
+        """this function takes a list of integers 
 
         returns standard deviation , mean and median """
 
