@@ -1,6 +1,6 @@
 from tkinter import Frame, Label
 import csv
-import statistics  
+import statistics
 
 
 class StatsPage:
@@ -52,11 +52,13 @@ class StatsPage:
     def statistics_list(self,list):
         """
         this function takes a list of integers 
-        returns stadard deviation , mean and median """
+        returns stadard deviation , mean, median , maximum and minimum """
 
         print(statistics.stdev(list))
         print(statistics.mean(list))
         print(statistics.median(list))
+        print(min(list))
+        print(max(list))
 
         
 
