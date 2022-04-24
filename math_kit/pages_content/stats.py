@@ -150,7 +150,7 @@ class StatsPage:
 
     @staticmethod
     def standard_deviation_list(input_list):
-        """
+        
         """this function takes a list of integers 
 
         returns stadard deviation , mean, median , maximum and minimum """
