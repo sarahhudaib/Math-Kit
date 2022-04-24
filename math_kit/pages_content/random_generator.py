@@ -44,7 +44,7 @@ class RandomGeneratorPage:
         
         
     def _LeftFrame(self):
-        
+        """ Function to initialize the left frame items """
         self.left_frame = LabelFrame(self.container, bg=self.box_background_color,
                                 height=int(self.tools.screen_height*0.5))
         self.left_frame.grid(row=0, column=0, padx=20, pady=10, sticky="nsew")
@@ -100,6 +100,7 @@ class RandomGeneratorPage:
         
         
     def _RightFrame(self):
+        """ Function to initialize the right frame items"""
         self.right_frame = LabelFrame(self.container, bg=self.box_background_color)
         self.right_frame.grid(row=0, column=1, padx=20, pady=10, sticky="nsew")
 
@@ -256,7 +257,7 @@ class RandomGeneratorPage:
         
         except:
             messagebox.showerror("Invalid Selections !", "You have to fill all fields with valid selections.")
-            
 
+        
 
 

@@ -22,7 +22,7 @@ class StatsPage:
     def statistics_csv(self,path,attr):
         """
         this function takes the path of a csv file and the column name 
-        returns stadard deviation , mean and median for the data set
+        returns standard deviation , mean and median for the data set
         """
 
         
@@ -53,7 +53,7 @@ class StatsPage:
     def statistics_list(self,list):
         """
         this function takes a list of integers 
-        returns stadard deviation , mean and median """
+        returns standard deviation , mean and median """
 
         print(statistics.stdev(list))
         print(statistics.mean(list))
