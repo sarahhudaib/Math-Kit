@@ -20,15 +20,14 @@ class StatsPage:
         Label(self.stats_frame, text="stats").pack()
 
 
-
     
-    def statistics_csv(self,path,attr):
+    @staticmethod    
+    def standard_deviation_csv(path,attr):
         """
         this function takes the path of a csv file and the column name 
-        returns standard deviation , mean and median for the data set
-
-
-        
+        returns stadard deviation 
+        """
+              
         with open(path,"r") as csv_file:
             csv_reader = csv.DictReader(csv_file)
             row=next(csv_reader)
@@ -44,28 +43,144 @@ class StatsPage:
         for row in csv_list:
            col_list.append(float(row[attr]))
         
-        print(col_list)
+        return statistics.stdev(col_list)
 
 
-        print(statistics.stdev(col_list))
-        print(statistics.mean(col_list))
-        print(statistics.median(col_list))
+    
+    @staticmethod    
+    def mean_csv(path,attr):
+        """
+        this function takes the path of a csv file and the column name 
+        returns stadard mean for the data set
+        """
+                
+        with open(path,"r") as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            row=next(csv_reader)
+            csv_list=list(csv_reader)
+        
+
+        print(row)
+        
+        col_list=[]
+        
+        
+
+        for row in csv_list:
+           col_list.append(float(row[attr]))
+        
+        return statistics.mean(col_list)
+    
+    @staticmethod    
+    def median_csv(path,attr):
+        """
+        this function takes the path of a csv file and the column name 
+
+        returns stadard deviation , mean and median for the data set
+        """
+                
+        with open(path,"r") as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            row=next(csv_reader)
+            csv_list=list(csv_reader)
+        
 
 
+        print(row)
+        
+        col_list=[]
+        
+        
 
-    def statistics_list(self,list):
+        for row in csv_list:
+           col_list.append(float(row[attr]))
+        
+        return statistics.median(col_list)
+
+    
+    @staticmethod    
+    def max_csv(path,attr):
+        """
+        this function takes the path of a csv file and the column name 
+        returns stadard deviation , mean and median for the data set
+        """
+                
+        with open(path,"r") as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            row=next(csv_reader)
+            csv_list=list(csv_reader)
+        
+
+        print(row)
+        
+        col_list=[]
+        
+        
+
+        for row in csv_list:
+           col_list.append(float(row[attr]))
+        
+        return max(col_list)
+
+    @staticmethod    
+    def min_csv(path,attr):
+        """
+        this function takes the path of a csv file and the column name 
+        returns stadard deviation , mean and median for the data set
+        """
+                
+        with open(path,"r") as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            row=next(csv_reader)
+            csv_list=list(csv_reader)
+        
+
+        print(row)
+        
+        col_list=[]
+        
+        
+
+        for row in csv_list:
+           col_list.append(float(row[attr]))
+        
+        return min(col_list)
+
+    
+
+    @staticmethod
+    def standard_deviation_list(input_list):
         """
         """this function takes a list of integers 
 
-        returns standard deviation , mean and median """
-
-
-        print(statistics.stdev(list))
-        print(statistics.mean(list))
-        print(statistics.median(list))
-
-
+        returns stadard deviation , mean, median , maximum and minimum """
         
+        return statistics.stdev(input_list)
+        
+        
+        
+        
+
+    @staticmethod
+    def mean_list(input_list):
+        return statistics.mean(input_list)
+
+
+    @staticmethod
+    def median_list(input_list):
+        return statistics.median(input_list)
+
+
+    @staticmethod
+    def min_list(input_list):
+        return min(input_list)
+
+    @staticmethod
+    def max_list(input_list):
+        return max(input_list)
+
+
+
 
         
 
@@ -73,11 +188,11 @@ class StatsPage:
 
 
 if __name__== "__main__":
-
-    """
-    path=r"math_kit\assets\csv\gold.csv"
-    s1=StatsPage()
+    #print(StatsPage.max_list([10, 12, 23, 23, 16, 23, 21, 16,18,16,14,17,16]))
     
-    s1.statistics(path,"Close")
-    """
+    path=r"math_kit\assets\csv\gold.csv"
+    
+    
+    print(StatsPage.max_csv(path,"Close"))
+    
     
