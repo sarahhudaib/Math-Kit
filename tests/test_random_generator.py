@@ -29,16 +29,10 @@ def test_random_generator_page():
     assert page.length_of_list_entry is not None
     assert page.right_frame is not None
     assert page.right_title is not None
-    assert page.high_of_list_label is not None
-    assert page.high_of_list_entry is not None
-    assert page.result_label is not None
-    assert page.result_text is not None
-    assert page.result_text_font == ("Helvetica", 18)
-    assert page.result_text_bg == tools.pallete["gray"]
-    assert page.result_text_fg == tools.pallete["white"]
-    assert page.result_text_justify == "center"
-    assert page.result_text_width == int(tools.screen_width*0.8)
-    assert page.result_text_height == int(tools.screen_height*0.8)
+    assert page.high_label is not None
+    assert page.high_entry is not None
+    assert page.result_entry is not None
+    
 
 
 def test_random_generator_page_left_frame():
@@ -61,8 +55,8 @@ def test_random_generator_page_right_frame():
     page = RandomGeneratorPage(None, tools)
     assert page.right_frame is not None
     assert page.right_title is not None
-    assert page.high_of_list_label is not None
-    assert page.high_of_list_entry is not None
+    assert page.high_label is not None
+    assert page.high_entry is not None
 
 
 
@@ -90,10 +84,38 @@ def test_generator_list_method_with_invalid_input():
     page.low_entry.text = "1"
     page.high_entry.text = "1"
     page._GenerateList()
-    assert page.result_entry.text is not None
+    with pytest.raises(ValueError):
+        page._GenerateList() 
+
+
+def test_generator_list_method_with_invalid_input_2():
+    """     
+    This test is to test the generator_list method of the RandomGeneratorPage.        
+    """
+    tools = Tools()
+    page = RandomGeneratorPage(None, tools)
+    page.length_of_list_entry.text = "10"
+    page.low_entry.text = "10"
+    page.high_entry.text = "1"
+    page._GenerateList()
+    with pytest.raises(ValueError):
+        page._GenerateList()
 
 
 
+def test_generator_list_method_with_invalid_input_3():
+
+    """     
+    This test is to test the generator_list method of the RandomGeneratorPage.        
+    """
+    tools = Tools()
+    page = RandomGeneratorPage(None, tools)
+    page.length_of_list_entry.text = "10"
+    page.low_entry.text = "10"
+    page.high_entry.text = "10"
+    page._GenerateList()
+    with pytest.raises(ValueError):
+        page._GenerateList()
 
 
 
