@@ -30,6 +30,7 @@ class Plotter():
         takes x list of integars, y list of integers , plat name as string , x axis lable as string , y axis lable as string, line_lable as string
         return plot
         """
+        
         plt.title(plt_name)
         plt.xlabel(x_lable)
         plt.ylabel(y_lable)
