@@ -31,8 +31,8 @@ class HomePage:
         welcoming_message = "Welcome to Math Kit!\n"
         
         info = """
-        This project is a GUI tool that uses a few Python libraries, such as: tkinter and NumPy to 
-        help build the GUI and solve various mathematical problems, which will be found in the "workspace" window.
+        This project is a GUI desktop app that uses a few Python libraries, such as: tkinter to build the GUI 
+        and solve various mathematical problems, which will be found in the "workspace" window.
 
         """
 
