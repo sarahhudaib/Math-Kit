@@ -280,7 +280,3 @@ class RandomGeneratorPage:
         
         except:
             messagebox.showerror("Invalid Selections !", "You have to fill all fields with valid selections.")
-
-        
-
-

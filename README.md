@@ -6,21 +6,76 @@
 
 ## **Math Kit features**:
 
-The provided features by the GUI tool are the following:
+The provided features by the Math Kit are:
 
-- **Home Page:** This window or page is used display brief information about the project and a simple guide on how to use it.
+- **Home Page:** This window or page is used display brief information about the project and a simple guide on how to use it and navigate through the different workspaces.
 
-- **Workspace Page:** This window is where all the mathematical operations will be carried out, as it contains cards for each one of the following operations:      
-    - ***Calculator:*** performs a few simple and a bit more advanced operations, such as: addition, subtraction, multiplication, division, square root of a number, log of a number, and the trigonometric functions including the hyperbolic trigonometry.
-    - ***Plotter:*** demonstrates the plot or the graph for an equation that's entered by the user.
-    - ***Convertor:*** performs unit conversions between various common units of measurements
-    - ***Randomizer:*** generates random lists and numbers for a given input entered by the user.
+- **Workspace Page:** This window is where all the mathematical operations will be carried out, and it contains cards for each one of the following operations:      
+    - ***Calculator:*** This workspace has a calculator that performs a few simple and a bit more advanced operations, such as: 
+    ```
+        1. Addition 
+        2. Subtraction
+        3. Multiplication
+        4. Division
+        5. Square root of a number
+        6. Log of a number
+        7. The trigonometric functions, including:
+            - sin
+            - cos
+            - tan
+            - sec
+            - csc
+            - cot
+        8. The hyperbolic trigonometric functions, including:
+            - sinh
+            - cosh
+            - tanh
+            - sech
+            - csch
+            - coth
+    ```
+    <br>
+
+    - ***Plotter:*** This workspace allows the user to plot the graph of either:
+        ```
+        1. An entered list.
+        2. An entered polynomial equation
+        3. Or a data set from a csv file.
+        ```    
+        using the [**matplotlib**](https://matplotlib.org/) library, and the [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python.
+    
+    <br>
+
+    - ***Convertor:*** This workspace allows the user to convert a chosen unit into another unit of measurement from the same category or quantity set, which are:
+        ```
+        1. Temperature
+        2. Length
+        ```
+
+    <br>
+
+
+    - ***Randomizer:*** This workspace allows gives the user two options:
+        ```
+        1. Generating a random list, while giving the high, low and length of the list.
+        2. Creating a random list made up of any data type they choose.
+        ```
+    <br>
+
     - ***Statistics:*** performs mathematical operations relating to a given set or data, such as: mean, median, standard deviation.
     - ***Calculus:*** performs more complex mathematical operations, such as: derivation and integration
-    - ***Numerical:*** performs other type of mathematical operations, such as: Newton Raphson Method 
+    - ***Numerical:*** performs other type of mathematical operations, such as: Newton Raphson Method
+    
+<br>
 
-- **Team Info:** This window is for showing more information about the developers behind this project.
-- **Settings:** This window is for controlling a few characteristics of the GUI.
+- **Team Info:** This window is for showing more information about the developers and authors behind this project.
+<br>
+
+- **Settings:** This window is for controlling a few characteristics of the GUI, such as:
+    ```
+    - Theme: This allows the user to change the theme of the GUI.
+    - Language: This allows the user to change the language of the GUI.
+    ```
 
 <br>
 
@@ -38,50 +93,69 @@ The provided features by the GUI tool are the following:
 
 ## **Project Directory Tree**
 ```
-.
-├── LICENSE
-├── README.md
 ├── math_kit
 │   ├── assets
-|   |  |── avatars
-│   |      ├── batool.png
-│   |      ├── mustafa.png
-│   |      ├── salim.png
-│   |      └──  sara.png
-│   │── pages_content
-|   |  |── __pycache__
-│   │  |    ├── home.cpython-39.pyc
-│   │  |    ├── home.cpython-310.pyc
-│   │  |    ├── main_page.cpython-39.pyc
-│   │  |    ├── main_page.cpython-310.pyc
-│   │  |    ├── settings.cpython-39.pyc
-│   │  |    ├── settings.cpython-310.pyc
-│   │  |    ├── team_info.cpython-39.pyc
-│   │  |    ├── team_info.cpython-310.pyc
-│   │  |    ├── workspace.cpython-39.pyc
-|   |  |    └── workspace.cpython-310.pyc
-│   ├  |── derive_and_integrate.py
-|   |  ├── home.py
-│   |  ├── main_page.py
-│   |  ├── numerical_operations.py
-│   |  ├── plotting.py
-│   |  ├── random_generator.py
-│   |  ├── scienfitic_calculator.py
-│   |  ├── settings.py
-│   |  ├── stats.py
-│   |  ├── team_info.py
-│   |  ├── unit_converter.py
-│   |  └── workspace.py
-|   |── main.py
-|   |── tempCodeRunnerFile.py
+|   |    |── avatars
+│   |    |  ├── batool.png
+│   |    |  ├── mustafa.png
+│   |    |  ├── salim.png
+│   |    |  └── sara.png
+│   |    |── csv
+│   |    |  ├── data.csv
+│   |    |  └── gold.csv
+│   |    |── icons
+│   |    |  ├── calc.png
+│   |    |  ├── clear.png
+│   |    |  ├── convert.png
+│   |    |  ├── diff.png
+│   |    |  ├── flip.png
+│   |    |  ├── numeric.png
+│   |    |  ├── plot.png
+│   |    |  ├── random.png
+│   |    |  └── stats.png
+│   |    |── plots
+│   |    |  └── plot.png
+│   |    |── sounds
+│   |    |  ├── card_click.wav
+│   |    |  └── navigate_click.wav
+│   ├── pages_content
+│   │    ├── derive_and_integrate.py
+│   │    ├── home.py
+│   │    ├── main_page.py
+│   │    ├── numerical_operations.py
+│   │    ├── plotting.py
+│   │    ├── random_generator.py
+│   │    ├── scienfitic_calculator.py
+│   │    ├── settings.py
+│   │    ├── stats.py
+│   │    ├── team_info.py
+│   │    ├── unit_converter.py
+|   |    └── workspace.py
+|   ├── main.py
+|   ├── tempCodeRunnerFile.py
+├── tests
+│   ├── test_GUI
+│   |    ├── test_ask_open_file.py
+│   |    ├── test_grid.py
+│   |    ├── test_horizontal_scale.py
+│   |    ├── test_label_button.py
+│   |    ├── test_question_icon.py
+│   |    └── test_top_level_widget.py
+│   ├── test_image
+│   |    └── blue.png
+|   ├── __init__.py
+|   ├── test_random_generator.py
+|   ├── test_scientific_calc.py
+|   ├── test_statistics.py
+|   ├── test
+|   ├── test
+├── .gitignore 
+├── LICENSE
 ├── poetry.lock
 ├── pyproject.toml
-├── tests
-    ├── __init.py__
-    │   
-    │  
-└── README.md
-
+├── README.md
+├── requirements.md
+└── work_space_cards.md
 ```
 
 <br>
@@ -98,6 +172,7 @@ The provided features by the GUI tool are the following:
 - **Replit** 
 - **webbrowser** 
 - **threading**
+- **playsound**
 - **black**
 
 <br>
@@ -119,6 +194,8 @@ Navigate to the repo's directory and install required  dependencies:
 `$ pip install numpy`
 `$ pip install matplotlib`
 `$ -m pip install -U black` 
+`$ pip install playsound`
+
 
 
 
@@ -138,11 +215,22 @@ Activate the virtual environment:
 
 Important notes:
 
-1. For extra careful measures; when running the program make sure you have the latest updated version of python installed on your local machine (Python 3.10.1).
+1. For extra careful measures; when running the program make sure you have the latest updated version of python installed on your local machine (Python 3.10.1), specifically on Windows, you can use the following command:
 
-2. Navigate inside "Math-Kit\math_kit" directory to run the program, preferably on "Windows Powershell" not "Ubuntu" and that's because WSL doesn't support rendering GUI and that could lead to some issues we want to stay away from.
+`$ python -m pip install --upgrade pip`
 
-3. After cd'ing inside the above directory, and after activating the virtual environment, run this command 
+
+2. Activate the virtual environment by running the following command:
+
+`$ poetry shell`
+
+definatly after install poetry, using this command:
+
+`$ poetry install`
+
+3. Navigate inside "Math-Kit\math_kit" directory to run the program, preferably on "Windows Powershell" not "Ubuntu" and that's because WSL doesn't support rendering GUI, so it's advised to be careful as to not run into some issues you want to stay away from.
+
+4. After cd'ing inside the above directory, and after activating the virtual environment, run this command 
 
 `$ python main.py`
 
@@ -150,4 +238,14 @@ This will render a GUI window on your local machine, that has all the above ment
 
 ---------------------------------------------------------------
 ```
+<br>
+
+<br>
+
+## **Authors and Creators of Math-Kit Project**
+
+- Sarah Hudaib
+- Mustafa Alhasanat
+- Batool Ragaya'h
+- Salim Hassouneh
 

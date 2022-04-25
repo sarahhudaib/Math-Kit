@@ -1,47 +1,92 @@
 from tkinter import Tk, Frame, Button, Entry, StringVar, Label
-from math import tan, sin, cos, exp, log, sqrt, atan2, asin, acos, atan, degrees, radians, floor, ceil, trunc, pow, fabs
+from math import (
+    tan,
+    sin,
+    cos,
+    exp,
+    log,
+    sqrt,
+    atan2,
+    asin,
+    acos,
+    atan,
+    degrees,
+    radians,
+    floor,
+    ceil,
+    trunc,
+    pow,
+    fabs,
+)
+
 
 class ScientificCalculatorPage:
-    
+    """ "
+    This class is used to create the scientific calculator workspace page.
+    It has the following methods:
+        - __init__(): This method is used to initialize the GUI of the workspace as a whole.
+        - _UpperFrame(): This method is used to create the GUI for the upper frame of the workspace.
+        - _LowerFrame(): This method is used to create the GUI for the lower frame of the workspace.
+        - pressFunc(): This method is used to define the buttons pressed.
+        - backsp(): This method is used to delete the last character.
+        - equalFunc(): This method is used to evaluate the expression.
+        - clearFunc(): This method is used to clear the expression.
+    """
+
     def __init__(self, master, tools):
+        """
+        This method is used to initialize the GUI of the workspace as a whole.
+        """
         self.master = master
         self.tools = tools
-        
-        width = int(tools.screen_width*0.8)
-        height = int(tools.screen_height*0.8)
-        
-        self.scy_calc_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+
+        width = int(tools.screen_width * 0.8)
+        height = int(tools.screen_height * 0.8)
+
+        self.scy_calc_frame = Frame(
+            master, width=width, height=height, bg=tools.pallete["gray"]
+        )
         master.add(self.scy_calc_frame)
-        
+
         self.expression = " "
         self.equation = StringVar()
-        
+
         headline = """Everybody needs a calculator at some point!"""
-        
-        self.title = Label(self.scy_calc_frame, text=headline, justify="center",
-                           bg=tools.pallete["gray"], fg=tools.pallete["purple"],
-                           font=("Berlin Sans FB", int(tools.screen_width*0.02)))
-        self.title.pack(pady=int(tools.screen_height*0.02))
-        
+
+        self.title = Label(
+            self.scy_calc_frame,
+            text=headline,
+            justify="center",
+            bg=tools.pallete["gray"],
+            fg=tools.pallete["purple"],
+            font=("Berlin Sans FB", int(tools.screen_width * 0.02)),
+        )
+        self.title.pack(pady=int(tools.screen_height * 0.02))
+
         self.container = Frame(self.scy_calc_frame, bg=self.tools.pallete["gray"])
         self.container.pack(pady=20)
-        
+
         self._UpperFrame()
         self._LowerFrame()
 
-
     def _UpperFrame(self):
-        self.expression_field = Entry(self.container, textvariable=self.equation, 
-                                      width=int(self.tools.screen_width*0.042),
-                                justify='left', font=('courier', 20, 'bold'), bg='#D3D8DE', bd=5)
+        """
+        This method is used to create the GUI for the upper frame of the workspace.
+        """
+        self.expression_field = Entry(
+            self.container,
+            textvariable=self.equation,
+            width=int(self.tools.screen_width * 0.042),
+            justify="left",
+            font=("courier", 20, "bold"),
+            bg="#D3D8DE",
+            bd=5,
+        )
         self.expression_field.grid(row=0, column=0, columnspan=12)
         self.expression_field.columnconfigure(0, weight=1)
-        
-        
-
 
     def pressFunc(self, key):
-        """ Function to define the buttons pressed """
+        """Function to define the buttons pressed"""
         self.expression
         self.expression = self.expression + str(key)
 
@@ -55,7 +100,6 @@ class ScientificCalculatorPage:
         self.expression = text
         self.equation.set(text)
 
-        
     def equalFunc(self):
         """Function to evaluate the expression"""
         self.expression
@@ -69,15 +113,16 @@ class ScientificCalculatorPage:
         except:
             self.equation.set("Math Error!!")
 
-
     def clearFunc(self):
         """Function to clear the expression"""
         self.expression
         self.expression = ""
         self.equation.set("0")
 
-        
     def _LowerFrame(self):
+        """
+        This method is used to create the GUI for the lower frame of the workspace.
+        """
         # First Row
         # button 1
 
@@ -807,5 +852,3 @@ class ScientificCalculatorPage:
         root.grid(row=4, column=9)
         square_Root.grid(row=4, column=10)
         pibtn.grid(row=4, column=11)
-
-
