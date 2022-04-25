@@ -1,10 +1,9 @@
 # **Math Kit Workspace Cards**
 
 
-This whole project has been done using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python.
+The Math-Kit project was done using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python, to make it a GUI desktop app, and not a console-based app or a web app.
 
 <br>
-
 
 ## **Calculator**
 
@@ -30,6 +29,7 @@ Given the options of the calculator, the user can choose to perform the followin
 ### **Calculator Window**
 
 An image of the calculator window:
+![Calculator Window](math_kit\assets\wire_frames\calculator.PNG)
 
 
 <br>
@@ -39,19 +39,19 @@ An image of the calculator window:
 
 ## **Plotter**
 
-This workspace card is used to plot the graph of either:
+This workspace card was made using [**matplotlib**](https://matplotlib.org/) library, with the help of [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python and [**csv**](https://docs.python.org/3/library/csv.html) for the data set.
+
+
+It's used to plot the graph of either:
    
-    1. An entered list.
-    2. An entered polynomial equation.
-    3. Or a data set from a csv file.
+    1. A data set from a csv file that the user can import.
+    2. Or an entered polynomial equation.
 
-       
-using [**matplotlib**](https://matplotlib.org/) library, with the help of [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python.
+while providing the user with the option to save the graph as an image, in addition to plotting the graph with two different ways:
 
-This workspace offers the user the option to plot functions of the following types:
+    1. bar plot
+    2. line plot
 
-    - Linear
-    - Polynomial function
 
 <br>
 
@@ -59,7 +59,7 @@ This workspace offers the user the option to plot functions of the following typ
 ### **Plotter Window**
 
 An image of the plotter window:
-
+![Plotter Window](math_kit\assets\wire_frames\plotter.PNG)
 
 
 <br>
@@ -68,7 +68,11 @@ An image of the plotter window:
 
 ## **Convertor**
 
-This workspace card is used to perform unit conversions between a couple of common units of measurements, such as: length and temperature. Using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python and the [**Pillow**](https://github.com/python-pillow/Pillow) library in Python.
+This workspace card was made using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python and the [**Pillow**](https://github.com/python-pillow/Pillow) library in Python.
+
+It performs unit conversions between a couple of common quantities, such as: length and temperature. And as one of them is chosen, the user can choose is given the pre-defined units of measurement, and the user can choose to convert the chosen unit into another unit of measurement from the same category or quantity set.
+
+
 
 <br>
 
@@ -76,6 +80,7 @@ This workspace card is used to perform unit conversions between a couple of comm
 ### **Convertor Window**
 
 An image of the convertor window is shown below:
+![Convertor Window](math_kit\assets\wire_frames\convertor.PNG)
 
 
 <br>
@@ -94,6 +99,7 @@ One other feature of this workspace is that it allows adding, deleting, picking 
 ### **Randomizer Window**
 
 An image of the randomizer window:
+![Randomizer Window](math_kit\assets\wire_frames\randomizer.PNG)
 
 
 

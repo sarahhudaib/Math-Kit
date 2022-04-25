@@ -112,15 +112,22 @@ The provided features by the Math Kit are:
 │   |    |  ├── convert.png
 │   |    |  ├── diff.png
 │   |    |  ├── flip.png
+│   |    |  ├── info.png
 │   |    |  ├── numeric.png
 │   |    |  ├── plot.png
 │   |    |  ├── random.png
+│   |    |  ├── splash.png
 │   |    |  └── stats.png
 │   |    |── plots
 │   |    |  └── plot.png
 │   |    |── sounds
 │   |    |  ├── card_click.wav
 │   |    |  └── navigate_click.wav
+│   |    |── wire_frames
+│   |    |  ├── calculator.PNG
+│   |    |  ├── convertor.PNG
+│   |    |  ├── plotter.PNG
+│   |    |  └── randomizer.PNG
 │   ├── pages_content
 │   │    ├── derive_and_integrate.py
 │   │    ├── home.py
@@ -134,6 +141,7 @@ The provided features by the Math Kit are:
 │   │    ├── team_info.py
 │   │    ├── unit_converter.py
 |   |    └── workspace.py
+|   ├── __init__.py
 |   ├── main.py
 |   ├── tempCodeRunnerFile.py
 ├── tests
@@ -150,9 +158,10 @@ The provided features by the Math Kit are:
 |   ├── test_random_generator.py
 |   ├── test_scientific_calc.py
 |   ├── test_statistics.py
-|   ├── test
-|   ├── test
-├── .gitignore 
+├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── config.yml
+├── CONTRIBUTING.md
 ├── LICENSE
 ├── poetry.lock
 ├── pyproject.toml
@@ -172,7 +181,9 @@ The provided features by the Math Kit are:
 - **Pytest**
 - **Poetry**
 - **NumPy**
+- **matplotlib**
 - **Replit** 
+- **Trello**
 - **webbrowser** 
 - **threading**
 - **playsound**
