@@ -32,7 +32,7 @@ class RandomGeneratorPage:
                            font=("Berlin Sans FB", int(tools.screen_width*0.02)))
         self.title.pack(pady=int(tools.screen_height*0.02))
         
-        self.container = Frame(self.randomizer_frame, width=88888, height=88888, bg="#D3D8DE")
+        self.container = Frame(self.randomizer_frame, width=width, bg=tools.pallete["gray"])
         self.container.pack()
         
         self.box_background_color = tools.pallete["gray"]
@@ -57,33 +57,43 @@ class RandomGeneratorPage:
         
         self.length_of_list_label = Label(self.left_frame, text="Length of list: ", font=("Helvetica", 18),
                                           bg=self.box_background_color, fg=self.text_color)
+        
+        self.length_of_list_variable = StringVar()
         self.length_of_list_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=8)
+                               fg=self.entry_text_color, width=8, textvariable=self.length_of_list_variable)
 
         self.low_label = Label(self.left_frame, text="Lower value:", font=("Helvetica", 18),
                                           bg=self.box_background_color, fg=self.text_color)
+        
+        self.low_variable = StringVar()
         self.low_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=8)
+                               fg=self.entry_text_color, width=8, textvariable=self.low_variable)
 
         self.high_label = Label(self.left_frame, text="Upper value:", font=("Helvetica", 18),
                                           bg=self.box_background_color, fg=self.text_color)
+        
+        self.high_variable = StringVar()
         self.high_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
-                                fg=self.entry_text_color, width=8)
+                                fg=self.entry_text_color, width=8, textvariable=self.high_variable)
 
         self.generate_button = Button(self.left_frame, text="Generate", font=("Helvetica", 20, "bold"), cursor="hand2",
                                       bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
                                       activebackground=self.tools.pallete["purple"],
                                       command=lambda: self._GenerateList())
 
+        self.csv_left_button = Button(self.left_frame, text="CSV", font=("Helvetica", 15, "bold"), cursor="hand2",
+                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
+                        activebackground=self.tools.pallete["purple"], command=lambda: self._ExportCSV("left"))
+
         clear_fieald_image_size = int(self.tools.screen_width*0.02)
         self.clear_field_icon = Image.open(r"../math_kit/assets/icons/clear.png")
         self.clear_field_icon = self.clear_field_icon.resize((clear_fieald_image_size, clear_fieald_image_size))
-        self.clear_result_icon_img = ImageTk.PhotoImage(self.clear_field_icon)
-        self.clear_result_img_button = Button(self.container, image=self.clear_result_icon_img, 
-                                              bg=self.tools.pallete["blue"], bd=1,
-                               cursor="hand2", activebackground=self.tools.pallete["purple"], 
-                               command=lambda: self.result_variable.set(""))
-        self.clear_result_img_button.image = self.clear_result_icon_img
+        self.clear_field_icon_img = ImageTk.PhotoImage(self.clear_field_icon)
+        self.clear_field_img_button = Button(self.left_frame, image=self.clear_field_icon_img, 
+                                              bg=self.tools.pallete["blue"], bd=1, cursor="hand2", 
+                                              activebackground=self.tools.pallete["purple"], 
+                                            command=lambda: self._ClearFields())
+        self.clear_field_img_button.image = self.clear_field_icon_img
         
         
         self.result_variable = StringVar()
@@ -91,20 +101,22 @@ class RandomGeneratorPage:
                                fg=self.entry_text_color, font=("Helvetica", 18), bg=self.entries_color)
         
         
-        self.left_title.grid(row=0, column=0, columnspan=2, sticky="nsew")
+        self.left_title.grid(row=0, column=0, columnspan=4, sticky="nsew")
         
-        self.length_of_list_label.grid(row=1, column=0)
-        self.length_of_list_entry.grid(row=1, column=1)
+        self.length_of_list_label.grid(row=1, column=0, columnspan=2)
+        self.length_of_list_entry.grid(row=1, column=2, columnspan=2)
         
-        self.low_label.grid(row=2, column=0)
-        self.low_entry.grid(row=2, column=1)
+        self.low_label.grid(row=2, column=0, columnspan=2)
+        self.low_entry.grid(row=2, column=2, columnspan=2)
         
-        self.high_label.grid(row=3, column=0)
-        self.high_entry.grid(row=3, column=1)
+        self.high_label.grid(row=3, column=0, columnspan=2)
+        self.high_entry.grid(row=3, column=2, columnspan=2)
 
         self.generate_button.grid(row=4, column=0, columnspan=2, sticky="ns")
+        self.csv_left_button.grid(row=4, column=2, sticky="e")
+        self.clear_field_img_button.grid(row=4, column=3, sticky="w")
 
-        self.result_entry.grid(row=5, column=0, columnspan=2, sticky="nsew")
+        self.result_entry.grid(row=5, column=0, columnspan=4, sticky="nsew")
         
         
         for child in self.left_frame.winfo_children():
@@ -158,9 +170,9 @@ class RandomGeneratorPage:
                                            cursor="hand2", bg=self.tools.pallete["gray"], fg=self.text_color, 
                                            font=("Helvetica", 14))
         
-        self.csv_button = Button(self.right_frame, text="CSV", font=("Helvetica", 15, "bold"), cursor="hand2",
+        self.csv_right_button = Button(self.right_frame, text="CSV", font=("Helvetica", 15, "bold"), cursor="hand2",
                         bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                        activebackground=self.tools.pallete["purple"], command=lambda: self._ExportCSV())
+                        activebackground=self.tools.pallete["purple"], command=lambda: self._ExportCSV("right"))
         
         self.pick_item_button = Button(self.right_frame, text="Pick", font=("Helvetica", 15, "bold"), cursor="hand2",
                         bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
@@ -198,7 +210,7 @@ class RandomGeneratorPage:
         self.unique_checkbox.grid(row=3, column=2, columnspan=2)
         
         self.pick_item_button.grid(row=4, column=0, columnspan=3, sticky="ew")
-        self.csv_button.grid(row=4, column=3)
+        self.csv_right_button.grid(row=4, column=3)
         self.picked_result_entry.grid(row=5, column=0, columnspan=4, sticky="ew")
         
 
@@ -253,8 +265,12 @@ class RandomGeneratorPage:
             messagebox.showerror("Invalid Input !", "You have to enter a number in the field after the (#Samples).")
             
             
-    def _ExportCSV(self):
-        pass
+    def _ExportCSV(self, entry):
+        
+        if entry == "right":
+            pass
+        else:
+            pass
     
     
     def _CopyRandomList(self):
@@ -262,6 +278,11 @@ class RandomGeneratorPage:
         self.clipboard_clear()
         self.clipboard_append(str(self.list_of_items))
         
+    
+    def _ClearFields(self):
+        self.length_of_list_variable.set("")
+        self.low_variable.set("")
+        self.high_variable.set("")
         
         
     def _GenerateList(self):

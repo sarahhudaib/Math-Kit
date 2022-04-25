@@ -104,7 +104,7 @@ class UnitConverterPage:
                                bg=tools.pallete["gray"])
         
         self.quantity_variable = StringVar()
-    
+
         self.quantity_box = ttk.Combobox(self.container, textvariable=self.quantity_variable, font= ("Helvetica", 15),
                                          state="readonly", values=tuple([x.capitalize() for x in UCdict.keys()]),
                                          width=int(tools.screen_width*0.02))
