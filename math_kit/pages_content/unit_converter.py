@@ -90,6 +90,7 @@ class UnitConverterPage:
         - _Flip(): This method is used to flip the unit comboboxes which we convert from and to.
         - _Convert(): This method is used to handle and entered value to convert.
         - _AvailableUnits(): This method is used to show the available units for the selected quantity.
+    
     """
 
     def __init__(self, master, tools):
