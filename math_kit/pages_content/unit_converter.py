@@ -74,13 +74,19 @@ UCdict = {
 
 class UnitConverterPage:
     """
-    This class  is the settings page of the application. It contains the following:
-    - A title label that displays the name of the application   (Label)
-    - A label that displays the info of the application         (Label)
-    - A label that displays the guide of the application        (Label)
+    This class is used to create the unit converter workspace page.
+    It has the following methods:
+        - __init__(): This method is used to initialize the GUI of the workspace as a whole.
+        - _Flip(): This method is used to flip the unit comboboxes which we convert from and to.
+        - _Convert(): This method is used to handle and entered value to convert.
+        - _AvailableUnits(): This method is used to show the available units for the selected quantity.
+    
     """
     
     def __init__(self, master, tools):
+        """
+        This method is used to initialize the GUI of the workspace as a whole.
+        """
         
         width = int(tools.screen_width*0.8)
         height = int(tools.screen_height*0.8)
@@ -193,6 +199,10 @@ class UnitConverterPage:
         
 
     def _Flip(self):
+        """
+        This method is used to flip the unit comboboxes which we convert from and to.
+        While it has a try and except block to handle the error if the user tries to flip between the invalid units.
+        """
         try: 
             unit_from = self.from_variable.get()
             unit_to = self.to_variable.get()
@@ -206,7 +216,10 @@ class UnitConverterPage:
 
 
     def _Convert(self, *args):
-        """Calculate the conversion."""
+        """
+        This method is used to convert the quantity from one unit to another.
+        It has a try and except block to handle the error.
+        """
         try: 
             unit_from = self.from_variable.get()
             unit_to = self.to_variable.get()
@@ -227,7 +240,9 @@ class UnitConverterPage:
 
 
     def _AvailableUnits(self, *args):
-        """ Function to set the unit comboboxes to the selected unit. """
+        """
+        This method is used to get the available units for the selected quantity.
+        """
         
         quantity_lowered = self.quantity_variable.get().lower()
         

@@ -2,8 +2,22 @@ from tkinter import Tk, Frame, Button, Entry, StringVar, Label
 from math import tan, sin, cos, exp, log, sqrt, atan2, asin, acos, atan, degrees, radians, floor, ceil, trunc, pow, fabs
 
 class ScientificCalculatorPage:
+    """
+    This class is used to create the scientific calculator workspace page.
+    It has the following methods:
+        - __init__(): This method is used to initialize the GUI of the workspace as a whole.
+        - _UpperFrame(): This method is used to create the GUI for the upper frame of the workspace.
+        - _LowerFrame(): This method is used to create the GUI for the lower frame of the workspace.
+        - pressFunc(): This method is used to define the buttons pressed.
+        - backsp(): This method is used to delete the last character.
+        - equalFunc(): This method is used to evaluate the expression.
+        - clearFunc(): This method is used to clear the expression.
+    """
     
     def __init__(self, master, tools):
+        """
+        This method is used to initialize the GUI of the workspace as a whole.
+        """
         self.master = master
         self.tools = tools
         
@@ -31,6 +45,9 @@ class ScientificCalculatorPage:
 
 
     def _UpperFrame(self):
+        """
+        This method is used to create the GUI for the upper frame of the workspace.
+        """
         self.expression_field = Entry(self.container, textvariable=self.equation, 
                                       width=int(self.tools.screen_width*0.042),
                                 justify='left', font=('courier', 20, 'bold'), bg='#D3D8DE', bd=5)
@@ -41,7 +58,7 @@ class ScientificCalculatorPage:
 
 
     def pressFunc(self, key):
-        """ Function to define the buttons pressed """
+        """Function to define the buttons pressed"""
         self.expression
         self.expression = self.expression + str(key)
 
@@ -78,6 +95,9 @@ class ScientificCalculatorPage:
 
         
     def _LowerFrame(self):
+        """
+        This method is used to create the GUI for the lower frame of the workspace.
+        """
         # First Row
         # button 1
 
