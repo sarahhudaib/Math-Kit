@@ -6,21 +6,76 @@
 
 ## **Math Kit features**:
 
-The provided features by the GUI tool are the following:
+The provided features by the Math Kit are:
 
-- **Home Page:** This window or page is used display brief information about the project and a simple guide on how to use it.
+- **Home Page:** This window or page is used display brief information about the project and a simple guide on how to use it and navigate through the different workspaces.
 
-- **Workspace Page:** This window is where all the mathematical operations will be carried out, as it contains cards for each one of the following operations:      
-    - ***Calculator:*** performs a few simple and a bit more advanced operations, such as: addition, subtraction, multiplication, division, square root of a number, log of a number, and the trigonometric functions including the hyperbolic trigonometry.
-    - ***Plotter:*** demonstrates the plot or the graph for an equation that's entered by the user.
-    - ***Convertor:*** performs unit conversions between various common units of measurements
-    - ***Randomizer:*** generates random lists and numbers for a given input entered by the user.
+- **Workspace Page:** This window is where all the mathematical operations will be carried out, and it contains cards for each one of the following operations:      
+    - ***Calculator:*** This workspace has a calculator that performs a few simple and a bit more advanced operations, such as: 
+    ```
+        1. Addition 
+        2. Subtraction
+        3. Multiplication
+        4. Division
+        5. Square root of a number
+        6. Log of a number
+        7. The trigonometric functions, including:
+            - sin
+            - cos
+            - tan
+            - sec
+            - csc
+            - cot
+        8. The hyperbolic trigonometric functions, including:
+            - sinh
+            - cosh
+            - tanh
+            - sech
+            - csch
+            - coth
+    ```
+    <br>
+
+    - ***Plotter:*** This workspace allows the user to plot the graph of either:
+        ```
+        1. An entered list.
+        2. An entered polynomial equation
+        3. Or a data set from a csv file.
+        ```    
+        using the [**matplotlib**](https://matplotlib.org/) library, and the [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python.
+    
+    <br>
+
+    - ***Convertor:*** This workspace allows the user to convert a chosen unit into another unit of measurement from the same category or quantity set, which are:
+        ```
+        1. Temperature
+        2. Length
+        ```
+
+    <br>
+
+
+    - ***Randomizer:*** This workspace allows gives the user two options:
+        ```
+        1. Generating a random list, while giving the high, low and length of the list.
+        2. Creating a random list made up of any data type they choose.
+        ```
+    <br>
+
     - ***Statistics:*** performs mathematical operations relating to a given set or data, such as: mean, median, standard deviation.
     - ***Calculus:*** performs more complex mathematical operations, such as: derivation and integration
-    - ***Numerical:*** performs other type of mathematical operations, such as: Newton Raphson Method 
+    - ***Numerical:*** performs other type of mathematical operations, such as: Newton Raphson Method
+    
+<br>
 
-- **Team Info:** This window is for showing more information about the developers behind this project.
-- **Settings:** This window is for controlling a few characteristics of the GUI.
+- **Team Info:** This window is for showing more information about the developers and authors behind this project.
+<br>
+
+- **Settings:** This window is for controlling a few characteristics of the GUI, such as:
+    ```
+    - Theme: This allows the user to change the theme of the GUI.
+    - Language: This allows the user to change the language of the GUI.
+    ```
 
 <br>
 
@@ -92,8 +147,8 @@ The provided features by the GUI tool are the following:
 |   ├── test_random_generator.py
 |   ├── test_scientific_calc.py
 |   ├── test_statistics.py
-|   ├── 
-|   ├── 
+|   ├── test
+|   ├── test
 ├── .gitignore 
 ├── LICENSE
 ├── poetry.lock
@@ -183,4 +238,14 @@ This will render a GUI window on your local machine, that has all the above ment
 
 ---------------------------------------------------------------
 ```
+<br>
+
+<br>
+
+## **Authors and Creators of Math-Kit Project**
+
+- Sarah Hudaib
+- Mustafa Alhasanat
+- Batool Ragaya'h
+- Salim Hassouneh
 

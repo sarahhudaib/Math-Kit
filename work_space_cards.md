@@ -29,7 +29,7 @@ Given the options of the calculator, the user can choose to perform the followin
 
 ### **Calculator Window**
 
-An image of the calculator window is shown below:
+An image of the calculator window:
 
 
 <br>
@@ -39,32 +39,26 @@ An image of the calculator window is shown below:
 
 ## **Plotter**
 
-This workspace card is used to plot the graph of an equation that the user enters, using the [**matplotlib**](https://matplotlib.org/) library, with the help of [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python.
+This workspace card is used to plot the graph of either:
+   
+    1. An entered list.
+    2. An entered polynomial equation.
+    3. Or a data set from a csv file.
+
+       
+using [**matplotlib**](https://matplotlib.org/) library, with the help of [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python.
 
 This workspace offers the user the option to plot functions of the following types:
 
     - Linear
-    - Quadratic
-    - Exponential
-    - Logarithmic
-    - Sine
-    - Cosine
-    - Tangent
-    - Secant
-    - Cosecant
-    - Cotangent
     - Polynomial function
-
-As it also allows the user to plot the graph of a given equation, the user can enter the equation in the text box, and the graph will be plotted.
-
-One other feature of this workspace is that it allows reading from a csv file, and plotting the graph of the data set in the file.
 
 <br>
 
 
 ### **Plotter Window**
 
-An image of the plotter window is shown below:
+An image of the plotter window:
 
 
 
