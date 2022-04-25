@@ -93,7 +93,7 @@ One other feature of this workspace is that it allows adding, deleting, picking 
 
 ### **Randomizer Window**
 
-An image of the randomizer window is shown below:
+An image of the randomizer window:
 
 
 
