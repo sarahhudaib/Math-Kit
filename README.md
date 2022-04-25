@@ -2,7 +2,9 @@
 
 [Math Kit](https://github.com/sarahhudaib/Math-Kit) is a GUI desktop app, that is made specifically for performing basic and advanced mathematical operations  (as will be mentioned below)  without any additional hassle as it insures that it serves the main purpose of providing a top-tier mathematical help with not much spent effort by the user.
 
+
 <br>
+
 
 ## **Math Kit features**:
 
@@ -10,7 +12,8 @@ The provided features by the Math Kit are:
 
 - **Home Page:** This window or page is used display brief information about the project and a simple guide on how to use it and navigate through the different workspaces.
 
-- **Workspace Page:** This window is where all the mathematical operations will be carried out, and it contains cards for each one of the following operations:      
+- **Workspace Page:** This window is where all the mathematical operations will be carried out, and it contains cards for each one of the following operations:
+      
     - ***Calculator:*** This workspace has a calculator that performs a few simple and a bit more advanced operations, such as: 
     ```
         1. Addition 
