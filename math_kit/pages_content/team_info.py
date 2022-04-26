@@ -5,6 +5,7 @@ import threading
 import customtkinter 
 
 
+
 class TeamInfoPage:
     """
     This class is the team info page of the application. It contains the following:
