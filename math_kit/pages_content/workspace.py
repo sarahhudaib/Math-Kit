@@ -1,5 +1,5 @@
 from tkinter import Tk, Frame, Button, Label, messagebox
-from PIL import Image, ImageDraw, ImageFilter, ImageTk
+from PIL import Image, ImageTk
 
 class WorkspacePage:
     """
@@ -40,7 +40,7 @@ class WorkspacePage:
      
         self.calc_icon = Image.open(r"../math_kit/assets/icons/calc.png")
         self.calc_icon = self.calc_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
-        self.calc_icon_img = ImageTk.PhotoImage(self.calc_icon)
+        self.calc_icon_img = ImageTk.PhotoImage(self.calc_icon) 
         self.calc_img = Button(self.calc_frame, image=self.calc_icon_img, bg=self.bg, bd=self.bd, cursor="hand2",
                                activebackground=self.active_bg, command=lambda: self._SwitchPage("calc"))
         self.calc_img.image = self.calc_icon_img
@@ -146,7 +146,7 @@ class WorkspacePage:
         self.diff_and_int_img.grid_columnconfigure(0, weight=1)
         self.diff_and_int_img.pack(pady=5)
         
-        self.diff_and_int_label = Label(self.diff_and_int_frame, text="Calculas", bg=self.tools.pallete["gray"], 
+        self.diff_and_int_label = Label(self.diff_and_int_frame, text="Calculus", bg=self.tools.pallete["gray"], 
                                 font= ("Helvetica", 15, "bold"))
         self.diff_and_int_label.pack()
         

@@ -1,7 +1,5 @@
 from tkinter import Tk, Frame, Button, Label, messagebox
 from PIL import Image, ImageTk
-import customtkinter #pip3 install customtkinter
-
 import webbrowser
 import threading
 
@@ -16,7 +14,7 @@ class TeamInfoPage:
     
     def __init__(self, master, tools):
         self.tools = tools
-        self.requesting = False
+        self.requesting = False 
         
         self.width = int(tools.screen_width*0.8)
         self.height = int(tools.screen_height*0.8)

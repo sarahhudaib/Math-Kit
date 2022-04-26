@@ -49,7 +49,7 @@ class MainPage:
         wind = self.wind 
 
         self.upper_frame = Frame(self.wind, bg=tools.pallete["dark blue"])
-        self.upper_frame.pack(fill="x", expand=True, side="top", anchor="n")
+        self.upper_frame.pack(fill="x", expand=True, side="top", anchor="n") 
 
         self.home_button = Button(self.upper_frame, text="Home", bg=tools.pallete["purple"], fg=tools.pallete["white"],
                             font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
@@ -74,15 +74,15 @@ class MainPage:
 
         self.pages_display_notebook = Notebook(self.wind)
         self.pages_display_notebook.pack(fill="x", expand=True, side="top", anchor="n")
-        style = Style()
-        style.layout('TNotebook.Tab', [])
+        style = Style() 
+        style.layout('TNotebook.Tab', []) 
 
         self.home_button.config(command=lambda: self._SwitchPageBackground(0))
         self.workspace_button.config(command=lambda: self._SwitchPageBackground(1))
         self.team_info_button.config(command=lambda: self._SwitchPageBackground(2))
         self.settings_button.config(command=lambda: self._SwitchPageBackground(3))
 
-        HomePage(self.pages_display_notebook, self.tools)
+        HomePage(self.pages_display_notebook, self.tools)    
         WorkspacePage(self.pages_display_notebook, self.tools, self.wind)
         TeamInfoPage(self.pages_display_notebook, self.tools)
         SettingsPage(self.pages_display_notebook, self.tools)

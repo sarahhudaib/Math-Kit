@@ -1,4 +1,5 @@
-from tkinter import Tk, DoubleVar, HORIZONTAL, Scale, Label, Button, mainloop, CENTER
+from tkinter import Tk, DoubleVar, HORIZONTAL, Scale, Label, Button, mainloop, CENTER, VERTICAL
+
 
 root = Tk()
 root.geometry("400x300")
@@ -12,7 +13,7 @@ def show1():
     l1.config(text=sel, font=("Courier", 14))
 
 
-s1 = Scale(root, variable=v1, from_=1, to=100, orient=HORIZONTAL)
+s1 = Scale(root, variable=v1, from_=1, to=1000, orient=VERTICAL)
 
 l3 = Label(root, text="Horizontal Scaler")
 
