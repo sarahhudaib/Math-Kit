@@ -1,5 +1,6 @@
 from tkinter import Label, Tk, StringVar, Entry, Button, Frame, ttk, DoubleVar, messagebox
 from PIL import Image, ImageDraw, ImageFilter, ImageTk
+import customtkinter
 
 
 UCdict = {
@@ -91,23 +92,22 @@ class UnitConverterPage:
         width = int(tools.screen_width*0.8)
         height = int(tools.screen_height*0.8)
         
-        self.unit_converter_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        self.unit_converter_frame = customtkinter.CTkFrame(master, width=width, height=height, bg=tools.pallete["gray"])
         master.add(self.unit_converter_frame)
         
         headline = """Converting units has never been easier!
         Select quantity and units, then enter a value and click \"Convert\""""
         
-        self.title = Label(self.unit_converter_frame, text=headline, justify="center",
-                           bg=tools.pallete["gray"], fg=tools.pallete["purple"],
-                           font=("Berlin Sans FB", int(tools.screen_width*0.02)))
+        self.title = customtkinter.CTkLabel(self.unit_converter_frame, text=headline, justify="center",
+                           text_font=("Berlin Sans FB", int(tools.screen_width*0.02)))
         self.title.pack(pady=int(tools.screen_height*0.02))
         
-        self.container = Frame(self.unit_converter_frame, width=width, height=height, bg=tools.pallete["gray"])
-        self.container.pack()
+        self.container = Frame(self.unit_converter_frame, width=width, height=height, bg="#2e2e2e")
+        self.container.pack(ipadx=10, ipady=10)
         
 
-        self.quantity_label = Label(self.container, text="Select a quantity set:", font= ("Helvetica", 25),
-                               bg=tools.pallete["gray"])
+        self.quantity_label = customtkinter.CTkLabel(self.container, text="Select a quantity set:", 
+                                                     text_font= ("Helvetica", 25))
         
         self.quantity_variable = StringVar()
 
@@ -116,32 +116,30 @@ class UnitConverterPage:
                                          width=int(tools.screen_width*0.02))
         self.quantity_box.bind("<<ComboboxSelected>>", self._AvailableUnits)
 
-        self.convert_label = Label(self.container, text="Convert this value:", font= ("Helvetica", 25),
-                               bg=tools.pallete["gray"])
+        self.convert_label = customtkinter.CTkLabel(self.container, text="Convert this value:", 
+                            text_font= ("Helvetica", 25))
 
         self.user_input = DoubleVar()
-        self.user_input_entry = Entry(self.container, textvariable=self.user_input, 
-                                      font= ("Helvetica", 15), width=int(tools.screen_width*0.02))
+        self.user_input_entry = customtkinter.CTkEntry(self.container, textvariable=self.user_input, 
+                                      text_font= ("Helvetica", 15), width=int(tools.screen_width*0.15))
 
         clear_image_size = int(tools.screen_width*0.02)
         self.clear_icon = Image.open(r"../math_kit/assets/icons/clear.png")
         self.clear_icon = self.clear_icon.resize((clear_image_size, clear_image_size))
         self.clear_icon_img = ImageTk.PhotoImage(self.clear_icon)
-        self.clear_img_button = Button(self.container, image=self.clear_icon_img, bg=tools.pallete["blue"], bd=1,
-                               cursor="hand2", activebackground=tools.pallete["purple"], 
-                               command=lambda: self.user_input.set(""))
+        self.clear_img_button = customtkinter.CTkButton(self.container, image=self.clear_icon_img, 
+                            width=clear_image_size, cursor="hand2", text="",
+                            command=lambda: self.user_input.set(""), hover_color=tools.pallete["purple"])
         self.clear_img_button.image = self.clear_icon_img
         
 
-        self.from_label = Label(self.container, text="from", font= ("Helvetica", 25),
-                               bg=tools.pallete["gray"])
+        self.from_label = customtkinter.CTkLabel(self.container, text="from", text_font=("Helvetica", 25))
         
         self.from_variable = StringVar()
         self.unit_from_box = ttk.Combobox(self.container, textvariable=self.from_variable, state="readonly",
                                            font= ("Helvetica", 15))
 
-        self.to_label = Label(self.container, text="to", font= ("Helvetica", 25),
-                               bg=tools.pallete["gray"])
+        self.to_label = customtkinter.CTkLabel(self.container, text="to", text_font= ("Helvetica", 25))
 
         self.to_variable = StringVar()
         self.unit_to_box = ttk.Combobox(self.container, textvariable=self.to_variable, state="readonly",
@@ -152,26 +150,26 @@ class UnitConverterPage:
         self.flip_icon = Image.open(r"../math_kit/assets/icons/flip.png")
         self.flip_icon = self.flip_icon.resize((image_size, image_size))
         self.flip_icon_img = ImageTk.PhotoImage(self.flip_icon)
-        self.flip_img_button = Button(self.container, image=self.flip_icon_img, bg=tools.pallete["blue"], bd=1,
-                               cursor="hand2", activebackground=tools.pallete["purple"], command=self._Flip)
+        self.flip_img_button = customtkinter.CTkButton(self.container, image=self.flip_icon_img, text="",
+                               cursor="hand2", command=self._Flip, hover_color=tools.pallete["purple"],
+                               width=clear_image_size)
         self.flip_img_button.image = self.flip_icon_img
 
 
-        self.convert_button = Button(self.container, text="Convert", command=self._Convert, cursor="hand2",
-                                     font= ("Helvetica", 25), bg=tools.pallete["blue"])
+        self.convert_button = customtkinter.CTkButton(self.container, text="Convert", command=self._Convert, 
+                            cursor="hand2", text_font=("Berlin Sans FB", 25), hover_color=tools.pallete["purple"])
 
         self.result_variable = StringVar()
-        self.result_text = Entry(self.container, textvariable=self.result_variable, 
-                                 font= ("Helvetica", 15), width=int(tools.screen_width*0.04), 
-                                 bg=tools.pallete["dark blue"], fg=tools.pallete["white"])
+        self.result_text = customtkinter.CTkEntry(self.container, textvariable=self.result_variable, 
+                                 text_font= ("Helvetica", 15), width=int(tools.screen_width*0.50))
         
         clear_result_image_size = int(tools.screen_width*0.02)
         self.clear_result_icon = Image.open(r"../math_kit/assets/icons/clear.png")
         self.clear_result_icon = self.clear_result_icon.resize((clear_result_image_size, clear_result_image_size))
         self.clear_result_icon_img = ImageTk.PhotoImage(self.clear_result_icon)
-        self.clear_result_img_button = Button(self.container, image=self.clear_result_icon_img, bg=tools.pallete["blue"], bd=1,
-                               cursor="hand2", activebackground=tools.pallete["purple"], 
-                               command=lambda: self.result_variable.set(""))
+        self.clear_result_img_button = customtkinter.CTkButton(self.container, image=self.clear_result_icon_img,
+                               cursor="hand2", hover_color=tools.pallete["purple"], text="",
+                               command=lambda: self.result_variable.set(""), width=clear_image_size)
         self.clear_result_img_button.image = self.clear_result_icon_img
 
 
@@ -188,7 +186,7 @@ class UnitConverterPage:
         self.unit_to_box.grid(row=3, column=3)
         self.flip_img_button.grid(row=3, column=4)
         
-        self.convert_button.grid(row=4, column=0, columnspan=4)
+        self.convert_button.grid(row=4, column=0, columnspan=4, ipadx=20, ipady=10)
         self.result_text.grid(row=5, column=0, columnspan=4)
         self.clear_result_img_button.grid(row=5, column=4)
 

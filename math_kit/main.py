@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageFilter
 from pages_content.main_page import MainPage
 from playsound import playsound
 import threading
-
+import customtkinter
 
 class Tools:
     """
@@ -45,20 +45,21 @@ class Tools:
             wind.title("Math Kit - Team Info")
         elif page == 3:
             wind.title("Math Kit - Settings")
+        
         elif page == 4:
             wind.title("Math Kit - Workspace - Scientific Calculator")
         elif page == 5:
             wind.title("Math Kit - Workspace - Plotter")
-        elif page == 10:
-            wind.title("Math Kit - Workspace - Convertor")
         elif page == 9:
-            wind.title("Math Kit - Workspace - Randomizer")
+            wind.title("Math Kit - Workspace - Convertor")
         elif page == 8:
-            wind.title("Math Kit - Workspace - Statistics")
+            wind.title("Math Kit - Workspace - Randomizer")
         elif page == 7:
-            wind.title("Math Kit - Workspace - Calculas")
+            wind.title("Math Kit - Workspace - Statistics")
         elif page == 6:
-            wind.title("Math Kit - Workspace - Numerical")
+            wind.title("Math Kit - Workspace - Calculas")
+        # elif page == 6:
+        #     wind.title("Math Kit - Workspace - Numerical")
             
             
     @staticmethod
@@ -95,7 +96,12 @@ class Tools:
         
 
 if __name__ == "__main__":
-    wind = Tk()
+
+
+    customtkinter.set_appearance_mode("System")  # Modes: system (default), light, dark
+    customtkinter.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
+
+    wind = customtkinter.CTk()
     wind.title("Math Kit - Home Page")
     wind.resizable(0, 0)
 

@@ -27,8 +27,7 @@ class ScientificCalculatorPage:
         self.scy_calc_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
         master.add(self.scy_calc_frame)
         
-        self.expression = " "
-        self.equation = StringVar()
+        self.expression = ""
         
         headline = """Everybody needs a calculator at some point!"""
         
@@ -48,50 +47,48 @@ class ScientificCalculatorPage:
         """
         This method is used to create the GUI for the upper frame of the workspace.
         """
+        
+        self.equation = StringVar()
         self.expression_field = Entry(self.container, textvariable=self.equation, 
-                                      width=int(self.tools.screen_width*0.042),
-                                justify='left', font=('courier', 20, 'bold'), bg='#D3D8DE', bd=5)
+                                      width=int(self.tools.screen_width*0.042), justify='left', 
+                                      font=('courier', 20, 'bold'), bg='#D3D8DE', bd=5)
         self.expression_field.grid(row=0, column=0, columnspan=12)
         self.expression_field.columnconfigure(0, weight=1)
+        
+        self.expression_field.bind('<Return>', lambda event: self.equalFunc())
         
         
 
 
     def pressFunc(self, key):
         """Function to define the buttons pressed"""
-        self.expression
-        self.expression = self.expression + str(key)
 
-        # to set the expression
-        self.equation.set(self.expression)
+        self.equation.set(self.equation.get() + str(key))
+        self.tools.PlayAudio("card_click.wav")
+
 
     def backsp(self):
         """Function to delete the last character"""
-        self.expression
-        text = self.expression[:-1]
-        self.expression = text
-        self.equation.set(text)
+        
+        self.equation.set(self.equation.get()[:-1])
+        self.tools.PlayAudio("card_click.wav")
 
         
     def equalFunc(self):
         """Function to evaluate the expression"""
-        self.expression
 
         try:
-            result = str(eval(self.expression))
-            self.equation.set(result)
-            # to reset
-            self.expression = ""
-
+            self.equation.set(str(eval(self.equation.get())))
+            self.tools.PlayAudio("card_click.wav")
         except:
             self.equation.set("Math Error!!")
 
 
     def clearFunc(self):
         """Function to clear the expression"""
-        self.expression
-        self.expression = ""
-        self.equation.set("0")
+        
+        self.equation.set("")
+        self.tools.PlayAudio("card_click.wav")
 
         
     def _LowerFrame(self):
@@ -111,6 +108,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(1),
+            cursor="hand2"
         )
 
         # button 2
@@ -124,6 +122,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(2),
+            cursor="hand2"
         )
 
         # button 3
@@ -137,6 +136,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(3),
+            cursor="hand2"
         )
         # addition button
         addition = Button(
@@ -150,6 +150,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("+"),
+            cursor="hand2"
         )
 
         # Second row
@@ -164,6 +165,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(4),
+            cursor="hand2"
         )
 
         # button 5
@@ -177,6 +179,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(5),
+            cursor="hand2"
         )
 
         # button 6
@@ -190,6 +193,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(6),
+            cursor="hand2"
         )
 
         # subtract button
@@ -204,6 +208,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("-"),
+            cursor="hand2"
         )
 
         # Third row
@@ -218,6 +223,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(7),
+            cursor="hand2"
         )
 
         # button 8
@@ -231,6 +237,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(8),
+            cursor="hand2"
         )
 
         # button 9
@@ -244,6 +251,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(9),
+            cursor="hand2"
         )
 
         # Multiply button
@@ -258,6 +266,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("*"),
+            cursor="hand2"
         )
 
         # zero button
@@ -272,6 +281,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.pressFunc(0),
+            cursor="hand2"
         )
         # dot button
         dot = Button(
@@ -285,6 +295,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("."),
+            cursor="hand2"
         )
 
         # clear button
@@ -300,6 +311,7 @@ class ScientificCalculatorPage:
             width=8,
             height=3,
             command=lambda: self.clearFunc(),
+            cursor="hand2"
         )
 
         # divide button
@@ -314,6 +326,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("/"),
+            cursor="hand2"
         )
 
         # Equal Button
@@ -328,6 +341,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.equalFunc(),
+            cursor="hand2"
         )
 
         # sin Button
@@ -342,6 +356,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("sin("),
+            cursor="hand2"
         )
 
         # cos button
@@ -356,6 +371,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("cos("),
+            cursor="hand2"
         )
 
         # tan button
@@ -370,6 +386,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("tan("),
+            cursor="hand2"
         )
 
         # pi button
@@ -384,6 +401,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("pi"),
+            cursor="hand2"
         )
 
         # pi button
@@ -398,6 +416,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("sinh("),
+            cursor="hand2"
         )
 
         # cosh button
@@ -412,6 +431,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("cosh("),
+            cursor="hand2"
         )
 
         # tanh button
@@ -426,6 +446,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.equalFunc(),
+            cursor="hand2"
         )
 
         # modulus button
@@ -440,6 +461,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("%("),
+            cursor="hand2"
         )
 
         # sin inverse button
@@ -454,6 +476,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.equalFunc(),
+            cursor="hand2"
         )
 
         # cos inverse button
@@ -468,6 +491,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.equalFunc(),
+            cursor="hand2"
         )
 
         # tan inverse button
@@ -482,6 +506,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.equalFunc(),
+            cursor="hand2"
         )
 
         # % button
@@ -496,6 +521,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("*0.01"),
+            cursor="hand2"
         )
 
         # floor division button
@@ -510,6 +536,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("//"),
+            cursor="hand2"
         )
 
         # Log to base ten button
@@ -524,6 +551,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("log10("),
+            cursor="hand2"
         )
 
         # log to base two button
@@ -538,6 +566,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("log2("),
+            cursor="hand2"
         )
 
         # ln button
@@ -552,6 +581,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("log("),
+            cursor="hand2"
         )
         # expm1 button
         exp_onentm1 = Button(
@@ -565,6 +595,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("expm1("),
+            cursor="hand2"
         )
 
         # e log button
@@ -579,6 +610,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("e**("),
+            cursor="hand2"
         )
 
         # factorial ! button
@@ -593,6 +625,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("factorial("),
+            cursor="hand2"
         )
 
         # inverse button
@@ -607,6 +640,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("1/"),
+            cursor="hand2"
         )
 
         # cube button
@@ -621,6 +655,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("**3"),
+            cursor="hand2"
         )
 
         # square button
@@ -635,6 +670,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("**2"),
+            cursor="hand2"
         )
 
         # Square root button
@@ -649,6 +685,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("isqrt("),
+            cursor="hand2"
         )
 
         # back_space button
@@ -663,6 +700,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.backsp(),
+            cursor="hand2"
         )
 
         # power_fun button
@@ -677,6 +715,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("**"),
+            cursor="hand2"
         )
 
         # root button
@@ -691,6 +730,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("**(1/"),
+            cursor="hand2"
         )
 
         # ( button
@@ -705,6 +745,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("("),
+            cursor="hand2"
         )
 
         # ) button
@@ -719,6 +760,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc(")"),
+            cursor="hand2"
         )
 
         # asinh button
@@ -733,6 +775,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("asinh("),
+            cursor="hand2"
         )
 
         # acosh button
@@ -747,6 +790,7 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("acosh("),
+            cursor="hand2"
         )
 
         # atanh button
@@ -761,12 +805,12 @@ class ScientificCalculatorPage:
             height=3,
             fg="white",
             command=lambda: self.pressFunc("atanh("),
+            cursor="hand2"
         )
 
         # packing the expression field
-        self.expression_field.grid(
-            row=0, column=0, columnspan=12, pady=5, padx=3, ipady=5, ipadx=18
-        )  # ipadx changes the frame width
+        self.expression_field.grid(row=0, column=0, columnspan=12, pady=5, padx=3, ipady=5, ipadx=18)  
+        # ipadx changes the frame width
 
         # Positioning the button in rows
         # Row one
