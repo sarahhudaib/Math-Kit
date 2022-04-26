@@ -2,39 +2,42 @@
 
 # **Vision**
 
-Math-Kit is a project that aims to provide a platform for the user to perform various mathematical operations without having to leave the comfort of their own computer. And that was made possible by using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python, which helped us make Math-Kit to be a GUI desktop app, and not a console-based app or a web app.
+Math-Kit is a project that aims to provide a platform for the user to perform various mathematical operations without having to leave the comfort of their own computer. And that was made possible by using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) & [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) libraries for the GUI in Python, which helped us the developers, make Math-Kit to be a GUI desktop app, and not a console-based app or a web app.
+
+<br>
+
+# **Scope**
+
+The scope of the project is to provide a GUI desktop app, that is made specifically for performing basic and advanced mathematical operations without any additional hassle as it insures that it serves the main purpose of providing a top-tier mathematical help with not much spent effort by the user.
+
+The project is made to be used by the user in a desktop environment, and not in a mobile environment, or as a command line base.
 
 <br>
 
 
+# **Minimum Viable Product**
 
-# **Scope (In/Out)**
+In the workspaces window of the GUI, the user can see cards that we have created. Each one of those cards are there for performing various mathematical operations, and the user can choose which card they want based on the kind of mathematical operation they want to perform.
 
+To further explain the functionality of each card in the workspace window, here is a guide to the cards and the kind of work the user is expected to do in each one:
 
+1. **Calculator:**
+    - The user can perform basic arithmetic operations, such as addition, subtraction, multiplication, division, and modulo.
+    - The user can also perform basic trigonometric operations, such as sin, cos, tan, and cot.
+    - The user can also perform basic logarithmic operations, such as log, ln, and log10.
+    - The user can also perform basic exponential operations, such as exp, and e.
+    - The user can also perform basic power operations, such as power, and root.
+
+2. **Plotter:**
+    - The user can graph a polynomial function, either in the form of a line plot or a bar plot.
+    - The user can import a csv file to graph its data.
+
+3. **Converter:**
+    - The user can choose a quantity set, such as: length and temperature.
+    - The user can convert between the various units of measurement, that belong to the above mentioned quantity sets.
+
+4. **Randomizer:**
+    - The user can generate a list of random numbers, given they provide the length of the list, upper and lower values.
+    - The user can create their own list by adding, deleting, picking what specific elements they want their list to contain.
 
 <br>
-
-
-
-# Minimum Viable Product 
-
-**CLI program that provides the following:**
-
-- _A way for the user to enter their current champion and both team compositions._
-- _A data base of items and champions to process the inputs._
-- _A web scraper that collects up-to-date data regarding the best build paths ideally._
-- _A data model that elects the best possible situational build path based on the situation._
-- _Outputs an accurate build path recommendation based on user situation input._
-
-<br>
-
-# Functional Requirements
-
-_The program will automaticlly update the content of data when it run
-the user can search all of champions data and appiltys as well as items benefits_
-
-# Non-Functional Requirements
-
-_Testability for rules function as well as update function_
-_the test in our application will comapre the function which is responible for creating the content file with the function which will preview the rules of the game to the user
-and another test will compair the function which will create the update file content with the function which will be responseble for previewing the updates on the game for the user_

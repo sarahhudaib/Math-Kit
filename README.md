@@ -65,9 +65,11 @@ The provided features by the Math Kit are:
         ```
     <br>
 
-    - ***Statistics:*** performs mathematical operations relating to a given set or data, such as: mean, median, standard deviation.
-    - ***Calculus:*** performs more complex mathematical operations, such as: derivation and integration
-    - ***Numerical:*** performs other type of mathematical operations, such as: Newton Raphson Method
+    - ***Statistics:*** This widnow performs mathematical operations relating to a given set or data, such as: mean, median, standard deviation.
+    - ***Calculus:*** This window performs more complex mathematical operations, such as: derivation and integration
+    - ***Numerical:*** This window performs other type of mathematical operations, such as: Newton Raphson Method.
+
+For further explanation, please refer to the [**workspace cards**](work_space_cards.md) file, and the section ***Minimum Viable Product*** in the [**requirment**](requirment.md) file.
     
 <br>
 
@@ -76,19 +78,24 @@ The provided features by the Math Kit are:
 
 - **Settings:** This window is for controlling a few characteristics of the GUI, such as:
     ```
-    - Theme: This allows the user to change the theme of the GUI.
-    - Language: This allows the user to change the language of the GUI.
+    - Theme: Dark or light.
     ```
 
 <br>
 
 ## **Planning of the Project**
 
-[The Project Layout on Replit ](https://replit.com/@MustafaAlhasana/mid#mid%20draw%20.draw)
+**The Project Planning on Replit:** 
+![The Project Planning on Replit](math_kit\assets\planning\planning-of-mathkit-replit.png)
 
 <br>
 
-## **Wireframe**
+**The Project Planning on Trello:**
+![The Project Planning on Trello](math_kit\assets\planning\planning-of-mathkit-trello.png)
+
+<br>
+
+
 
 <br>
 
@@ -118,6 +125,9 @@ The provided features by the Math Kit are:
 │   |    |  ├── random.png
 │   |    |  ├── splash.png
 │   |    |  └── stats.png
+│   |    |── planning
+│   |    |  ├── planning-of-mathkit-replit.png
+│   |    |  └── planning-of-mathkit-trello.png
 │   |    |── plots
 │   |    |  └── plot.png
 │   |    |── sounds
@@ -126,8 +136,11 @@ The provided features by the Math Kit are:
 │   |    |── wire_frames
 │   |    |  ├── calculator.PNG
 │   |    |  ├── convertor.PNG
+│   |    |  ├── home_window.PNG
 │   |    |  ├── plotter.PNG
-│   |    |  └── randomizer.PNG
+│   |    |  ├── randomizer.PNG
+│   |    |  ├── teaminfo_window.PNG
+│   |    |  └── workspace_window.PNG
 │   ├── pages_content
 │   │    ├── derive_and_integrate.py
 │   │    ├── home.py
@@ -174,23 +187,91 @@ The provided features by the Math Kit are:
 
 ## **Used Libraries and Tools**
 
-- **VS Code** 
-- **Python** 
-- **Tkinter** 
-- **Pillow** 
-- **Pytest**
-- **Poetry**
-- **NumPy**
-- **matplotlib**
-- **Replit** 
-- **Trello**
-- **webbrowser** 
-- **threading**
-- **playsound**
-- **black**
+### **Libraries or Modules**:
+    - Tkinter
+    - Tkinter.ttk
+    - Custom Tkinter
+    - Pillow 
+    - Pytest
+    - Poetry
+    - NumPy
+    - matplotlib
+    - webbrowser 
+    - threading
+    - playsound
+    - black
+
+### **Tools**
+    - VS Code 
+    - Zoom
+    - Github
+    - Slack
+    - Discord
+    - Powerpoint
+    - Replit
+    - Trello
+
 
 <br>
 
+
+## **Change Log**
+
+The project has gone through a couple of iterations while deploying its GUI, and the change log is as follows:
+
+<br>
+
+### **Version 1.0.0:**
+
+In this version, the project is in its initial state, using [**tkinter**](https://docs.python.org/3/library/tkinter.html) and ttk as the main GUI framework.
+
+The frameworks for each window in Version 1.0.0, are as follows:
+
+**The Home Window:**
+![The Home Window](math_kit\assets\wire_frames\home_window.PNG)
+
+**The Workspace Window:**
+![The Workspace Window](math_kit\assets\wire_frames\workspace_window.PNG)
+
+**The Calculator Window:**
+![The Calculator Window](math_kit\assets\wire_frames\calculator.PNG)
+
+**The Plotter Window:**
+![The Plotter Window](math_kit\assets\wire_frames\plotter.PNG)
+
+**The Convertor Window:**
+![The Convertor Window](math_kit\assets\wire_frames\convertor.PNG)
+
+**The Randomizer Window:**
+![The Randomizer Window](math_kit\assets\wire_frames\randomizer.PNG)
+
+**The Team Info Window:**
+![The Team Info Window](math_kit\assets\wire_frames\teaminfo_window.PNG)
+
+<br>
+
+
+### **Version 1.0.1:**
+
+In this version, we used [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) on top of [**tkinter**](https://docs.python.org/3/library/tkinter.html) to create the GUI, as we found that this would create a much aesthetically pleasing GUI experience for the user.
+
+The frameworks for each window in Version 1.0.1, are as follows:
+
+**The Home Window:**
+
+**The Workspace Window:**
+
+**The Calculator Window:**
+
+**The Plotter Window:**
+
+**The Convertor Window:**
+
+**The Randomizer Window:**
+
+**The Team Info Window:**
+
+<br>
 
 ## **A Guide to Getting Started**
 ```
@@ -204,11 +285,14 @@ Navigate to the repo's directory and install required  dependencies:
 
 `$ poetry install`
 `$ pip install --upgrade pip`
-`$ pip install Pillow`
+`$ pip install customtkinter`
 `$ pip install numpy`
 `$ pip install matplotlib`
-`$ -m pip install -U black` 
+`$ pip install webbrowser`
 `$ pip install playsound`
+`$ pip install Pillow`
+`$ -m pip install -U black` 
+
 
 
 
@@ -238,7 +322,7 @@ Important notes:
 
 `$ poetry shell`
 
-definatly after install poetry, using this command:
+definatly after installing poetry, using this command:
 
 `$ poetry install`
 
@@ -262,4 +346,3 @@ This will render a GUI window on your local machine, that has all the above ment
 - Mustafa Alhasanat
 - Batool Ragaya'h
 - Salim Hassouneh
-
