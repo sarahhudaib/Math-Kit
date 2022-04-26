@@ -1,5 +1,6 @@
 from tkinter import Tk, Frame, Button, Label
 from tkinter.ttk import Notebook, Style
+import customtkinter
 
 from pages_content.home import HomePage
 from pages_content.workspace import WorkspacePage
@@ -47,29 +48,32 @@ class MainPage:
         """
         tools = self.tools
         wind = self.wind 
+        
+        ipadx_nav_button = int(tools.screen_width*0.040)
 
-        self.upper_frame = Frame(self.wind, bg=tools.pallete["dark blue"])
-        self.upper_frame.pack(fill="x", expand=True, side="top", anchor="n") 
 
-        self.home_button = Button(self.upper_frame, text="Home", bg=tools.pallete["purple"], fg=tools.pallete["white"],
-                            font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
+        self.upper_frame = customtkinter.CTkFrame(self.wind, bg=tools.pallete["dark blue"])
+        self.upper_frame.pack(fill="x", expand=True, side="top", anchor="n")
+
+        self.home_button = customtkinter.CTkButton(self.upper_frame, text="Home", hover_color=tools.pallete["purple"], 
+                            text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
         self.home_button.grid(row=0, column=0, sticky="n", padx=int(tools.screen_width*0.015), pady=15,
-                         ipadx=int(tools.screen_width*0.050), ipady=5)
+                         ipadx=ipadx_nav_button, ipady=5)
 
-        self.workspace_button = Button(self.upper_frame, text="Workspace", bg=tools.pallete["blue"], fg=tools.pallete["white"],
-                            font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
+        self.workspace_button = customtkinter.CTkButton(self.upper_frame, text="Workspace", hover_color=tools.pallete["purple"],
+                            text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
         self.workspace_button.grid(row=0, column=1, sticky="n", padx=int(tools.screen_width*0.015), pady=15,
-                              ipadx=int(tools.screen_width*0.050), ipady=5)
+                              ipadx=ipadx_nav_button, ipady=5)
 
-        self.team_info_button = Button(self.upper_frame, text="Team Info", bg=tools.pallete["blue"], fg=tools.pallete["white"],
-                        font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
+        self.team_info_button = customtkinter.CTkButton(self.upper_frame, text="Team Info", hover_color=tools.pallete["purple"],
+                        text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
         self.team_info_button.grid(row=0, column=2, sticky="n", padx=int(tools.screen_width*0.015), pady=15,
-                              ipadx=int(tools.screen_width*0.050), ipady=5)
+                              ipadx=ipadx_nav_button, ipady=5)
 
-        self.settings_button = Button(self.upper_frame, text="Settings", bg=tools.pallete["blue"], fg=tools.pallete["white"],
-                        font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
+        self.settings_button = customtkinter.CTkButton(self.upper_frame, text="Settings", hover_color=tools.pallete["purple"],
+                        text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
         self.settings_button.grid(row=0, column=3, sticky="n", padx=int(tools.screen_width*0.015), pady=15, 
-                             ipadx=int(tools.screen_width*0.050), ipady=5)
+                             ipadx=ipadx_nav_button, ipady=5)
 
 
         self.pages_display_notebook = Notebook(self.wind)
@@ -89,7 +93,7 @@ class MainPage:
         
         ScientificCalculatorPage(self.pages_display_notebook, self.tools)
         Plotter(self.pages_display_notebook, self.tools)
-        NumericalOperationsPage(self.pages_display_notebook, self.tools)
+        # NumericalOperationsPage(self.pages_display_notebook, self.tools)
         DeriveAndIntegratePage(self.pages_display_notebook, self.tools)
         StatsPage(self.pages_display_notebook, self.tools)
         RandomGeneratorPage(self.pages_display_notebook, self.tools)
