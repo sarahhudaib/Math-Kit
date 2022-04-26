@@ -199,7 +199,7 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
     - webbrowser 
     - threading
     - playsound
-    - black
+    - black in Poetry
 
 ### **Tools**
     - VS Code 
@@ -223,7 +223,7 @@ The project has gone through a couple of iterations while deploying its GUI, and
 
 ### **Version 1.0.0:**
 
-In this version, the project is in its initial state, using [**tkinter**](https://docs.python.org/3/library/tkinter.html) and ttk as the main GUI framework.
+In this version, the project was in its initial state, using [**tkinter**](https://docs.python.org/3/library/tkinter.html) as the main GUI framework.
 
 The frameworks for each window in Version 1.0.0, are as follows:
 
@@ -346,3 +346,5 @@ This will render a GUI window on your local machine, that has all the above ment
 - Mustafa Alhasanat
 - Batool Ragaya'h
 - Salim Hassouneh
+
+
