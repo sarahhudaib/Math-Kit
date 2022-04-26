@@ -1,14 +1,13 @@
 # **Math Kit Workspace Cards**
 
 
-This whole project has been done using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python.
+The Math-Kit project was done using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) & [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) libraries for the GUI in Python, to make the project a GUI desktop app, and not a console-based app or a web app.
 
 <br>
 
-
 ## **Calculator**
 
-This workspace card deploys a regular calculator for performing simple and a bit more advanced operations, using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python and the [**math**](https://docs.python.org/3/library/math.html) library in Python for performing mathematical operations.
+This workspace card deploys a regular calculator for performing simple and a bit more advanced operations, using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) & [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) libraries for the GUI in Python and the [**math**](https://docs.python.org/3/library/math.html) library in Python for performing mathematical operations.
 
 While keeping track of the history of the operations, and allowing the user to go back to the previous operations, or clearing the result to perform another one.
 
@@ -30,6 +29,7 @@ Given the options of the calculator, the user can choose to perform the followin
 ### **Calculator Window**
 
 An image of the calculator window:
+![Calculator Window](math_kit\assets\wire_frames\calculator.PNG)
 
 
 <br>
@@ -39,19 +39,19 @@ An image of the calculator window:
 
 ## **Plotter**
 
-This workspace card is used to plot the graph of either:
+This workspace card was made using [**tkinter**](https://docs.python.org/3/library/tkinter.html) & [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) libraries for the GUI in Python, [**matplotlib**](https://matplotlib.org/) library for plotting, [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) and [**csv**](https://docs.python.org/3/library/csv.html) for the data set.
+
+
+It's used to plot the graph of either:
    
-    1. An entered list.
-    2. An entered polynomial equation.
-    3. Or a data set from a csv file.
+    1. A data set from a csv file that the user can import.
+    2. Or an entered polynomial equation.
 
-       
-using [**matplotlib**](https://matplotlib.org/) library, with the help of [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python.
+while providing the user with the option to save the graph as an image, in addition to plotting the graph with two different ways:
 
-This workspace offers the user the option to plot functions of the following types:
+    1. bar plot
+    2. line plot
 
-    - Linear
-    - Polynomial function
 
 <br>
 
@@ -59,7 +59,7 @@ This workspace offers the user the option to plot functions of the following typ
 ### **Plotter Window**
 
 An image of the plotter window:
-
+![Plotter Window](math_kit\assets\wire_frames\plotter.PNG)
 
 
 <br>
@@ -68,14 +68,32 @@ An image of the plotter window:
 
 ## **Convertor**
 
-This workspace card is used to perform unit conversions between a couple of common units of measurements, such as: length and temperature. Using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python and the [**Pillow**](https://github.com/python-pillow/Pillow) library in Python.
+This workspace card was made [**tkinter**](https://docs.python.org/3/library/tkinter.html) & [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) libraries for the GUI in Python and the [**Pillow**](https://github.com/python-pillow/Pillow) library in Python for image manipulation.
+
+It performs unit conversions between a couple of common quantities; length and temperature. And as one of them is chosen, the user can convert from an already determined units of measurement from the same category or quantity set, which will be shown in the drop down menu.
+```
+1. Length:
+    - Meters
+    - Yards
+    - Centimeters
+    - Feet
+    - Miles
+    - Kilometers
+
+2. Temperature:
+    - Celsius
+    - Fahrenheit
+    - Kelvin
+```
+
 
 <br>
 
 
 ### **Convertor Window**
 
-An image of the convertor window is shown below:
+An image of the convertor window:
+![Convertor Window](math_kit\assets\wire_frames\convertor.PNG)
 
 
 <br>
@@ -85,15 +103,30 @@ An image of the convertor window is shown below:
 
 ## **Randomizer**
 
-This workspace card is used to generate random lists for a given input entered by the user, using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) library for the GUI in Python, the [**random**](https://docs.python.org/3/library/random.html) library in Python and the [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) library in Python.
+This workspace card was made using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) & [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) libraries for the GUI in Python, the [**random**](https://docs.python.org/3/library/random.html) library in Python and the [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) library in Python.
 
-One other feature of this workspace is that it allows adding, deleting, picking a random item to the list, and clearing the list.
+It offers the user two options when generating random lists:
+```
+1. Generating a list of random numbers, while providing:
+    - The length of the list.
+    - The lower value in the list.
+    - The upper value in the list.
+
+2. Creating a unique list of the user's choice, either made up of random numbers, or random strings, as the user can do the following options:
+    - Adding elements to the list, as much as the user wants.
+    - Deleting elements from the list.
+    - Clearing the list.
+    - picking which elements to be in the final list, by specifying whether they're unique or not. (not repeated)
+```
+
+And both of the above mentioned options have the additional option of saving the list as a csv file, simply by clicking the "**csv**" button.
 
 <br>
 
 ### **Randomizer Window**
 
 An image of the randomizer window:
+![Randomizer Window](math_kit\assets\wire_frames\randomizer.PNG)
 
 
 
