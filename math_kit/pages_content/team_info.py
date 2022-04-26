@@ -1,8 +1,9 @@
 from tkinter import Tk, Frame, Button, Label, messagebox
 from PIL import Image, ImageTk
 import webbrowser
-import threading
-import customtkinter
+import threading 
+import customtkinter 
+
 
 
 class TeamInfoPage:
