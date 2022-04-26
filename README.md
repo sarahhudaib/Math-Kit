@@ -86,7 +86,7 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 ## **Planning of the Project**
 
 **The Project Planning on Replit:** 
-![The Project Planning on Replit](./math_kit/assets/planning/planning-of-mathkit-replit.png)
+![The Project Planning on Replit](math_kit\assets\planning\planning-of-mathkit-replit.png)
 
 <br>
 
