@@ -51,6 +51,7 @@ class MainPage:
         
         ipadx_nav_button = int(tools.screen_width*0.040)
 
+
         self.upper_frame = customtkinter.CTkFrame(self.wind, bg=tools.pallete["dark blue"])
         self.upper_frame.pack(fill="x", expand=True, side="top", anchor="n")
 
@@ -77,15 +78,15 @@ class MainPage:
 
         self.pages_display_notebook = Notebook(self.wind)
         self.pages_display_notebook.pack(fill="x", expand=True, side="top", anchor="n")
-        style = Style()
-        style.layout('TNotebook.Tab', [])
+        style = Style() 
+        style.layout('TNotebook.Tab', []) 
 
         self.home_button.config(command=lambda: self._SwitchPageBackground(0))
         self.workspace_button.config(command=lambda: self._SwitchPageBackground(1))
         self.team_info_button.config(command=lambda: self._SwitchPageBackground(2))
         self.settings_button.config(command=lambda: self._SwitchPageBackground(3))
 
-        HomePage(self.pages_display_notebook, self.tools)
+        HomePage(self.pages_display_notebook, self.tools)    
         WorkspacePage(self.pages_display_notebook, self.tools, self.wind)
         TeamInfoPage(self.pages_display_notebook, self.tools)
         SettingsPage(self.pages_display_notebook, self.tools)

@@ -15,7 +15,7 @@ def open_file():
         print(content)
 
 
-btn = Button(root, text="Open", command=lambda: open_file())
+btn = Button(root, text="Open", command=open_file)
 btn.pack(side=TOP, pady=10)
 
 mainloop()

@@ -2,7 +2,6 @@ from tkinter import Tk, Frame, Button, Label, messagebox
 from PIL import Image, ImageDraw, ImageFilter, ImageTk
 import customtkinter
 
-
 class WorkspacePage:
     """
     This class is the workspace page of the application. It contains the following:
@@ -72,10 +71,12 @@ class WorkspacePage:
      
         self.calc_icon = Image.open(r"../math_kit/assets/icons/calc.png")
         self.calc_icon = self.calc_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
+
         self.calc_icon_img = ImageTk.PhotoImage(self.calc_icon)
         self.calc_img = customtkinter.CTkButton(self.calc_frame, image=self.calc_icon_img, bg=self.bg, bd=self.bd, 
                                                 cursor="hand2", text="", hover_color=self.tools.pallete["purple"],
                                                 command=lambda: self._SwitchPage("calc"))
+
         self.calc_img.image = self.calc_icon_img
         self.calc_img.pack(pady=5)
         
@@ -174,29 +175,10 @@ class WorkspacePage:
         
         self.diff_and_int_label = customtkinter.CTkLabel(self.diff_and_int_frame, text="Calculas", bg=self.tools.pallete["gray"], 
                                 text_font= ("Helvetica", 15, "bold"))
+
         self.diff_and_int_label.pack()
         
         
-    # def _Numeric(self):
-    #     self.numeric_frame = customtkinter.CTkFrame(self.workspace_frame, bg=self.tools.pallete["gray"])
-    #     self.numeric_frame.grid(row=1, column=2, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
-    #     self.numeric_frame.grid_columnconfigure(0, weight=1)
-
-    #     self.numeric_icon = Image.open(r"../math_kit/assets/icons/numeric.png")
-    #     self.numeric_icon = self.numeric_icon.resize((self.avatar_side_lemgth, self.avatar_side_lemgth))
-    #     self.numeric_icon_img = ImageTk.PhotoImage(self.numeric_icon)
-    #     self.numeric_img = customtkinter.CTkButton(self.numeric_frame, image=self.numeric_icon_img, bg=self.bg, bd=self.bd, 
-    #                               cursor="hand2", activebackground=self.active_bg,
-    #                               command=lambda: self._SwitchPage("num"))
-    #     self.numeric_img.image = self.numeric_icon_img
-    #     self.numeric_img.grid(row=1, column=2, padx=self.padx, pady=self.pady, ipadx=self.ipadx, ipady=self.ipady)
-    #     self.numeric_img.grid_columnconfigure(0, weight=1)
-    #     self.numeric_img.pack(pady=5)
-        
-    #     self.numeric_label = Label(self.numeric_frame, text="Numerical", bg=self.tools.pallete["gray"], 
-    #                             font= ("Helvetica", 15, "bold"))
-    #     self.numeric_label.pack()
-
 
     def _SwitchPage(self, page_name):
         """
@@ -210,7 +192,6 @@ class WorkspacePage:
         elif page_name == "rand": page_number = 8
         elif page_name == "stat": page_number = 7
         elif page_name == "diff": page_number = 6
-        # elif page_name == "num": page_number = 6
         
         
         tools = self.tools

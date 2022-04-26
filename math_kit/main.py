@@ -58,8 +58,7 @@ class Tools:
             wind.title("Math Kit - Workspace - Statistics")
         elif page == 6:
             wind.title("Math Kit - Workspace - Calculas")
-        # elif page == 6:
-        #     wind.title("Math Kit - Workspace - Numerical")
+
             
             
     @staticmethod
@@ -84,13 +83,13 @@ class Tools:
             PIL image: the image that has been cut as a circle and made transparent
         """
         
-        offset = blur_radius * 2 + offset
-        mask = Image.new("L", pil_img.size, 0)
-        draw = ImageDraw.Draw(mask)
-        draw.ellipse((offset, offset, pil_img.size[0] - offset, pil_img.size[1] - offset), fill=255)
-        mask = mask.filter(ImageFilter.GaussianBlur(blur_radius))
-        result = pil_img.copy()
-        result.putalpha(mask)
+        offset = blur_radius * 2 + offset 
+        mask = Image.new("L", pil_img.size, 0) 
+        draw = ImageDraw.Draw(mask)   
+        draw.ellipse((offset, offset, pil_img.size[0] - offset, pil_img.size[1] - offset), fill=255) 
+        mask = mask.filter(ImageFilter.GaussianBlur(blur_radius)) 
+        result = pil_img.copy() 
+        result.putalpha(mask) 
         
         return result
         
@@ -103,7 +102,7 @@ if __name__ == "__main__":
 
     wind = customtkinter.CTk()
     wind.title("Math Kit - Home Page")
-    wind.resizable(0, 0)
+    wind.resizable(0, 0) 
 
     tools = Tools()
 
