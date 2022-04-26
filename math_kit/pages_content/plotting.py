@@ -50,7 +50,7 @@ class Plotter():
  
     def _ImportCSV(self):
         
-        path = r"../math_kit/assets/csv/gold.csv"
+        path = r"../math_kit/assets/csv/Salary_Data.csv"
         
         with open(path,"r") as csv_file:
             csv_reader = csv.DictReader(csv_file)
@@ -352,6 +352,11 @@ class Plotter():
             plt.title(self.title_label.get())
             plt.xlabel(self.x_label.get())
             plt.ylabel(self.y_label.get())
+            
+           
+           
+
+            
 
             try:
                 # x_list, y_list = x_list[int(lower_limit):int(upper_limit)], y_list[int(lower_limit):int(upper_limit)]
@@ -370,11 +375,12 @@ class Plotter():
             plt.grid(True)
             
             try:
-                plt.xticks(x_list[0:int(tick_end):step],rotation=90)
+                plt.xticks(x_list[0:int(tick_end):step],rotation=45)
                 plt.yticks(y_list[0:int(tick_end):step],rotation=0)
             except:
                 messagebox.showerror("Invalid input !!!", "Defference between the start and end must be relatively high.")
                 return 
+            
                         
             plt.savefig("../math_kit/assets/plots/plot.png")
 
