@@ -31,12 +31,6 @@ Steps to reproduce the behavior:
 **Expected behavior**
 The program should not crash, and should output the correct result which is in this case a desktop application of our own. (Math-Kit)
 
-<br>
-
-**Screenshots**
-
-![issue](MATH-KIT\.github\issues\issue.PNG)
-
 
 <br>
 
