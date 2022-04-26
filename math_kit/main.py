@@ -56,7 +56,7 @@ class Tools:
         elif page == 8:
             wind.title("Math Kit - Workspace - Statistics")
         elif page == 7:
-            wind.title("Math Kit - Workspace - Calculas")
+            wind.title("Math Kit - Workspace - Calculus")
         elif page == 6:
             wind.title("Math Kit - Workspace - Numerical")
             
@@ -83,13 +83,13 @@ class Tools:
             PIL image: the image that has been cut as a circle and made transparent
         """
         
-        offset = blur_radius * 2 + offset
-        mask = Image.new("L", pil_img.size, 0)
-        draw = ImageDraw.Draw(mask)
-        draw.ellipse((offset, offset, pil_img.size[0] - offset, pil_img.size[1] - offset), fill=255)
-        mask = mask.filter(ImageFilter.GaussianBlur(blur_radius))
-        result = pil_img.copy()
-        result.putalpha(mask)
+        offset = blur_radius * 2 + offset 
+        mask = Image.new("L", pil_img.size, 0) 
+        draw = ImageDraw.Draw(mask)   
+        draw.ellipse((offset, offset, pil_img.size[0] - offset, pil_img.size[1] - offset), fill=255) 
+        mask = mask.filter(ImageFilter.GaussianBlur(blur_radius)) 
+        result = pil_img.copy() 
+        result.putalpha(mask) 
         
         return result
         
@@ -97,7 +97,7 @@ class Tools:
 if __name__ == "__main__":
     wind = Tk()
     wind.title("Math Kit - Home Page")
-    wind.resizable(0, 0)
+    wind.resizable(0, 0) 
 
     tools = Tools()
 

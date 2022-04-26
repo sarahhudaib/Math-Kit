@@ -1,14 +1,15 @@
-from tkinter import Tk, Button
-from tkinter import messagebox
+from tkinter import Tk, Button, messagebox
+
 
 main = Tk()
 
 
 def check():
-    messagebox.askquestion(
+    messagebox.showinfo(
         "Form",
         "Please check your information again and submit if correct.",
-        icon="question",
+        icon="info", 
+        
     )
 
 
