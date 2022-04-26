@@ -1,7 +1,9 @@
-from tkinter import Frame, Label, Entry, Button, StringVar, LabelFrame, messagebox, Scrollbar, Listbox, IntVar, Checkbutton, END
-from PIL import Image, ImageDraw, ImageFilter, ImageTk
+from tkinter import Frame, Label, Entry, Button, StringVar, LabelFrame, messagebox, Scrollbar, Listbox, IntVar, Checkbutton, END, filedialog
+from PIL import Image, ImageTk
 import numpy as np
 import random
+import csv
+import shutil
 
 
 class RandomGeneratorPage:
@@ -186,11 +188,6 @@ class RandomGeneratorPage:
         self.items_list = Listbox(self.right_frame, yscrollcommand=self.items_box.set)
         self.items_box.config(command=self.items_list.yview)
         
-        
-        
-        
-
-
 
         self.right_title.grid(row=0, column=0, columnspan=5, sticky="nsew")
         
@@ -218,9 +215,28 @@ class RandomGeneratorPage:
         
         for child in self.right_frame.winfo_children():
             child.grid_configure(padx=10, pady=10)   
-        
-        
+          
 
+    def _GenerateList(self):
+        """
+        This method is used to generate a random list of numbers.  It contains:
+        - A try/except block to catch the error if the user enters a non-integer value for the length of the list.
+
+        """
+     
+        try:
+            length_of_list_threshold = int(self.length_of_list_entry.get().strip())
+            lower_threshold = int(self.low_entry.get().strip())
+            upper_threshold = int(self.high_entry.get().strip())
+            random_list = np.random.randint(low=lower_threshold, high=upper_threshold, size=length_of_list_threshold)
+            self.result_variable.set(" ".join([str(i) for i in list(random_list)]))
+            
+            self._SaveAsCSV(random_list, "left")
+        
+        except:
+            messagebox.showerror("Invalid Selections !", "You have to fill all fields with valid selections.")
+
+        
     def _AddItem(self):
         
         x = self.x_times_entry.get()
@@ -253,11 +269,13 @@ class RandomGeneratorPage:
         if number.isdigit():
             if len(items) != 0:
                 if is_unique:
-                    result = random.sample(items, k=int(number))
+                    random_list = random.sample(items, k=int(number))
                 else:
-                    result = random.choices(items, k=int(number))
+                    random_list = random.choices(items, k=int(number))
                 
-                self.picked_result_variable.set(result)
+                self.picked_result_variable.set(" ".join([str(i) for i in list(random_list)]))
+                
+                self._SaveAsCSV(random_list, "right")
                 
             else:
                 messagebox.showerror("Invalid Input !", "The list is empty.")            
@@ -265,12 +283,36 @@ class RandomGeneratorPage:
             messagebox.showerror("Invalid Input !", "You have to enter a number in the field after the (#Samples).")
             
             
+    def _SaveAsCSV(self, result, entry):
+        
+        if entry == "left":
+            with open(r'../math_kit/assets/csv/left_result.csv', 'w') as f:
+                write = csv.writer(f)
+                write.writerow(result)
+                # write.writerows(rows)        
+        else:
+            with open(r'../math_kit/assets/csv/right_result.csv', 'w') as f:
+                write = csv.writer(f)
+                write.writerow(result)
+                # write.writerows(rows)
+
+            
     def _ExportCSV(self, entry):
         
-        if entry == "right":
-            pass
+        mydir = filedialog.askdirectory()
+        
+        if entry == "left":    
+            try:
+                shutil.copy(r"../math_kit/assets/csv/left_result.csv", mydir) 
+            except:
+                messagebox.showerror("Error", "Couldn't save the file !!")
+                
         else:
-            pass
+            try:
+                shutil.copy(r"../math_kit/assets/csv/right_result.csv", mydir) 
+            except:
+                messagebox.showerror("Error", "Couldn't save the file !!")
+            
     
     
     def _CopyRandomList(self):
@@ -285,23 +327,6 @@ class RandomGeneratorPage:
         self.high_variable.set("")
         
         
-    def _GenerateList(self):
-        """
-        This method is used to generate a random list of numbers.  It contains:
-        - A try/except block to catch the error if the user enters a non-integer value for the length of the list.
 
-        """
-     
-        try:
-            length_of_list_threshold = int(self.length_of_list_entry.get())
-            lower_threshold = int(self.low_entry.get())
-            upper_threshold = int(self.high_entry.get())
-            random_list = np.random.randint(low= lower_threshold, high=upper_threshold, size=length_of_list_threshold)
-            self.result_variable.set(random_list)
-        
-        except:
-            messagebox.showerror("Invalid Selections !", "You have to fill all fields with valid selections.")
-
-        
 
 

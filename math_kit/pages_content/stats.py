@@ -17,7 +17,10 @@ class StatsPage:
         self.stats_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
         master.add(self.stats_frame)
         
-        Label(self.stats_frame, text="stats").pack()
+
+
+
+
 
 
     
@@ -46,7 +49,6 @@ class StatsPage:
         return statistics.stdev(col_list)
 
 
-    
     @staticmethod    
     def mean_csv(path,attr):
         """
@@ -70,6 +72,7 @@ class StatsPage:
            col_list.append(float(row[attr]))
         
         return statistics.mean(col_list)
+    
     
     @staticmethod    
     def median_csv(path,attr):
@@ -122,6 +125,7 @@ class StatsPage:
         
         return max(col_list)
 
+
     @staticmethod    
     def min_csv(path,attr):
         """
@@ -147,7 +151,6 @@ class StatsPage:
         return min(col_list)
 
     
-
     @staticmethod
     def standard_deviation_list(input_list):
 
@@ -159,9 +162,6 @@ class StatsPage:
         return statistics.stdev(input_list)
         
         
-        
-        
-
     @staticmethod
     def mean_list(input_list):
         return statistics.mean(input_list)
@@ -176,6 +176,7 @@ class StatsPage:
     def min_list(input_list):
         return min(input_list)
 
+
     @staticmethod
     def max_list(input_list):
         return max(input_list)
@@ -183,17 +184,5 @@ class StatsPage:
 
 
 
-        
 
-        
-
-
-if __name__== "__main__":
-    #print(StatsPage.max_list([10, 12, 23, 23, 16, 23, 21, 16,18,16,14,17,16]))
-    
-    path=r"math_kit\assets\csv\gold.csv"
-    
-    
-    print(StatsPage.max_csv(path,"Close"))
-    
     

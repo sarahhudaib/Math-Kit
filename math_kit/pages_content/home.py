@@ -1,5 +1,5 @@
 from tkinter import Tk, Frame, Button, Label
-
+import customtkinter
 
 
 class HomePage:
@@ -21,12 +21,12 @@ class HomePage:
         width = int(tools.screen_width*0.8)
         height = int(tools.screen_height*0.8)
         
-        self.home_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        self.home_frame = customtkinter.CTkFrame(master, width=width, height=height)
         master.add(self.home_frame)
         
         
-        page_title = Label(self.home_frame, text="Home Page", font=("Helvetica", 30), bg=tools.pallete["gray"])
-        page_title.pack()
+        page_title = customtkinter.CTkLabel(self.home_frame, text="Home Page", text_font=("Helvetica", 30))
+        page_title.pack(pady=15)
 
         welcoming_message = "Welcome to Math Kit!\n"
         
@@ -51,22 +51,22 @@ class HomePage:
         
         """
         
-        self.welcoming_message = Label(self.home_frame, text=welcoming_message, font=("Berlin Sans FB", 18), 
-        bg=tools.pallete["gray"], justify="center")
+        self.welcoming_message = customtkinter.CTkLabel(self.home_frame, text=welcoming_message, 
+                                                        text_font=("Berlin Sans FB", 18), justify="center")
 
         self.welcoming_message.pack()
 
-        self.info = Label(self.home_frame, text=info, font=("Berlin Sans FB", 15), bg=tools.pallete["gray"], 
-                          justify="left")
+        self.info = customtkinter.CTkLabel(self.home_frame, text=info, text_font=("Berlin Sans FB", 15),
+                                           justify="left")
         self.info.pack()
 
-        self.guide_starting_message = Label(self.home_frame, text=guide_starting_message, font=("Berlin Sans FB", 18),
-                                            bg=tools.pallete["gray"], justify="center")  
+        self.guide_starting_message = customtkinter.CTkLabel(self.home_frame, text=guide_starting_message, 
+                                    text_font=("Berlin Sans FB", 18), justify="center")  
 
         self.guide_starting_message.pack()
         
-        self.guide = Label(self.home_frame, text=guide, font=("Berlin Sans FB", 15), bg=tools.pallete["gray"]
-                           , justify="left")
+        self.guide = customtkinter.CTkLabel(self.home_frame, text=guide, text_font=("Berlin Sans FB", 15), 
+                                            justify="left")
         self.guide.pack()
 
         
