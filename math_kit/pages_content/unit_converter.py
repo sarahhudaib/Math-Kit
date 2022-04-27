@@ -1,4 +1,4 @@
-from tkinter import Label, Tk, StringVar, Entry, Button, Frame, ttk, DoubleVar, messagebox
+from tkinter import Label, Tk, StringVar, Entry, Button, LabelFrame, ttk, DoubleVar, messagebox
 from PIL import Image, ImageDraw, ImageFilter, ImageTk
 import customtkinter
 
@@ -92,7 +92,7 @@ class UnitConverterPage:
         width = int(tools.screen_width*0.8)
         height = int(tools.screen_height*0.8)
         
-        self.unit_converter_frame = customtkinter.CTkFrame(master, width=width, height=height, bg=tools.pallete["gray"])
+        self.unit_converter_frame = customtkinter.CTkFrame(master, width=width, height=height)
         master.add(self.unit_converter_frame)
         
         headline = """Converting units has never been easier!
@@ -102,7 +102,7 @@ class UnitConverterPage:
                            text_font=("Berlin Sans FB", int(tools.screen_width*0.02)))
         self.title.pack(pady=int(tools.screen_height*0.02))
         
-        self.container = Frame(self.unit_converter_frame, width=width, height=height, bg="#2e2e2e")
+        self.container = LabelFrame(self.unit_converter_frame, width=width, height=height, bg=tools.pallete["dark mode"])
         self.container.pack(ipadx=10, ipady=10)
         
 
@@ -111,9 +111,9 @@ class UnitConverterPage:
         
         self.quantity_variable = StringVar()
 
-        self.quantity_box = ttk.Combobox(self.container, textvariable=self.quantity_variable, font= ("Helvetica", 15),
-                                         state="readonly", values=tuple([x.capitalize() for x in UCdict.keys()]),
-                                         width=int(tools.screen_width*0.02))
+        self.quantity_box = ttk.Combobox(self.container, textvariable=self.quantity_variable, 
+                                         font= ("Helvetica", 15), state="readonly", 
+                                         values=tuple([x.capitalize() for x in UCdict.keys()]))
         self.quantity_box.bind("<<ComboboxSelected>>", self._AvailableUnits)
 
         self.convert_label = customtkinter.CTkLabel(self.container, text="Convert this value:", 

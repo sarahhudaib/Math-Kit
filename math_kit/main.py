@@ -6,6 +6,7 @@ from playsound import playsound
 import threading
 import customtkinter
 
+
 class Tools:
     """
     This class represents the main window of the application.  It contain the following:
@@ -22,7 +23,8 @@ class Tools:
             "gray": "#D3D8DE",
             "pink": "#D96794",
             "purple": "#9E3161",
-            "white": "#FFFFFF"}
+            "white": "#FFFFFF",
+            "dark mode": "#2e2e2e"}
         
         self.screen_width = 0
         self.screen_height = 0
