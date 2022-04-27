@@ -62,7 +62,8 @@ class Plotter():
             self.x_list_box.current(0)
             self.y_list_box.current(1)
             
-            self.csv_list = list(csv_reader)     
+            self.csv_list = list(csv_reader)  
+              
 
    
     def _GraphLabelFrame(self):
@@ -352,8 +353,13 @@ class Plotter():
             plt.title(self.title_label.get())
             plt.xlabel(self.x_label.get())
             plt.ylabel(self.y_label.get())
+
             
-           
+            if (upper_limit-lower_limit)>len(x_list):
+                
+                messagebox.showerror("Out of range !", "Requested range larger then dataset size.")
+                return
+
            
 
             
@@ -373,13 +379,13 @@ class Plotter():
 
             plt.legend()
             plt.grid(True)
-            
-            try:
-                plt.xticks(x_list[0:int(tick_end):step],rotation=45)
-                plt.yticks(y_list[0:int(tick_end):step],rotation=0)
-            except:
-                messagebox.showerror("Invalid input !!!", "Defference between the start and end must be relatively high.")
-                return 
+            if (upper_limit-lower_limit ) >20:
+                try:
+                    plt.xticks(x_list[0:int(tick_end):step],rotation=45)
+                    plt.yticks(y_list[0:int(tick_end):step],rotation=0)
+                except:
+                    messagebox.showerror("Invalid input !!!", "Defference between the start and end must be relatively high.")
+                    return 
             
                         
             plt.savefig("../math_kit/assets/plots/plot.png")
