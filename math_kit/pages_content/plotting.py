@@ -8,6 +8,8 @@ from tkinter import Frame, Label
 import threading
 import os
 import shutil
+import customtkinter
+
 
 class Plotter():
    
@@ -30,16 +32,16 @@ class Plotter():
         self.entry_text_color = tools.pallete["white"]
         self.text_color = "black"
         
-        self.plotter_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        self.plotter_frame = customtkinter.CTkFrame(master, width=width, height=height)
         master.add(self.plotter_frame)
         
         headline = """Graph your data easily !"""
         
-        self.title = Label(self.plotter_frame, text=headline, justify="center", bg=tools.pallete["gray"], 
-                           fg=tools.pallete["purple"], font=("Berlin Sans FB", int(tools.screen_width*0.02)))
+        self.title = customtkinter.CTkLabel(self.plotter_frame, text=headline, justify="center", 
+                           text_font=("Berlin Sans FB", int(tools.screen_width*0.02)))
         self.title.pack(pady=int(tools.screen_height*0.02))
         
-        self.container = Frame(self.plotter_frame, width=width, bg=tools.pallete["gray"])
+        self.container = Frame(self.plotter_frame, width=width, bg=tools.pallete["dark mode"])
         self.container.pack()
         
         self._GraphLabelFrame()
@@ -67,78 +69,77 @@ class Plotter():
    
     def _GraphLabelFrame(self):
         
-        self.graph_frame = LabelFrame(self.container, bg=self.tools.pallete["gray"], text="Graph")
+        self.graph_frame = LabelFrame(self.container, bg=self.tools.pallete["dark mode"], 
+                                      text="Graph", fg="white")
         self.graph_frame.grid(row=0, column=1, rowspan=4, sticky="nsew", padx=5, pady=5)
         
         self.graph_image_size = int(self.tools.screen_width*0.26)
         self.graph_icon = Image.open(r"../math_kit/assets/icons/splash.png")
         self.graph_icon = self.graph_icon.resize((self.graph_image_size, self.graph_image_size))
         self.graph_icon_img = ImageTk.PhotoImage(self.graph_icon)
-        self.graph_img_label = Label(self.graph_frame, image=self.graph_icon_img, bg=self.tools.pallete["white"])
+        self.graph_img_label = customtkinter.CTkLabel(self.graph_frame, image=self.graph_icon_img)
         self.graph_img_label.image = self.graph_icon_img
         
-        self.delete_graph_button = Button(self.graph_frame, text="Clear", font=("Helvetica", 10, "bold"), 
-                    bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                    activebackground=self.tools.pallete["purple"], cursor="hand2", 
-                    command=lambda: self._DeleteGraph())
+        self.delete_graph_button = customtkinter.CTkButton(self.graph_frame, text="Clear", 
+                    text_font=("Helvetica", 10, "bold"), cursor="hand2", command=lambda: self._DeleteGraph())
         
-        self.save_graph_button = Button(self.graph_frame, text="Save", font=("Helvetica", 10, "bold"), 
-                    bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                    activebackground=self.tools.pallete["purple"], cursor="hand2", 
-                    command=lambda: self._SaveGraph())
+        self.save_graph_button = customtkinter.CTkButton(self.graph_frame, text="Save", 
+                    text_font=("Helvetica", 10, "bold"), cursor="hand2", command=lambda: self._SaveGraph())
         
         
         self.graph_img_label.grid(row=0, column=0, columnspan=2, sticky="nsew", padx=10, pady=10)
         self.delete_graph_button.grid(row=1, column=0, sticky="ew", padx=10, pady=2)
         self.save_graph_button.grid(row=1, column=1, sticky="ew", padx=10, pady=2)
         
-  
+
     def _PreparingDataLabelFrame(self):
         
-        self.preparing_data_frame = LabelFrame(self.container, bg=self.tools.pallete["gray"], text="Preparing Data")
+        self.preparing_data_frame = LabelFrame(self.container, bg=self.tools.pallete["dark mode"], 
+                                               text="Preparing Data", fg="white")
         self.preparing_data_frame.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
         
-        self.import_button = Button(self.preparing_data_frame, text="Import CSV", font=("Helvetica", 18, "bold"), 
-                                      bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                                      activebackground=self.tools.pallete["purple"], cursor="hand2",
-                                      command=lambda: self._ImportCSV())
+        self.import_button = customtkinter.CTkButton(self.preparing_data_frame, text="Import CSV", 
+                        text_font=("Helvetica", 18, "bold"), cursor="hand2",  
+                        command=lambda: self._ImportCSV(), hover_color=self.tools.pallete["purple"])
         
         self.x_label_variable = StringVar()
-        self.x_label =  Entry(self.preparing_data_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.x_label_variable)        
+        self.x_label =  customtkinter.CTkEntry(self.preparing_data_frame, text_font=("Helvetica", 18), 
+                                        width=130, textvariable=self.x_label_variable)        
         self.x_label_variable.set("X-Label")
         
         self.y_label_variable = StringVar()
-        self.y_label =  Entry(self.preparing_data_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.y_label_variable)        
+        self.y_label =  customtkinter.CTkEntry(self.preparing_data_frame, text_font=("Helvetica", 18), 
+                                               width=130, textvariable=self.y_label_variable)        
         self.y_label_variable.set("Y-Label")
         
         self.title_label_variable = StringVar()
-        self.title_label =  Entry(self.preparing_data_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.title_label_variable)        
+        self.title_label =  customtkinter.CTkEntry(self.preparing_data_frame, text_font=("Helvetica", 18),
+                                            width=130, textvariable=self.title_label_variable)        
         self.title_label_variable.set("Title")
                 
         self.line_label_variable = StringVar()
-        self.line_label =  Entry(self.preparing_data_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.line_label_variable)        
+        self.line_label =  customtkinter.CTkEntry(self.preparing_data_frame, text_font=("Helvetica", 18), 
+                                        width=130, textvariable=self.line_label_variable)        
         self.line_label_variable.set("Graph")
         
         
-        self.lower_limit_label = Label(self.preparing_data_frame, text="Lower:", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
-        
+        self.lower_limit_label = customtkinter.CTkLabel(self.preparing_data_frame, text="Lower:", 
+                                        text_font=("Helvetica", 18), bg=self.box_background_color, 
+                                    fg=self.text_color)
+                                    
         self.lower_limit_variable = StringVar()
-        self.lower_limit_entry =  Entry(self.preparing_data_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.lower_limit_variable)        
-        self.lower_limit_variable.set("0")
+        self.lower_limit_entry = customtkinter.CTkEntry(self.preparing_data_frame, text_font=("Helvetica", 18), 
+                                        width=130, textvariable=self.lower_limit_variable)        
+        self.lower_limit_variable.set("100")
         
-        self.upper_limit_label = Label(self.preparing_data_frame, text="Upper:", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        self.upper_limit_label = customtkinter.CTkLabel(self.preparing_data_frame, text="Upper:", 
+                                    text_font=("Helvetica", 18), bg=self.box_background_color, 
+                                    fg=self.text_color)
                 
         self.upper_limit_variable = StringVar()
-        self.upper_limit_entry =  Entry(self.preparing_data_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.upper_limit_variable)        
-        self.upper_limit_variable.set("200")
+        self.upper_limit_entry = customtkinter.CTkEntry(self.preparing_data_frame, text_font=("Helvetica", 18), 
+                                        width=130, textvariable=self.upper_limit_variable)        
+        self.upper_limit_variable.set("150")
 
         
         self.import_button.grid(row=0, column=0, columnspan=4, sticky="ew")
@@ -159,17 +160,18 @@ class Plotter():
         
     def _LineBarPlotLabelFrame(self):
         
-        self.line_plot_frame = LabelFrame(self.container, bg=self.tools.pallete["gray"], text="Line Plot")
+        self.line_plot_frame = LabelFrame(self.container, bg=self.tools.pallete["dark mode"], 
+                                          text="Line Plot", fg="white")
         self.line_plot_frame.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
         
-        self.x_list_label = Label(self.line_plot_frame, text="X-List: ", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        self.x_list_label = customtkinter.CTkLabel(self.line_plot_frame, text="X-List: ", 
+                            text_font=("Helvetica", 18))
         
-        self.y_list_label = Label(self.line_plot_frame, text="Y-List: ", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        self.y_list_label = customtkinter.CTkLabel(self.line_plot_frame, text="Y-List: ", 
+                                                   text_font=("Helvetica", 18))
         
-        self.line_bar_label = Label(self.line_plot_frame, text="Line/Bar: ", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        self.line_bar_label = customtkinter.CTkLabel(self.line_plot_frame, text="Line/Bar: ", 
+                                                text_font=("Helvetica", 18))
                 
         self.x_list_variable = StringVar()
         self.x_list_box = Combobox(self.line_plot_frame, textvariable=self.x_list_variable, state="readonly",
@@ -184,10 +186,9 @@ class Plotter():
                                     font= ("Helvetica", 15), values=["Line Plot", "Bar Plot"])
         self.line_bar_box.set("Line Plot")
         
-        self.line_plot_button = Button(self.line_plot_frame, text="Plot", font=("Helvetica", 15, "bold"), 
-                    bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                    activebackground=self.tools.pallete["purple"], cursor="hand2", 
-                    command=lambda: self._LineBarPlotter())
+        self.line_plot_button = customtkinter.CTkButton(self.line_plot_frame, text="Plot", 
+                                text_font=("Helvetica", 15, "bold"), cursor="hand2", 
+                    command=lambda: self._LineBarPlotter(), hover_color=self.tools.pallete["purple"])
         
         
         self.x_list_label.grid(row=0, column=0)        
@@ -199,61 +200,63 @@ class Plotter():
         self.line_bar_label.grid(row=2, column=0)
         self.line_bar_box.grid(row=2, column=1)
                 
-        self.line_plot_button.grid(row=0, column=2, rowspan=3, sticky="nsew")
+        self.line_plot_button.grid(row=0, column=2, rowspan=3, sticky="w")
         
         for child in self.line_plot_frame.winfo_children():
             child.grid_configure(padx=5, pady=5) 
 
-        
+        self.line_plot_button.grid_configure(padx=35)
+
+ 
     def _PolyPlotLabelFrame(self):
         
-        self.poly_plot_frame = LabelFrame(self.container, bg=self.tools.pallete["gray"], text="Polynomial Plot")
+        self.poly_plot_frame = LabelFrame(self.container, bg=self.tools.pallete["dark mode"], 
+                                          text="Polynomial Plot", fg="white")
         self.poly_plot_frame.grid(row=2, column=0, sticky="nsew", padx=5, pady=5)
         
         self.poly_variable = StringVar()
-        self.poly_entry =  Entry(self.poly_plot_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, textvariable=self.poly_variable)        
+        self.poly_entry =  customtkinter.CTkEntry(self.poly_plot_frame, text_font=("Helvetica", 18), 
+                                        textvariable=self.poly_variable, width=110)        
         # self.poly_variable.set("Coeficients")
-        self.poly_variable.set("2 5 2")
+        self.poly_variable.set("2 5 20")
         
         info_image_size = int(self.tools.screen_width*0.02)
         self.info_icon = Image.open(r"../math_kit/assets/icons/info.png")
         self.info_icon = self.info_icon.resize((info_image_size, info_image_size))
         self.info_icon_img = ImageTk.PhotoImage(self.info_icon)
-        self.info_img_button = Button(self.poly_plot_frame, image=self.info_icon_img, 
-                                      bg=self.tools.pallete["blue"], bd=1, cursor="hand2", 
-                               activebackground=self.tools.pallete["purple"], 
-                               command=lambda: self._InfoIcon())
+        self.info_img_button = customtkinter.CTkButton(self.poly_plot_frame, image=self.info_icon_img, 
+                                cursor="hand2", command=lambda: self._InfoIcon(), text="",
+                                hover_color=self.tools.pallete["purple"], width=info_image_size, 
+                                height=info_image_size)
         self.info_img_button.image = self.info_icon_img
         
         
         self.x_start_variable = StringVar()
-        self.x_start = Entry(self.poly_plot_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.x_start_variable)        
+        self.x_start = customtkinter.CTkEntry(self.poly_plot_frame, text_font=("Helvetica", 18),
+                                    width=110, textvariable=self.x_start_variable)        
         # self.x_start_variable.set("X-start")
-        self.x_start_variable.set("0")
+        self.x_start_variable.set("-200")
         
         self.x_step_variable = StringVar()
-        self.x_step = Entry(self.poly_plot_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.x_step_variable)        
+        self.x_step = customtkinter.CTkEntry(self.poly_plot_frame, text_font=("Helvetica", 18), 
+                                    width=110, textvariable=self.x_step_variable)        
         # self.x_step_variable.set("X-step")
         self.x_step_variable.set("1")
         
         self.x_end_variable = StringVar()
-        self.x_end = Entry(self.poly_plot_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=7, textvariable=self.x_end_variable)        
+        self.x_end = customtkinter.CTkEntry(self.poly_plot_frame, text_font=("Helvetica", 18), 
+                                    width=110, textvariable=self.x_end_variable)        
         # self.x_end_variable.set("X-end")
         self.x_end_variable.set("200")
         
-        self.poly_plot_button = Button(self.poly_plot_frame, text="Plot", font=("Helvetica", 15, "bold"), 
-                    bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                    activebackground=self.tools.pallete["purple"], cursor="hand2", 
-                    command=lambda: self._PolyPlotter())
+        self.poly_plot_button = customtkinter.CTkButton(self.poly_plot_frame, text="Plot", 
+                    text_font=("Helvetica", 15, "bold"), cursor="hand2", 
+                    command=lambda: self._PolyPlotter(), hover_color=self.tools.pallete["purple"])
 
 
         self.poly_entry.grid(row=0, column=0, columnspan=3, sticky="ew")
         self.info_img_button.grid(row=0, column=3)
-        self.poly_plot_button.grid(row=0, column=4, rowspan=2, sticky="nsew")
+        self.poly_plot_button.grid(row=0, column=4, rowspan=2, sticky="w")
 
         self.x_start.grid(row=1, column=0)
         self.x_step.grid(row=1, column=1)        
@@ -264,7 +267,7 @@ class Plotter():
     
     
     def _InfoIcon(self):
-        self.explaination = """We have to enter coefficients of polynomial in the following form: \n4, 3, -2, 10
+        self.explaination = """We have to enter coefficients of polynomial in the following form: \n4 3 -2 10
         that means:  4x^3 + 3x^2 - 2x + 10"""
         
         messagebox.showinfo("How to insert polynomial's coefficients", self.explaination)
