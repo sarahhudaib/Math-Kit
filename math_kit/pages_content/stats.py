@@ -1,4 +1,4 @@
-from tkinter import Frame, Label, LabelFrame, StringVar, messagebox
+from tkinter import Frame, Label, LabelFrame, StringVar, messagebox, filedialog
 from tkinter.ttk import Combobox
 import csv
 import statistics  
@@ -94,9 +94,13 @@ class StatsPage:
             
     def _ImportCSV(self):
         
-        path = r"../math_kit/assets/csv/gold.csv"
+        filename = filedialog.askopenfilename(
+            initialdir=r"C:", 
+            title="Select a CSV file", 
+            filetypes=(("CSV", "*.csv"), ("All", "*.*"))
+        )
         
-        with open(path,"r") as csv_file:
+        with open(filename,"r") as csv_file:
             csv_reader = csv.DictReader(csv_file)
             
             self.columns_labels = list(next(csv_reader))
