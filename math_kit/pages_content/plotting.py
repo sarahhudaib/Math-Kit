@@ -1,4 +1,5 @@
 from tkinter import Frame, LabelFrame, Button, Label, messagebox, Entry, StringVar, filedialog
+# import tkFileDialog
 from tkinter.ttk import Combobox
 from PIL import Image, ImageTk
 import numpy as np
@@ -52,9 +53,13 @@ class Plotter():
  
     def _ImportCSV(self):
         
-        path = r"../math_kit/assets/csv/gold.csv"
+        filename = filedialog.askopenfilename(
+            initialdir=r"C:", 
+            title="Select a CSV file", 
+            filetypes=(("CSV", "*.csv"), ("All", "*.*"))
+        )
         
-        with open(path,"r") as csv_file:
+        with open(filename,"r") as csv_file:
             csv_reader = csv.DictReader(csv_file)
             
             self.columns_labels = list(next(csv_reader))
@@ -285,10 +290,18 @@ class Plotter():
         
     def _SaveGraph(self):
         
-        mydir = filedialog.askdirectory()
+        filename = filedialog.asksaveasfile(
+            mode='w', 
+            defaultextension=".png",
+            initialdir=r"C:", 
+            title="Select a directory and name the image")
+            
+        if filename is None:
+            messagebox.showerror("Error", "Couldn't save the file !!")
+            return
         
         try:
-            shutil.copy(r"../math_kit/assets/plots/plot.png", mydir) 
+            shutil.copy(r"../math_kit/assets/plots/plot.png", filename.name) 
         except:
             messagebox.showerror("Error", "Couldn't save the file !!")
         
