@@ -41,9 +41,8 @@ The provided features by the Math Kit are:
 
     - ***Plotter:*** This workspace allows the user to plot the graph of either:
         ```
-        1. An entered list.
-        2. An entered polynomial equation
-        3. Or a data set from a csv file.
+        1. An entered polynomial equation.
+        2. Or a data set from a csv file.
         ```    
         using the [**matplotlib**](https://matplotlib.org/) library, and the [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python.
     
@@ -58,17 +57,25 @@ The provided features by the Math Kit are:
     <br>
 
 
-    - ***Randomizer:*** This workspace allows gives the user two options:
+    - ***Randomizer:*** This workspace gives the user two options:
         ```
-        1. Generating a random list, while giving the high, low and length of the list.
+        1. Generating a random list, while giving the upper, lower and length of the list.
         2. Creating a random list made up of any data type they choose.
         ```
     <br>
 
-    - ***Statistics:*** This widnow performs mathematical operations relating to a given set or data, such as: mean, median, standard deviation.
-    - ***Calculus:*** This window performs more complex mathematical operations, such as: derivation and integration
-    - ***Numerical:*** This window performs other type of mathematical operations, such as: Newton Raphson Method.
-
+    - ***Statistics:*** This widnow performs mathematical operations relating to a given set or data, such as:
+    ```
+        1. Mean
+        2. Median
+        3. Mode
+        4. Standard Deviation
+    ```   
+    - ***Calculus:*** This window performs more complex mathematical operations, such as:
+    ```
+    1. Derivation
+    2. Integration
+    ```
 For further explanation, please refer to the [**workspace cards**](work_space_cards.md) file, and the section ***Minimum Viable Product*** in the [**requirment**](requirment.md) file.
     
 <br>
@@ -86,7 +93,8 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 ## **Planning of the Project**
 
 **The Project Planning on Replit:** 
-![The Project Planning on Replit](math_kit\assets\planning\planning-of-mathkit-replit.png)
+![The Project Planning on Replit](./math_kit/assets/planning/planning-of-mathkit-replit.png)
+
 
 <br>
 
@@ -100,9 +108,12 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 <br>
 
 
-
 ## **Project Directory Tree**
 ```
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   |    ├── bug_report.md
+│   │    └── feature_request.md
 ├── math_kit
 │   ├── assets
 |   |    |── avatars
@@ -112,7 +123,10 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 │   |    |  └── sara.png
 │   |    |── csv
 │   |    |  ├── data.csv
-│   |    |  └── gold.csv
+│   |    |  ├── gold.csv
+│   |    |  ├── left_result.csv
+│   |    |  ├── right_result.csv
+│   |    |  └── Salary_Data.csv
 │   |    |── icons
 │   |    |  ├── calc.png
 │   |    |  ├── clear.png
@@ -125,6 +139,8 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 │   |    |  ├── random.png
 │   |    |  ├── splash.png
 │   |    |  └── stats.png
+│   |    |── issues
+│   |    |  └── issue.png
 │   |    |── planning
 │   |    |  ├── planning-of-mathkit-replit.png
 │   |    |  └── planning-of-mathkit-trello.png
@@ -134,13 +150,17 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 │   |    |  ├── card_click.wav
 │   |    |  └── navigate_click.wav
 │   |    |── wire_frames
-│   |    |  ├── calculator.PNG
-│   |    |  ├── convertor.PNG
-│   |    |  ├── home_window.PNG
-│   |    |  ├── plotter.PNG
-│   |    |  ├── randomizer.PNG
-│   |    |  ├── teaminfo_window.PNG
-│   |    |  └── workspace_window.PNG
+│   |    |  ├── calculator_version1.PNG
+│   |    |  ├── convertor_version1.PNG
+│   |    |  ├── home_version1.PNG
+│   |    |  ├── home_version2.PNG
+│   |    |  ├── plotter_version1.PNG
+│   |    |  ├── randomizer_version1.PNG
+│   |    |  ├── settings_version2.PNG
+│   |    |  ├── teaminfo_version1.PNG
+│   |    |  ├── teaminfo_version2.PNG
+│   |    |  ├── workspace_version1.PNG
+│   |    |  └── workspace_version2.PNG
 │   ├── pages_content
 │   │    ├── derive_and_integrate.py
 │   │    ├── home.py
@@ -172,6 +192,7 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 |   ├── test_scientific_calc.py
 |   ├── test_statistics.py
 ├── .gitignore
+├── bug_issue_image.md
 ├── CODE_OF_CONDUCT.md
 ├── config.yml
 ├── CONTRIBUTING.md
@@ -228,25 +249,25 @@ In this version, the project was in its initial state, using [**tkinter**](https
 The frameworks for each window in Version 1.0.0, are as follows:
 
 **The Home Window:**
-![The Home Window](math_kit\assets\wire_frames\home_window.PNG)
+![The Home Window](math_kit\assets\wire_frames\home_version1.PNG)
 
 **The Workspace Window:**
-![The Workspace Window](math_kit\assets\wire_frames\workspace_window.PNG)
+![The Workspace Window](math_kit\assets\wire_frames\workspace_version1.PNG)
 
 **The Calculator Window:**
-![The Calculator Window](math_kit\assets\wire_frames\calculator.PNG)
+![The Calculator Window](math_kit\assets\wire_frames\calculator_version1.PNG)
 
 **The Plotter Window:**
-![The Plotter Window](math_kit\assets\wire_frames\plotter.PNG)
+![The Plotter Window](math_kit\assets\wire_frames\plotter_version1.PNG)
 
 **The Convertor Window:**
-![The Convertor Window](math_kit\assets\wire_frames\convertor.PNG)
+![The Convertor Window](math_kit\assets\wire_frames\convertor_version1.PNG)
 
 **The Randomizer Window:**
-![The Randomizer Window](math_kit\assets\wire_frames\randomizer.PNG)
+![The Randomizer Window](math_kit\assets\wire_frames\randomizer_version1.PNG)
 
 **The Team Info Window:**
-![The Team Info Window](math_kit\assets\wire_frames\teaminfo_window.PNG)
+![The Team Info Window](math_kit\assets\wire_frames\teaminfo_version1.PNG)
 
 <br>
 
@@ -255,11 +276,22 @@ The frameworks for each window in Version 1.0.0, are as follows:
 
 In this version, we used [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) on top of [**tkinter**](https://docs.python.org/3/library/tkinter.html) to create the GUI, as we found that this would create a much aesthetically pleasing GUI experience for the user.
 
+Important changes were made to the GUI, such as the addition the option of selecting a theme in the **Settings** window, either:
+```
+1. Dark mode
+2. Light mode
+```
+
+And this new implementation of the theme was tested on a Windows 10 OS system, and it was found to be aesthetically pleasing, especially if the system was set to dark mode when the user chooses the dark mode theme in the settings window, and if it was set to light mode when the user chooses the light mode theme in the settings window.
+
+
 The frameworks for each window in Version 1.0.1, are as follows:
 
 **The Home Window:**
+![The Home Window](math_kit\assets\wire_frames\home_version2.PNG)
 
 **The Workspace Window:**
+![The Workspace Window](math_kit\assets\wire_frames\workspace_version2.PNG)
 
 **The Calculator Window:**
 
@@ -270,6 +302,10 @@ The frameworks for each window in Version 1.0.1, are as follows:
 **The Randomizer Window:**
 
 **The Team Info Window:**
+![The Team Info Window](math_kit\assets\wire_frames\teaminfo_version2.PNG)
+
+**The Settings Window:**
+![The Settings Window](math_kit\assets\wire_frames\settings_version2.PNG)
 
 <br>
 
