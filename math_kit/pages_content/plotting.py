@@ -52,7 +52,7 @@ class Plotter():
  
     def _ImportCSV(self):
         
-        path = r"../math_kit/assets/csv/gold.csv"
+        path = r"../math_kit/assets/csv/Salary_Data.csv"
         
         with open(path,"r") as csv_file:
             csv_reader = csv.DictReader(csv_file)
@@ -64,7 +64,8 @@ class Plotter():
             self.x_list_box.current(0)
             self.y_list_box.current(1)
             
-            self.csv_list = list(csv_reader)     
+            self.csv_list = list(csv_reader)  
+              
 
    
     def _GraphLabelFrame(self):
@@ -356,6 +357,16 @@ class Plotter():
             plt.xlabel(self.x_label.get())
             plt.ylabel(self.y_label.get())
 
+            
+            if (upper_limit-lower_limit)>len(x_list):
+                
+                messagebox.showerror("Out of range !", "Requested range larger then dataset size.")
+                return
+
+           
+
+            
+
             try:
                 # x_list, y_list = x_list[int(lower_limit):int(upper_limit)], y_list[int(lower_limit):int(upper_limit)]
                 x_list, y_list = x_list[lower_limit:upper_limit:], y_list[lower_limit:upper_limit:]
@@ -371,13 +382,14 @@ class Plotter():
 
             plt.legend()
             plt.grid(True)
+            if (upper_limit-lower_limit ) >20:
+                try:
+                    plt.xticks(x_list[0:int(tick_end):step],rotation=45)
+                    plt.yticks(y_list[0:int(tick_end):step],rotation=0)
+                except:
+                    messagebox.showerror("Invalid input !!!", "Defference between the start and end must be relatively high.")
+                    return 
             
-            try:
-                plt.xticks(x_list[0:int(tick_end):step],rotation=90)
-                plt.yticks(y_list[0:int(tick_end):step],rotation=0)
-            except:
-                messagebox.showerror("Invalid input !!!", "Defference between the start and end must be relatively high.")
-                return 
                         
             plt.savefig("../math_kit/assets/plots/plot.png")
 
