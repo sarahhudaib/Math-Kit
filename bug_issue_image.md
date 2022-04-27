@@ -9,4 +9,4 @@
 **labels:** 'Cannont render GUI on Ubuntu' 
 
 
-![issue](math_kit\assets\issues\issue.PNG)
+![issue](./math_kit/assets/issues/issue.PNG)

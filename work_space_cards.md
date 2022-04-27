@@ -29,7 +29,7 @@ Given the options of the calculator, the user can choose to perform the followin
 ### **Calculator Window**
 
 An image of the calculator window:
-![Calculator Window](math_kit\assets\wire_frames\calculator.PNG)
+![Calculator Window](./math_kit/assets/wire_frames/calculator_version2.PNG)
 
 
 <br>
@@ -59,7 +59,7 @@ while providing the user with the option to save the graph as an image, in addit
 ### **Plotter Window**
 
 An image of the plotter window:
-![Plotter Window](math_kit\assets\wire_frames\plotter.PNG)
+![Plotter Window](./math_kit/assets/wire_frames/plotter_version2.PNG)
 
 
 <br>
@@ -93,7 +93,7 @@ It performs unit conversions between a couple of common quantities; length and t
 ### **Convertor Window**
 
 An image of the convertor window:
-![Convertor Window](math_kit\assets\wire_frames\convertor.PNG)
+![Convertor Window](./math_kit/assets/wire_frames/convertor_version2.PNG)
 
 
 <br>
@@ -126,8 +126,52 @@ And both of the above mentioned options have the additional option of saving the
 ### **Randomizer Window**
 
 An image of the randomizer window:
-![Randomizer Window](math_kit\assets\wire_frames\randomizer.PNG)
+![Randomizer Window](./math_kit/assets/wire_frames/randomizer_version2.PNG)
 
+
+<br>
+
+<br>
+
+## **Statistics**
+
+This workspace card was made using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) & [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) libraries for the GUI in Python, and the [**csv**](https://docs.python.org/3/library/csv.html) library in Python.
+
+It offers the user to import a csv file and choose the perferred column to be used, and then to perform the following statistical operations:
+```
+1. Mean
+2. Median
+3. Mode
+4. Standard Deviation
+5. Min
+6. Max
+```
+
+### **Statistics Window**
+
+![Statistics Window](./math_kit/assets/wire_frames/statistics_version2.PNG)
+
+<br>
+
+<br>
+
+
+## **Calculus**
+
+This workspace card was made using the [**tkinter**](https://docs.python.org/3/library/tkinter.html) & [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) libraries for the GUI in Python, the [**random**](https://docs.python.org/3/library/random.html) library in Python and the [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) library in Python.
+
+
+
+It offers the user with the option to enter a polynoimal equation, and then to perform the following operations:
+```
+1. Derive the equation
+2. Integrate the equation
+3. Solve or evaluate the equation
+```
+
+### **Calculus Window**
+
+![Calculas Window](./math_kit/assets/wire_frames/calculus_version2.PNG)
 
 
 
