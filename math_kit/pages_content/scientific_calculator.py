@@ -54,7 +54,8 @@ class ScientificCalculatorPage:
         self.equation = StringVar()
         self.expression_field = customtkinter.CTkEntry(self.container, textvariable=self.equation, 
                                       justify='left', text_font=('courier', 20, 'bold'), 
-                                      bg_color=self.tools.pallete["dark mode"])
+                                      bg_color=self.tools.pallete["dark mode"], state="readonly",
+                                      text_color=self.tools.pallete["dark mode"])
         self.expression_field.grid(row=0, column=0, columnspan=12, sticky='nsew')
         self.expression_field.columnconfigure(0, weight=1)
         
