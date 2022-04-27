@@ -1,9 +1,11 @@
 from tkinter import Frame, Label, Entry, Button, StringVar, LabelFrame, messagebox, Scrollbar, Listbox, IntVar, Checkbutton, END, filedialog
+from turtle import width
 from PIL import Image, ImageTk
 import numpy as np
 import random
 import csv
 import shutil
+import customtkinter
 
 
 class RandomGeneratorPage:
@@ -23,24 +25,23 @@ class RandomGeneratorPage:
         width = int(tools.screen_width*0.8)
         height = int(tools.screen_height*0.8)
         
-        self.randomizer_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        self.randomizer_frame = customtkinter.CTkFrame(master, width=width, height=height)
         master.add(self.randomizer_frame)
         
         headline = """Have you seen a digital random generator before!
         Generate a random numeric list or insert a list of your own"""
         
-        self.title = Label(self.randomizer_frame, text=headline, justify="center",
-                           bg=tools.pallete["gray"], fg=tools.pallete["purple"],
-                           font=("Berlin Sans FB", int(tools.screen_width*0.02)))
+        self.title = customtkinter.CTkLabel(self.randomizer_frame, text=headline, justify="center",
+                          text_font=("Berlin Sans FB", int(tools.screen_width*0.02)))
         self.title.pack(pady=int(tools.screen_height*0.02))
         
-        self.container = Frame(self.randomizer_frame, width=width, bg=tools.pallete["gray"])
+        self.container = Frame(self.randomizer_frame, width=width, bg=tools.pallete["dark mode"])
         self.container.pack()
         
-        self.box_background_color = tools.pallete["gray"]
-        self.entries_color = tools.pallete["dark blue"]
-        self.entry_text_color = tools.pallete["white"]
+        self.box_background_color = tools.pallete["dark mode"]
         self.text_color = "black"
+        self.entries_color = "white"
+        self.entry_text_color = "black"
         
         self._LeftFrame()
         self._RightFrame()
@@ -52,55 +53,55 @@ class RandomGeneratorPage:
                                 height=int(self.tools.screen_height*0.5))
         self.left_frame.grid(row=0, column=0, padx=20, pady=10, sticky="nsew")
 
-        self.left_title = Label(self.left_frame, text="Generate a random list", bg=self.box_background_color,
-                                font=("Berlin Sans FB", int(self.tools.screen_width*0.02)), 
-                                fg=self.text_color)
+        self.left_title = customtkinter.CTkLabel(self.left_frame, text="Generate a random list", 
+                            text_font=("Berlin Sans FB", int(self.tools.screen_width*0.02)))
         
         
-        self.length_of_list_label = Label(self.left_frame, text="Length of list: ", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        self.length_of_list_label = customtkinter.CTkLabel(self.left_frame, text="Length of list: ", 
+                    text_font=("Helvetica", 18))
         
         self.length_of_list_variable = StringVar()
-        self.length_of_list_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=8, textvariable=self.length_of_list_variable)
+        self.length_of_list_entry = customtkinter.CTkEntry(self.left_frame, text_font=("Helvetica", 18), 
+                                         width=140, textvariable=self.length_of_list_variable)
+        self.length_of_list_variable.set("10")
 
-        self.low_label = Label(self.left_frame, text="Lower value:", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        self.low_label = customtkinter.CTkLabel(self.left_frame, text="Lower value:", 
+                        text_font=("Helvetica", 18))
         
         self.low_variable = StringVar()
-        self.low_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=8, textvariable=self.low_variable)
+        self.low_entry = customtkinter.CTkEntry(self.left_frame, text_font=("Helvetica", 18),
+                                        width=140, textvariable=self.low_variable)
+        self.low_variable.set("0")
 
-        self.high_label = Label(self.left_frame, text="Upper value:", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        self.high_label = customtkinter.CTkLabel(self.left_frame, text="Upper value:", text_font=("Helvetica", 18))
         
         self.high_variable = StringVar()
-        self.high_entry = Entry(self.left_frame, font=("Helvetica", 18), bg=self.entries_color,
-                                fg=self.entry_text_color, width=8, textvariable=self.high_variable)
+        self.high_entry = customtkinter.CTkEntry(self.left_frame, text_font=("Helvetica", 18),
+                                            width=140, textvariable=self.high_variable)
+        self.high_variable.set("1000")
 
-        self.generate_button = Button(self.left_frame, text="Generate", font=("Helvetica", 20, "bold"), cursor="hand2",
-                                      bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                                      activebackground=self.tools.pallete["purple"],
-                                      command=lambda: self._GenerateList())
+        self.generate_button = customtkinter.CTkButton(self.left_frame, text="Generate", 
+                            text_font=("Helvetica", 20, "bold"), cursor="hand2",
+                            command=lambda: self._GenerateList(), hover_color=self.tools.pallete["purple"])
 
-        self.csv_left_button = Button(self.left_frame, text="CSV", font=("Helvetica", 15, "bold"), cursor="hand2",
-                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                        activebackground=self.tools.pallete["purple"], command=lambda: self._ExportCSV("left"))
+        self.csv_left_button = customtkinter.CTkButton(self.left_frame, text="CSV", 
+                        text_font=("Helvetica", 15, "bold"), cursor="hand2", width=70,
+                        command=lambda: self._ExportCSV("left"), hover_color=self.tools.pallete["purple"])
 
         clear_fieald_image_size = int(self.tools.screen_width*0.02)
         self.clear_field_icon = Image.open(r"../math_kit/assets/icons/clear.png")
         self.clear_field_icon = self.clear_field_icon.resize((clear_fieald_image_size, clear_fieald_image_size))
         self.clear_field_icon_img = ImageTk.PhotoImage(self.clear_field_icon)
-        self.clear_field_img_button = Button(self.left_frame, image=self.clear_field_icon_img, 
-                                              bg=self.tools.pallete["blue"], bd=1, cursor="hand2", 
-                                              activebackground=self.tools.pallete["purple"], 
-                                            command=lambda: self._ClearFields())
+        self.clear_field_img_button = customtkinter.CTkButton(self.left_frame, image=self.clear_field_icon_img, 
+                            cursor="hand2", command=lambda: self._ClearFields(), text="", 
+                            hover_color=self.tools.pallete["purple"], width=clear_fieald_image_size,
+                            height=clear_fieald_image_size)
         self.clear_field_img_button.image = self.clear_field_icon_img
         
         
         self.result_variable = StringVar()
-        self.result_entry = Entry(self.left_frame, textvariable=self.result_variable,
-                               fg=self.entry_text_color, font=("Helvetica", 18), bg=self.entries_color)
+        self.result_entry = customtkinter.CTkEntry(self.left_frame, textvariable=self.result_variable,
+                               text_font=("Helvetica", 18))
         
         
         self.left_title.grid(row=0, column=0, columnspan=4, sticky="nsew")
@@ -130,59 +131,69 @@ class RandomGeneratorPage:
         self.right_frame = LabelFrame(self.container, bg=self.box_background_color)
         self.right_frame.grid(row=0, column=1, padx=20, pady=10, sticky="nsew")
 
-        self.right_title = Label(self.right_frame, text="Create your own list", bg=self.box_background_color,
-                                font=("Berlin Sans FB", int(self.tools.screen_width*0.02)), fg=self.text_color)
+        self.right_title = customtkinter.CTkLabel(self.right_frame, text="Create your own list", 
+                                text_font=("Berlin Sans FB", int(self.tools.screen_width*0.02)))
 
-        self.add_item_button = Button(self.right_frame, text="Add", font=("Helvetica", 15, "bold"), cursor="hand2",
-                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                        activebackground=self.tools.pallete["purple"], command=lambda: self._AddItem())
+        self.add_item_button = customtkinter.CTkButton(self.right_frame, text="Add", 
+                        text_font=("Helvetica", 15, "bold"), cursor="hand2",
+                        command=lambda: self._AddItem(), hover_color=self.tools.pallete["purple"])
         
         self.add_item_variable = StringVar()
-        self.add_item_entry = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=8, textvariable=self.add_item_variable)
+        self.add_item_entry = customtkinter.CTkEntry(self.right_frame, text_font=("Helvetica", 18),
+                            width=100, textvariable=self.add_item_variable)
+        self.add_item_variable.set("red ball")
         
-        self.x_times_label = Label(self.right_frame, text="x", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        self.x_times_label = customtkinter.CTkLabel(self.right_frame, text="x", text_font=("Helvetica", 18),
+                                                    width=5)
 
         self.x_times_variable = StringVar()        
-        self.x_times_entry = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=4, textvariable=self.x_times_variable)
+        self.x_times_entry = customtkinter.CTkEntry(self.right_frame, text_font=("Helvetica", 18), 
+                                    width=50, textvariable=self.x_times_variable)
         self.x_times_variable.set("1")
         
-        
 
-        self.delete_item_button = Button(self.right_frame, text="Delete", font=("Helvetica", 15, "bold"), cursor="hand2",
-                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                        activebackground=self.tools.pallete["purple"], command=lambda: self._DeleteItem())
+        self.delete_item_button = customtkinter.CTkButton(self.right_frame, text="Delete", 
+                    text_font=("Helvetica", 15, "bold"), cursor="hand2", width=100,
+                    command=lambda: self._DeleteItem(), hover_color=self.tools.pallete["purple"])
 
-        self.clear_item_button = Button(self.right_frame, text="Clear", font=("Helvetica", 15, "bold"), cursor="hand2",
-                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                        activebackground=self.tools.pallete["purple"], command=lambda: self._ClearItems())
+        self.clear_item_button = customtkinter.CTkButton(self.right_frame, text="Clear", 
+                    text_font=("Helvetica", 15, "bold"), cursor="hand2", width=100,
+                    command=lambda: self._ClearItems(), hover_color=self.tools.pallete["purple"])
         
-        self.number_label = Label(self.right_frame, text="#Samples:", font=("Helvetica", 18),
-                                          bg=self.box_background_color, fg=self.text_color)
+        clear_field_2_image_size = int(self.tools.screen_width*0.02)
+        self.clear_field_2_icon = Image.open(r"../math_kit/assets/icons/clear.png")
+        self.clear_field_2_icon = self.clear_field_2_icon.resize((clear_field_2_image_size, clear_field_2_image_size))
+        self.clear_field_2_icon_img = ImageTk.PhotoImage(self.clear_field_2_icon)
+        self.clear_field_2_img_button = customtkinter.CTkButton(self.right_frame, image=self.clear_field_2_icon_img, 
+                            cursor="hand2", command=lambda: self._ClearFields2(), text="", 
+                            hover_color=self.tools.pallete["purple"], width=clear_field_2_image_size,
+                            height=clear_field_2_image_size)
+        self.clear_field_2_img_button.image = self.clear_field_2_icon_img
+                
+        
+        self.number_label = customtkinter.CTkLabel(self.right_frame, text="#Samples:", 
+                                                   text_font=("Helvetica", 18))
         
         self.picked_number_variable = StringVar()        
-        self.picked_number = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, width=4, textvariable=self.picked_number_variable)
-        self.picked_number_variable.set("1")
+        self.picked_number = customtkinter.CTkEntry(self.right_frame, text_font=("Helvetica", 18), 
+                                        width=100, textvariable=self.picked_number_variable)
+        self.picked_number_variable.set("3")
         
         self.unique_variable = IntVar()
-        self.unique_checkbox = Checkbutton(self.right_frame, text="Unique", variable=self.unique_variable,
-                                           cursor="hand2", bg=self.tools.pallete["gray"], fg=self.text_color, 
-                                           font=("Helvetica", 14))
+        self.unique_checkbox = customtkinter.CTkCheckBox(self.right_frame, text="Unique", 
+                    variable=self.unique_variable, cursor="hand2", text_font=("Helvetica", 14))
         
-        self.csv_right_button = Button(self.right_frame, text="CSV", font=("Helvetica", 15, "bold"), cursor="hand2",
-                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                        activebackground=self.tools.pallete["purple"], command=lambda: self._ExportCSV("right"))
+        self.csv_right_button = customtkinter.CTkButton(self.right_frame, text="CSV", 
+                        text_font=("Helvetica", 15, "bold"), cursor="hand2",
+                         command=lambda: self._ExportCSV("right"), hover_color=self.tools.pallete["purple"])
         
-        self.pick_item_button = Button(self.right_frame, text="Pick", font=("Helvetica", 15, "bold"), cursor="hand2",
-                        bg=self.tools.pallete["blue"], fg=self.tools.pallete["white"],
-                        activebackground=self.tools.pallete["purple"], command=lambda: self._PickItem())
+        self.pick_item_button = customtkinter.CTkButton(self.right_frame, text="Pick", 
+                        text_font=("Helvetica", 15, "bold"), cursor="hand2",
+                        command=lambda: self._PickItem(), hover_color=self.tools.pallete["purple"])
         
         self.picked_result_variable = StringVar()
-        self.picked_result_entry = Entry(self.right_frame, font=("Helvetica", 18), bg=self.entries_color,
-                               fg=self.entry_text_color, textvariable=self.picked_result_variable)
+        self.picked_result_entry = customtkinter.CTkEntry(self.right_frame, text_font=("Helvetica", 18), 
+                        textvariable=self.picked_result_variable)
         
         self.items_box = Scrollbar(self.right_frame, width=int(self.tools.screen_width*0.02))
         self.items_list = Listbox(self.right_frame, yscrollcommand=self.items_box.set)
@@ -192,23 +203,24 @@ class RandomGeneratorPage:
         self.right_title.grid(row=0, column=0, columnspan=5, sticky="nsew")
         
         self.add_item_button.grid(row=1, column=0, sticky="ew")
-        self.add_item_entry.grid(row=1, column=1, sticky="ew")
+        self.add_item_entry.grid(row=1, column=1)
         self.x_times_label.grid(row=1, column=2, sticky="ew")
-        self.x_times_entry.grid(row=1, column=3, sticky="ew")
+        self.x_times_entry.grid(row=1, column=3, sticky="w")
         
-        self.items_box.grid(row=1, column=4, rowspan=5, sticky="nsew")
-        self.items_list.grid(row=1, column=4, rowspan=5, sticky="nsew")
+        self.items_box.grid(row=1, column=4, rowspan=7, sticky="nsew")
+        self.items_list.grid(row=1, column=4, rowspan=7, sticky="nsew")
         
-        self.delete_item_button.grid(row=2, column=0, columnspan=2, sticky="ew")
-        self.clear_item_button.grid(row=2, column=2, columnspan=2, sticky="ew")
+        self.delete_item_button.grid(row=2, column=0, sticky="ew")
+        self.clear_item_button.grid(row=2, column=1, sticky="ew")
+        self.clear_field_2_img_button.grid(row=2, column=3, columnspan=1, sticky="e")
         
         self.number_label.grid(row=3, column=0)
         self.picked_number.grid(row=3, column=1)
-        self.unique_checkbox.grid(row=3, column=2, columnspan=2)
+        self.unique_checkbox.grid(row=3, column=2, columnspan=2, sticky="e")
         
-        self.pick_item_button.grid(row=4, column=0, columnspan=3, sticky="ew")
-        self.csv_right_button.grid(row=4, column=3)
-        self.picked_result_entry.grid(row=5, column=0, columnspan=4, sticky="ew")
+        self.pick_item_button.grid(row=4, column=0, columnspan=2, sticky="ew")
+        self.csv_right_button.grid(row=4, column=2, columnspan=2)
+        self.picked_result_entry.grid(row=7, column=0, columnspan=4, sticky="ew")
         
 
         
@@ -295,8 +307,7 @@ class RandomGeneratorPage:
                 write = csv.writer(f)
                 write.writerow(result)
                 # write.writerows(rows)
-
-            
+      
     def _ExportCSV(self, entry):
         
         mydir = filedialog.askdirectory()
@@ -314,7 +325,6 @@ class RandomGeneratorPage:
                 messagebox.showerror("Error", "Couldn't save the file !!")
             
     
-    
     def _CopyRandomList(self):
         """" Function to copy the random list to the clipboard """
         self.clipboard_clear()
@@ -325,7 +335,14 @@ class RandomGeneratorPage:
         self.length_of_list_variable.set("")
         self.low_variable.set("")
         self.high_variable.set("")
+        self.result_variable.set("")
         
+    
+    def _ClearFields2(self):
+        self.add_item_variable.set("")
+        self.x_times_variable.set("")
+        self.picked_number_variable.set("")
+        self.picked_result_variable.set("")
         
 
 

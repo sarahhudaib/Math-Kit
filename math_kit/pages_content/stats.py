@@ -1,7 +1,8 @@
-from tkinter import Frame, Label
+from tkinter import Frame, Label, LabelFrame, StringVar, messagebox
+from tkinter.ttk import Combobox
 import csv
 import statistics  
-
+import customtkinter
 
 
 class StatsPage:
@@ -10,179 +11,143 @@ class StatsPage:
     def __init__(self, master, tools):
     
         self.tools = tools
+        self.csv_list = []
+        self.columns_labels = []
+        self.methods = ["Mean", "Median", "Mode", "STD", "Min", "Max"]
         
         width = int(tools.screen_width*0.8)
         height = int(tools.screen_height*0.8)
         
-        self.stats_frame = Frame(master, width=width, height=height, bg=tools.pallete["gray"])
+        self.stats_frame = customtkinter.CTkFrame(master, width=width, height=height)
         master.add(self.stats_frame)
         
-
-
-
-
-
-
-    
-    @staticmethod    
-    def standard_deviation_csv(path,attr):
-        """
-        this function takes the path of a csv file and the column name 
-        returns stadard deviation 
-        """
-              
-        with open(path,"r") as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            row=next(csv_reader)
-            csv_list=list(csv_reader)
+        headline = """Get statistics about your data !"""
+        
+        self.title = customtkinter.CTkLabel(self.stats_frame, text=headline, justify="center", 
+                           text_font=("Berlin Sans FB", int(tools.screen_width*0.02)))
+        self.title.pack(pady=int(tools.screen_height*0.02))
+        
+        self.container = Frame(self.stats_frame, width=width, bg=tools.pallete["dark mode"])
+        self.container.pack()
+        
+        self._PreparingDataLabelFrame()
+        self._StatsLabelFrame()
         
 
-        print(row)
+    def _PreparingDataLabelFrame(self):
         
-        col_list=[]
+        self.preparing_data_frame = LabelFrame(self.container, bg=self.tools.pallete["dark mode"], 
+                                               text="Preparing Data", fg="white")
+        self.preparing_data_frame.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
         
+        self.import_button = customtkinter.CTkButton(self.preparing_data_frame, text="Import CSV", 
+                        text_font=("Helvetica", 18, "bold"), cursor="hand2",  
+                        command=lambda: self._ImportCSV(), hover_color=self.tools.pallete["purple"])
         
+        self.select_label = customtkinter.CTkLabel(self.preparing_data_frame, text="Select the coluumn:", 
+                                        text_font=("Helvetica", 18))
 
-        for row in csv_list:
-           col_list.append(float(row[attr]))
+        self.list_variable = StringVar()
+        self.list_box = Combobox(self.preparing_data_frame, textvariable=self.list_variable, state="readonly",
+                                    font= ("Helvetica", 15))
         
-        return statistics.stdev(col_list)
+        self.import_button.grid(row=0, column=0, columnspan=2, sticky="ew")
+        
+        self.select_label.grid(row=1, column=0, sticky="ew")
+        self.list_box.grid(row=1, column=1, sticky="ew")        
+        
+        
+        for child in self.preparing_data_frame.winfo_children():
+            child.grid_configure(padx=15, pady=15) 
+            
 
+    def _StatsLabelFrame(self):
+        
+        self.stats_frame = LabelFrame(self.container, bg=self.tools.pallete["dark mode"], 
+                                               text="Applying Statistics", fg="white")
+        self.stats_frame.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
+        
+        self.select_method_label = customtkinter.CTkLabel(self.stats_frame, text="Select the method:", 
+                                        text_font=("Helvetica", 18))
 
-    @staticmethod    
-    def mean_csv(path,attr):
-        """
-        this function takes the path of a csv file and the column name 
-        returns stadard mean for the data set
-        """
+        self.methods_list_variable = StringVar()
+        self.methods_list_box = Combobox(self.stats_frame, textvariable=self.methods_list_variable, 
+                                         state="readonly", font= ("Helvetica", 15), values=self.methods)
+        self.methods_list_box.current(0)
+        
+        self.apply_stats_button = customtkinter.CTkButton(self.stats_frame, text="Apply", 
+                        text_font=("Helvetica", 18, "bold"), cursor="hand2",  
+                        command=lambda: self._ApplyStats(), hover_color=self.tools.pallete["purple"])
                 
-        with open(path,"r") as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            row=next(csv_reader)
-            csv_list=list(csv_reader)
-        
-
-        print(row)
-        
-        col_list=[]
-        
-        
-
-        for row in csv_list:
-           col_list.append(float(row[attr]))
-        
-        return statistics.mean(col_list)
-    
-    
-    @staticmethod    
-    def median_csv(path,attr):
-        """
-        this function takes the path of a csv file and the column name 
-
-        returns stadard deviation , mean and median for the data set
-        """
+        self.result_variable = StringVar()
+        self.result_entry = customtkinter.CTkEntry(self.stats_frame, text_font=("Helvetica", 18), 
+                        textvariable=self.result_variable)
                 
+        self.select_method_label.grid(row=0, column=0, sticky="ew")
+        self.methods_list_box.grid(row=0, column=1, sticky="ew")        
+        self.apply_stats_button.grid(row=1, column=0, columnspan=2, sticky="ew")
+        self.result_entry.grid(row=2, column=0, columnspan=2, sticky="ew")
+        
+        for child in self.stats_frame.winfo_children():
+            child.grid_configure(padx=15, pady=15) 
+             
+            
+    def _ImportCSV(self):
+        
+        path = r"../math_kit/assets/csv/gold.csv"
+        
         with open(path,"r") as csv_file:
             csv_reader = csv.DictReader(csv_file)
-            row=next(csv_reader)
-            csv_list=list(csv_reader)
-        
+            
+            self.columns_labels = list(next(csv_reader))
+            self.list_box.config(values=self.columns_labels)
+            
+            self.list_box.current(0)
+            
+            self.csv_list = list(csv_reader)   
 
 
-        print(row)
+    def _ApplyStats(self):
         
-        col_list=[]
+        method = self.methods_list_box.get()
         
+        x_list_items = list(self.list_box["values"])            
+        if len(x_list_items) == 0:
+            messagebox.showerror("Empty lists !", "The list is empty.")
+            return
         
-
-        for row in csv_list:
-           col_list.append(float(row[attr]))
-        
-        return statistics.median(col_list)
-
+        x_list = []    
+        for row in self.csv_list:
+            x_list.append(row[self.list_box.get()])
     
-    @staticmethod    
-    def max_csv(path,attr):
-        """
-        this function takes the path of a csv file and the column name 
-        returns stadard deviation , mean and median for the data set
-        """
-                
-        with open(path,"r") as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            row=next(csv_reader)
-            csv_list=list(csv_reader)
-        
-
-        print(row)
-        
-        col_list=[]
+            
+        try:
+            data = [float(i) for i in x_list]
+        except:
+            messagebox.showerror("Invalid input !", "List's elements are not numeric.")
+            return
         
         
-
-        for row in csv_list:
-           col_list.append(float(row[attr]))
-        
-        return max(col_list)
-
-
-    @staticmethod    
-    def min_csv(path,attr):
-        """
-        this function takes the path of a csv file and the column name 
-        returns stadard deviation , mean and median for the data set
-        """
-                
-        with open(path,"r") as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            row=next(csv_reader)
-            csv_list=list(csv_reader)
-        
-
-        print(row)
-        
-        col_list=[]
-        
-        
-
-        for row in csv_list:
-           col_list.append(float(row[attr]))
-        
-        return min(col_list)
-
+        if method == "Mean":
+            result = statistics.mean(data)
+            
+        elif method == "Median":
+            result = statistics.median(data)
+            
+        elif method == "Mode":
+            result = statistics.mode(data)
+            
+        elif method == "STD":
+            result = statistics.stdev(data)
+            
+        elif method == "Min":
+            result = min(data)
+            
+        elif method == "Max":
+            result = max(data)
+            
+        self.result_variable.set(result)
     
-    @staticmethod
-    def standard_deviation_list(input_list):
-
-        
-        """this function takes a list of integers 
-
-        returns stadard deviation , mean, median , maximum and minimum """
-        
-        return statistics.stdev(input_list)
         
         
-    @staticmethod
-    def mean_list(input_list):
-        return statistics.mean(input_list)
-
-
-    @staticmethod
-    def median_list(input_list):
-        return statistics.median(input_list)
-
-
-    @staticmethod
-    def min_list(input_list):
-        return min(input_list)
-
-
-    @staticmethod
-    def max_list(input_list):
-        return max(input_list)
-
-
-
-
-
     
