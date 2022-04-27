@@ -41,9 +41,8 @@ The provided features by the Math Kit are:
 
     - ***Plotter:*** This workspace allows the user to plot the graph of either:
         ```
-        1. An entered list.
-        2. An entered polynomial equation
-        3. Or a data set from a csv file.
+        1. An entered polynomial equation.
+        2. Or a data set from a csv file.
         ```    
         using the [**matplotlib**](https://matplotlib.org/) library, and the [**NumPy**](https://www.dataquest.io/blog/numpy-tutorial-python/) in Python.
     
@@ -58,17 +57,25 @@ The provided features by the Math Kit are:
     <br>
 
 
-    - ***Randomizer:*** This workspace allows gives the user two options:
+    - ***Randomizer:*** This workspace gives the user two options:
         ```
-        1. Generating a random list, while giving the high, low and length of the list.
+        1. Generating a random list, while giving the upper, lower and length of the list.
         2. Creating a random list made up of any data type they choose.
         ```
     <br>
 
-    - ***Statistics:*** This widnow performs mathematical operations relating to a given set or data, such as: mean, median, standard deviation.
-    - ***Calculus:*** This window performs more complex mathematical operations, such as: derivation and integration
-    - ***Numerical:*** This window performs other type of mathematical operations, such as: Newton Raphson Method.
-
+    - ***Statistics:*** This widnow performs mathematical operations relating to a given set or data, such as:
+    ```
+        1. Mean
+        2. Median
+        3. Mode
+        4. Standard Deviation
+    ```   
+    - ***Calculus:*** This window performs more complex mathematical operations, such as:
+    ```
+    1. Derivation
+    2. Integration
+    ```
 For further explanation, please refer to the [**workspace cards**](work_space_cards.md) file, and the section ***Minimum Viable Product*** in the [**requirment**](requirment.md) file.
     
 <br>
@@ -86,7 +93,9 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 ## **Planning of the Project**
 
 **The Project Planning on Replit:** 
-![The Project Planning on Replit](math_kit\assets\planning\planning-of-mathkit-replit.png)
+![The Project Planning on Replit](./math_kit/assets/planning/planning-of-mathkit-replit.png)
+
+
 <br>
 
 **The Project Planning on Trello:**
@@ -98,7 +107,6 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 
 <br>
 
-.github\ISSUE_TEMPLATE\bug_report.md
 
 ## **Project Directory Tree**
 ```
@@ -267,6 +275,15 @@ The frameworks for each window in Version 1.0.0, are as follows:
 ### **Version 1.0.1:**
 
 In this version, we used [**custom tkinter**](https://github.com/TomSchimansky/CustomTkinter) on top of [**tkinter**](https://docs.python.org/3/library/tkinter.html) to create the GUI, as we found that this would create a much aesthetically pleasing GUI experience for the user.
+
+Important changes were made to the GUI, such as the addition the option of selecting a theme in the **Settings** window, either:
+```
+1. Dark mode
+2. Light mode
+```
+
+And this new implementation of the theme was tested on a Windows 10 OS system, and it was found to be aesthetically pleasing, especially if the system was set to dark mode when the user chooses the dark mode theme in the settings window, and if it was set to light mode when the user chooses the light mode theme in the settings window.
+
 
 The frameworks for each window in Version 1.0.1, are as follows:
 
