@@ -30,7 +30,7 @@ To further explain the functionality of each card in the workspace window, here 
 
 2. **Plotter:**
     - The user can graph a polynomial function, either in the form of a line plot or a bar plot.
-    - The user can import a csv file to graph its data.
+    - The user can import a csv file to graph its data and save it as an image.
 
 3. **Converter:**
     - The user can choose a quantity set, such as: length and temperature.
@@ -39,5 +39,13 @@ To further explain the functionality of each card in the workspace window, here 
 4. **Randomizer:**
     - The user can generate a list of random numbers, given they provide the length of the list, upper and lower values.
     - The user can create their own list by adding, deleting, picking what specific elements they want their list to contain.
+    - The user can save the lists in csv files.
 
-<br>
+
+5. **Statistics**:
+    - The user can import a csv file to calculate its statistical data.
+    - The user can perform basic statistical operations, such as mean, median, mode, and standard deviation, min, and max.
+
+6. **Calculus**:
+    - The user can perform basic calculus operations, such as differentiation, integration, and evaluation.
+

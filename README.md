@@ -70,11 +70,14 @@ The provided features by the Math Kit are:
         2. Median
         3. Mode
         4. Standard Deviation
+        5. Min
+        6. Max
     ```   
     - ***Calculus:*** This window performs more complex mathematical operations, such as:
     ```
     1. Derivation
     2. Integration
+    3. Evaluation
     ```
 For further explanation, please refer to the [**workspace cards**](work_space_cards.md) file, and the section ***Minimum Viable Product*** in the [**requirment**](requirment.md) file.
     
@@ -99,10 +102,9 @@ For further explanation, please refer to the [**workspace cards**](work_space_ca
 <br>
 
 **The Project Planning on Trello:**
-![The Project Planning on Trello](math_kit\assets\planning\planning-of-mathkit-trello.png)
+![The Project Planning on Trello](./math_kit/assets/planning/planning-of-mathkit-trello.png)
 
 <br>
-
 
 
 <br>
@@ -249,25 +251,25 @@ In this version, the project was in its initial state, using [**tkinter**](https
 The frameworks for each window in Version 1.0.0, are as follows:
 
 **The Home Window:**
-![The Home Window](math_kit\assets\wire_frames\home_version1.PNG)
+![The Home Window](./math_kit/assets/wire_frames/home_version1.PNG)
 
 **The Workspace Window:**
-![The Workspace Window](math_kit\assets\wire_frames\workspace_version1.PNG)
+![The Workspace Window](./math_kit/assets/wire_frames/workspace_version1.PNG)
 
 **The Calculator Window:**
-![The Calculator Window](math_kit\assets\wire_frames\calculator_version1.PNG)
+![The Calculator Window](./math_kit/assets/wire_frames/calculator_version1.PNG)
 
 **The Plotter Window:**
-![The Plotter Window](math_kit\assets\wire_frames\plotter_version1.PNG)
+![The Plotter Window](./math_kit/assets/wire_frames/plotter_version1.PNG)
 
 **The Convertor Window:**
-![The Convertor Window](math_kit\assets\wire_frames\convertor_version1.PNG)
+![The Convertor Window](./math_kit/assets/wire_frames/convertor_version1.PNG)
 
 **The Randomizer Window:**
-![The Randomizer Window](math_kit\assets\wire_frames\randomizer_version1.PNG)
+![The Randomizer Window](./math_kit/assets/wire_frames/randomizer_version1.PNG)
 
 **The Team Info Window:**
-![The Team Info Window](math_kit\assets\wire_frames\teaminfo_version1.PNG)
+![The Team Info Window](./math_kit/assets/wire_frames/teaminfo_version1.PNG)
 
 <br>
 
@@ -288,24 +290,34 @@ And this new implementation of the theme was tested on a Windows 10 OS system, a
 The frameworks for each window in Version 1.0.1, are as follows:
 
 **The Home Window:**
-![The Home Window](math_kit\assets\wire_frames\home_version2.PNG)
+![The Home Window](./math_kit/assets/wire_frames/home_version2.PNG)
 
 **The Workspace Window:**
-![The Workspace Window](math_kit\assets\wire_frames\workspace_version2.PNG)
+![The Workspace Window](./math_kit/assets/wire_frames/workspace_version2.PNG)
 
 **The Calculator Window:**
+![The Calculator Window](./math_kit/assets/wire_frames/calculator_version2.PNG)
 
 **The Plotter Window:**
+![The Plotter Window](./math_kit/assets/wire_frames/plotter_version2.PNG)
 
 **The Convertor Window:**
+![The Convertor Window](./math_kit/assets/wire_frames/convertor_version2.PNG)
 
 **The Randomizer Window:**
+![The Randomizer Window](./math_kit/assets/wire_frames/randomizer_version2.PNG)
+
+**The Statistics Window:**
+![The Statistics Window](./math_kit/assets/wire_frames/statistics_version2.PNG)
+
+**The Calculas Window:**
+![The Calculas Window](./math_kit/assets/wire_frames/calculus_version2.PNG)
 
 **The Team Info Window:**
-![The Team Info Window](math_kit\assets\wire_frames\teaminfo_version2.PNG)
+![The Team Info Window](./math_kit/assets/wire_frames/teaminfo_version2.PNG)
 
 **The Settings Window:**
-![The Settings Window](math_kit\assets\wire_frames\settings_version2.PNG)
+![The Settings Window](./math_kit/assets/wire_frames/settings_version2.PNG)
 
 <br>
 
@@ -362,7 +374,7 @@ definatly after installing poetry, using this command:
 
 `$ poetry install`
 
-3. Navigate inside "Math-Kit\math_kit" directory to run the program, preferably on "Windows Powershell" not "Ubuntu" and that's because WSL doesn't support rendering GUI, so it's advised to be careful as to not run into some issues you want to stay away from.
+3. Navigate inside "Math-Kit/math_kit" directory to run the program, preferably on "Windows Powershell" not "Ubuntu" and that's because WSL doesn't support rendering GUI, so it's advised to be careful as to not run into some issues you want to stay away from.
 
 4. After cd'ing inside the above directory, and after activating the virtual environment, run this command 
 
