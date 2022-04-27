@@ -173,7 +173,7 @@ class WorkspacePage:
         self.diff_and_int_img.grid_columnconfigure(0, weight=1)
         self.diff_and_int_img.pack(pady=5)
         
-        self.diff_and_int_label = customtkinter.CTkLabel(self.diff_and_int_frame, text="Calculas", bg=self.tools.pallete["gray"], 
+        self.diff_and_int_label = customtkinter.CTkLabel(self.diff_and_int_frame, text="Calculus", bg=self.tools.pallete["gray"], 
                                 text_font= ("Helvetica", 15, "bold"))
 
         self.diff_and_int_label.pack()

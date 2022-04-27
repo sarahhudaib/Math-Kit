@@ -59,7 +59,7 @@ class Tools:
         elif page == 7:
             wind.title("Math Kit - Workspace - Statistics")
         elif page == 6:
-            wind.title("Math Kit - Workspace - Calculas")
+            wind.title("Math Kit - Workspace - Calculus")
 
             
             
