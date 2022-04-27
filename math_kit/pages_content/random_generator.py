@@ -309,18 +309,26 @@ class RandomGeneratorPage:
                 # write.writerows(rows)
       
     def _ExportCSV(self, entry):
-        
-        mydir = filedialog.askdirectory()
+                
+        filename = filedialog.asksaveasfile(
+            mode='w', 
+            defaultextension=".csv",
+            initialdir=r"C:", 
+            title="Select a directory and name the image")
+            
+        if filename is None:
+            messagebox.showerror("Error", "Couldn't save the file !!")
+            return
         
         if entry == "left":    
             try:
-                shutil.copy(r"../math_kit/assets/csv/left_result.csv", mydir) 
+                shutil.copy(r"../math_kit/assets/csv/left_result.csv", filename.name) 
             except:
                 messagebox.showerror("Error", "Couldn't save the file !!")
                 
         else:
             try:
-                shutil.copy(r"../math_kit/assets/csv/right_result.csv", mydir) 
+                shutil.copy(r"../math_kit/assets/csv/right_result.csv", filename.name) 
             except:
                 messagebox.showerror("Error", "Couldn't save the file !!")
             
