@@ -44,7 +44,7 @@ class StatsPage:
                         text_font=("Helvetica", 18, "bold"), cursor="hand2",  
                         command=lambda: self._ImportCSV(), hover_color=self.tools.pallete["purple"])
         
-        self.select_label = customtkinter.CTkLabel(self.preparing_data_frame, text="Select the coluumn:", 
+        self.select_label = customtkinter.CTkLabel(self.preparing_data_frame, text="Select the column:", 
                                         text_font=("Helvetica", 18))
 
         self.list_variable = StringVar()
