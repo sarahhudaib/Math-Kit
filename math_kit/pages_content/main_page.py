@@ -12,7 +12,6 @@ from pages_content.plotting import Plotter
 from pages_content.unit_converter import UnitConverterPage
 from pages_content.random_generator import RandomGeneratorPage
 from pages_content.stats import StatsPage
-from pages_content.numerical_operations import NumericalOperationsPage
 from pages_content.derive_and_integrate import DeriveAndIntegratePage
 
 
@@ -30,7 +29,7 @@ class MainPage:
         self.width = int(tools.screen_width*0.8)
         self.height = int(tools.screen_height*0.8)
         offsetX = int(tools.screen_width*0.1)
-        offsetY = int(tools.screen_height*0.1)
+        offsetY = int(tools.screen_height*0.05)
 
         self.wind.geometry(f"{self.width}x{self.height}+{offsetX}+{offsetY}")   
         
@@ -56,22 +55,26 @@ class MainPage:
         self.upper_frame.pack(fill="x", expand=True, side="top", anchor="n")
 
         self.home_button = customtkinter.CTkButton(self.upper_frame, text="Home", hover_color=tools.pallete["purple"], 
-                            text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
+                            text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2",
+                            fg_color=tools.pallete["purple"])
         self.home_button.grid(row=0, column=0, sticky="n", padx=int(tools.screen_width*0.015), pady=15,
                          ipadx=ipadx_nav_button, ipady=5)
 
         self.workspace_button = customtkinter.CTkButton(self.upper_frame, text="Workspace", hover_color=tools.pallete["purple"],
-                            text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
+                            text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2",
+                            fg_color=tools.pallete["blue"])
         self.workspace_button.grid(row=0, column=1, sticky="n", padx=int(tools.screen_width*0.015), pady=15,
                               ipadx=ipadx_nav_button, ipady=5)
 
         self.team_info_button = customtkinter.CTkButton(self.upper_frame, text="Team Info", hover_color=tools.pallete["purple"],
-                        text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
+                        text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2",
+                        fg_color=tools.pallete["blue"])
         self.team_info_button.grid(row=0, column=2, sticky="n", padx=int(tools.screen_width*0.015), pady=15,
                               ipadx=ipadx_nav_button, ipady=5)
 
         self.settings_button = customtkinter.CTkButton(self.upper_frame, text="Settings", hover_color=tools.pallete["purple"],
-                        text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2")
+                        text_font= ("Berlin Sans FB", int(tools.screen_width*0.012)), cursor="hand2", 
+                        fg_color=tools.pallete["blue"])
         self.settings_button.grid(row=0, column=3, sticky="n", padx=int(tools.screen_width*0.015), pady=15, 
                              ipadx=ipadx_nav_button, ipady=5)
 
@@ -112,30 +115,30 @@ class MainPage:
         
         if page_number == 0:
             tools.Navigate(self.wind, self.pages_display_notebook, 0)
-            self.home_button.config(bg=tools.pallete["purple"])
-            self.workspace_button.config(bg=tools.pallete["blue"])
-            self.team_info_button.config(bg=tools.pallete["blue"])
-            self.settings_button.config(bg=tools.pallete["blue"])
+            self.home_button.config(fg_color=tools.pallete["purple"])
+            self.workspace_button.config(fg_color=tools.pallete["blue"])
+            self.team_info_button.config(fg_color=tools.pallete["blue"])
+            self.settings_button.config(fg_color=tools.pallete["blue"])
             
         elif page_number == 1:
             tools.Navigate(self.wind, self.pages_display_notebook, 1)
-            self.home_button.config(bg=tools.pallete["blue"])
-            self.workspace_button.config(bg=tools.pallete["purple"])
-            self.team_info_button.config(bg=tools.pallete["blue"])
-            self.settings_button.config(bg=tools.pallete["blue"])
+            self.home_button.config(fg_color=tools.pallete["blue"])
+            self.workspace_button.config(fg_color=tools.pallete["purple"])
+            self.team_info_button.config(fg_color=tools.pallete["blue"])
+            self.settings_button.config(fg_color=tools.pallete["blue"])
             
         elif page_number == 2:
             tools.Navigate(self.wind, self.pages_display_notebook, 2)
-            self.home_button.config(bg=tools.pallete["blue"])
-            self.workspace_button.config(bg=tools.pallete["blue"])
-            self.team_info_button.config(bg=tools.pallete["purple"])
-            self.settings_button.config(bg=tools.pallete["blue"])
+            self.home_button.config(fg_color=tools.pallete["blue"])
+            self.workspace_button.config(fg_color=tools.pallete["blue"])
+            self.team_info_button.config(fg_color=tools.pallete["purple"])
+            self.settings_button.config(fg_color=tools.pallete["blue"])
             
         elif page_number == 3:
             tools.Navigate(self.wind, self.pages_display_notebook, 3)
-            self.home_button.config(bg=tools.pallete["blue"])
-            self.workspace_button.config(bg=tools.pallete["blue"])
-            self.team_info_button.config(bg=tools.pallete["blue"])
-            self.settings_button.config(bg=tools.pallete["purple"])
+            self.home_button.config(fg_color=tools.pallete["blue"])
+            self.workspace_button.config(fg_color=tools.pallete["blue"])
+            self.team_info_button.config(fg_color=tools.pallete["blue"])
+            self.settings_button.config(fg_color=tools.pallete["purple"])
             
             

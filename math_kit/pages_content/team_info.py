@@ -2,6 +2,7 @@ from tkinter import Tk, Frame, Button, Label, messagebox
 from PIL import Image, ImageTk
 import webbrowser
 import threading
+import customtkinter
 
 
 class TeamInfoPage:
@@ -55,10 +56,10 @@ class TeamInfoPage:
         self.sara_github = "https://github.com/sarahhudaib"
         self.sara_linkedin = "https://www.linkedin.com/in/sarah-hudaib-2298a5184/"
         self.sara_github_button = customtkinter.CTkButton(self.sara, text="Github", bg=self.tools.pallete["blue"], 
-                                         text_font=("Berlin Sans FB", 18),
+                                         text_font=("Berlin Sans FB", 18), hover_color=self.tools.pallete["purple"],
                                   command=lambda: self.url_button_handler(self.sara_github))
         self.sara_linkedin_button = customtkinter.CTkButton(self.sara, text="LinkedIn", bg=self.tools.pallete["blue"], 
-                                         text_font=("Berlin Sans FB", 18),
+                                         text_font=("Berlin Sans FB", 18), hover_color=self.tools.pallete["purple"],
                                     command=lambda: self.url_button_handler(self.sara_linkedin))
         self.sara_github_button.pack(padx=10, fill="x", expand=True)
         self.sara_linkedin_button.pack(padx=10, fill="x", expand=True)
@@ -87,10 +88,10 @@ class TeamInfoPage:
         self.mustafa_github = "https://github.com/Mustfa1999"
         self.mustafa_linkedin = "https://www.linkedin.com/in/mustafa-alhasanat/"
         self.mustafa_github_button = customtkinter.CTkButton(self.mustafa, text="Github", bg=self.tools.pallete["blue"], 
-                                         text_font=("Berlin Sans FB", 18),
+                                         text_font=("Berlin Sans FB", 18), hover_color=self.tools.pallete["purple"],
                                   command=lambda: self.url_button_handler(self.mustafa_github))
         self.mustafa_linkedin_button = customtkinter.CTkButton(self.mustafa, text="LinkedIn", bg=self.tools.pallete["blue"], 
-                                         text_font=("Berlin Sans FB", 18),
+                                         text_font=("Berlin Sans FB", 18), hover_color=self.tools.pallete["purple"],
                                     command=lambda: self.url_button_handler(self.mustafa_linkedin))
         self.mustafa_github_button.pack(padx=10, fill="x", expand=True)
         self.mustafa_linkedin_button.pack(padx=10, fill="x", expand=True)
@@ -118,10 +119,10 @@ class TeamInfoPage:
         self.batool_github = "https://github.com/BatoolBtoush"
         self.batool_linkedin = "https://www.linkedin.com/in/batool-ragayah/"
         self.batool_github_button = customtkinter.CTkButton(self.batool, text="Github", bg=self.tools.pallete["blue"], 
-                                         text_font=("Berlin Sans FB", 18),
+                                         text_font=("Berlin Sans FB", 18), hover_color=self.tools.pallete["purple"],
                                   command=lambda: self.url_button_handler(self.batool_github))
         self.batool_linkedin_button = customtkinter.CTkButton(self.batool, text="LinkedIn", bg=self.tools.pallete["blue"], 
-                                         text_font=("Berlin Sans FB", 18),
+                                         text_font=("Berlin Sans FB", 18), hover_color=self.tools.pallete["purple"],
                                     command=lambda: self.url_button_handler(self.batool_linkedin))
         self.batool_github_button.pack(padx=10, fill="x", expand=True)
         self.batool_linkedin_button.pack(padx=10, fill="x", expand=True)
@@ -149,10 +150,10 @@ class TeamInfoPage:
         self.salim_github = "https://github.com/SalimHass"
         self.salim_linkedin = "https://www.linkedin.com/in/salim-hassouneh/"
         self.salim_github_button = customtkinter.CTkButton(self.salim, text="Github", bg=self.tools.pallete["blue"], 
-                                       text_font=("Berlin Sans FB", 18),
+                                       text_font=("Berlin Sans FB", 18), hover_color=self.tools.pallete["purple"],
                                   command=lambda: self.url_button_handler(self.salim_github))
         self.salim_linkedin_button = customtkinter.CTkButton(self.salim, text="LinkedIn", bg=self.tools.pallete["blue"], 
-                                       text_font=("Berlin Sans FB", 18),
+                                       text_font=("Berlin Sans FB", 18), hover_color=self.tools.pallete["purple"],
                                     command=lambda: self.url_button_handler(self.salim_linkedin))
         self.salim_github_button.pack(padx=10, fill="x", expand=True)
         self.salim_linkedin_button.pack(padx=10, fill="x", expand=True)
